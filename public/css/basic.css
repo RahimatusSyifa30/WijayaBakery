@@ -1,0 +1,253 @@
+/* setting Default */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,500&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,300&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.alert {
+  animation-name: fade;
+  animation-duration: 0.4s;
+}
+.bi {
+  font-size: 3rem;
+  background: white;
+  color: var(--coklat);
+}
+.alert {
+  transition: 0.6s;
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+:root {
+  --kuning: rgba(255, 182, 45, 0.8);
+  --coklat: rgba(117, 0, 0, 255);
+}
+body {
+  min-height: 80vh;
+  position: relative;
+  font-family: Ubuntu, Poppins, "Times New Roman", Times, serif;
+  /* background-color: rgba(255, 253, 243, 255); */
+}
+.btnhover {
+  color: var(--coklat);
+  top: -5px;
+}
+.btnhover:hover {
+  color: var(--kuning);
+}
+.feather {
+  width: 24px;
+  height: 24px;
+  stroke: var(--coklat);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.featherr:hover {
+  stroke: var(--kuning);
+}
+#bakery {
+  color: var(--coklat);
+}
+.stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: brown;
+}
+.stroke-wt {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
+}
+/* Header */
+
+#header {
+  z-index: 999;
+  background-color: white;
+}
+
+.content {
+  margin-top: 100px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: 0.05ms;
+}
+.sticky + .content {
+  padding-top: 102px;
+}
+
+#hamburger-menu {
+  display: none;
+}
+/* Footer */
+body::after {
+  content: "";
+  display: block;
+  height: 30px; /* Set same as footer's height */
+}
+.show {
+  display: flex;
+  flex-wrap: wrap;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+}
+#footer {
+  background-color: rgba(255, 253, 243, 255);
+
+  background-image: url(../image/bg/body-foot.png);
+  background-size: 180%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+#footer #nav-logo img {
+  width: 200px;
+}
+#btntotop {
+  width: 30px;
+  height: 30px;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 60%;
+  }
+  .feather {
+    width: 20px;
+    height: 20px;
+  }
+  #header {
+    z-index: 999;
+    background-color: white;
+  }
+
+  .content {
+    margin-top: 100px;
+  }
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .sticky + .content {
+    padding-top: 102px;
+  }
+
+  #hamburger-menu {
+    display: inline-block;
+  }
+  #header .nav-item.active::before {
+    content: "Navigasi";
+    font-size: large;
+    color: var(--coklat);
+    text-align: center;
+  }
+  #header .nav-item {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    background-color: yellow;
+    width: 20rem;
+    height: 100vh;
+    transition: 0.6s;
+    z-index: 99;
+  }
+  #header .nav-item.active {
+    right: 0;
+  }
+
+  /* Footer */
+
+  #footer #nav-logo img {
+    width: 100px;
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+  .feather {
+    width: 20px;
+    height: 20px;
+  }
+  #hamburger-menu {
+    display: inline-block;
+  }
+  #header {
+    z-index: 999;
+    background-color: white;
+  }
+  #header .nav-item.active::before {
+    content: "Navigasi";
+    font-size: large;
+    color: var(--coklat);
+    text-align: center;
+  }
+  #header .nav-item {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    background-image: white;
+
+    width: 20rem;
+    height: 100vh;
+    transition: 0.6s;
+    z-index: 99;
+  }
+  #header .nav-item.active {
+    right: 0;
+  }
+  .content {
+    margin-top: 100px;
+  }
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .sticky + .content {
+    padding-top: 102px;
+  }
+
+  #footer #nav-logo img {
+    width: 75px;
+  }
+}

@@ -1,0 +1,12 @@
+.card {
+  width: 100%;
+}
+.card img {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  min-height: 300px;
+  max-height: 300px;
+  object-fit: contain;
+}
