@@ -27,9 +27,9 @@
   
       <div class="col-12">
         <?php 
-        if(session()->getFlashdata('pesan')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" style="transition:0.6ms" role="alert">';
-            echo '<h5>'.session()->getFlashdata('pesan').'</h5>';
+        if(session()->getFlashdata('notif')){ 
+          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
@@ -76,7 +76,7 @@
           
           <div class="total text-center">
             <h2>Total : <?= $total_harga; ?></h2>
-            <button type="submit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
+            <button type="submit" class="btn btn-warning"><i data-feather="save"></i></button>
             <?php echo form_close()?>
             <a href="<?= base_url('admin/hapus_total_keranjang') ?>" class="btn btn-warning"><i class="bi bi-trash3-fill"></i></a>
           </div>

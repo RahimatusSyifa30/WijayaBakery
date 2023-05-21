@@ -10,7 +10,7 @@ class DetailPesananModel extends Model
     protected $primaryKey = 'id_detail';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['id_pesanan','id_detail','id_produk','kuantitas','sub_total'];
+    protected $allowedFields = ['id_pesanan','id_detail','id_produk','kuantitas','sub_modal','sub_total'];
     public function viewAll(){
         return $this->findAll();
     }
@@ -19,13 +19,23 @@ class DetailPesananModel extends Model
     }
     public function getJoinProdukById($id){
         $db=db_connect();
-        $sql='SELECT produk.nama_produk,kuantitas,sub_total FROM detail_pesanan JOIN produk ON produk.id_produk = detail_pesanan.id_produk WHERE id_pesanan='.$id;
+        $sql='SELECT produk.nama_produk,kuantitas,sub_total,modal_produk,harga_produk FROM detail_pesanan JOIN produk ON produk.id_produk = detail_pesanan.id_produk WHERE id_pesanan='.$id;
         $data=$db->query($sql);
         $data=$data->getResultArray();
         return $data;
     }
+    public function getSubTotal($a,$b){
+        return $a*$b;
+    }
+    public function getTotalHarga($id, $subtotal){
+        
+        return $subtotal+=$subtotal;
+    }
     public function insert_detail_pesanan($data){
         $this->insert($data);
+    }
+    public function update_detail_pesanan($id,$data){
+        return $this->where('id_detail',$id)->update($data);
     }
     public function delete_detail_pesanan($id){
         $this->where('id_pesanan',$id)->delete();

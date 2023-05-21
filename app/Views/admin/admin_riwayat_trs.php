@@ -29,11 +29,12 @@ $rootPath = ROOTPATH;
 $filePath = $rootPath . 'app\Views';
 include($filePath . '\layout\admin_header.php') ?>
 <!-- Header End -->
+<div class="row">
     <div class="col-12">
         <?php 
-        if(session()->getFlashdata('pesan')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" style="transition:0.6ms" role="alert">';
-            echo '<h5>'.session()->getFlashdata('pesan').'</h5>';
+        if(session()->getFlashdata('notif')){ 
+          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
@@ -41,9 +42,10 @@ include($filePath . '\layout\admin_header.php') ?>
         
         ?>
       </div>
+      </div>
     <div class="row p-md-4 p-sm-1">
         <div class="col-12 bg-secondary bg-opacity-10 text-center border border-2">
-            <h1>Pesanan Selesai</h1>
+            <h1>Riwayat Transaksi</h1>
               <!-- <a href="<?= base_url('admin/pilih_pesanan')?>" class="ms-4 align-self-center" title="Tambah Pesanan"><i data-feather="plus-square"></i></a> -->
             <div class="row">
             <div class="col-12">

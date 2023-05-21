@@ -10,7 +10,7 @@ class PesananModel extends Model
     protected $primaryKey = 'id_pesanan';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['id_pesanan','tanggal','nama_pelanggan','no_hp_pelanggan','total_harga'];
+    protected $allowedFields = ['id_pesanan','tanggal','nama_pelanggan','no_hp_pelanggan','total_modal','total_harga'];
     
     public function view_belum(){
         return $this->where('status','Belum')->findAll();
@@ -21,10 +21,13 @@ class PesananModel extends Model
     public function view_selesai(){
         return $this->where('status','Selesai')->findAll();
     }
-    public function view_DariBulan(){
-        $db=db_connect();
-        $db->query('SELECT MONTH(tanggal) FROM pesanan');
-        $db->query('SELECT * FROM pesanan WHERE MONTH(tanggal)=');
+    public function filter_pesanan($start,$end){
+        $db = db_connect();
+        $sql = "SELECT * FROM pesanan WHERE tanggal BETWEEN '".$start." 00:00:00' AND '".$end." 23:59:59'";
+        $data=$db->query($sql);
+        $data=$data->getResultArray();
+        
+        return $data;
     }
     public function getPesananById($id){
         return $this->find($id);

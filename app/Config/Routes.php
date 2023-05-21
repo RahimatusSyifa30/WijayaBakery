@@ -38,13 +38,13 @@ $routes->get('cek', 'AdminPesananController::cek');
 $routes->group('admin', function ($routes) {
     $routes->get('/','AdminPesananController::index');
     $routes->add('tambah_pesanan','AdminPesananController::insert_pesanan');
+    $routes->add('ubah_pesanan/(:segment)','AdminPesananController::update_pesanan/$1');
     $routes->get('pesanan_diproses/(:segment)','AdminPesananController::pesanan_diproses/$1');
-    $routes->get('pesanan_selesai/(:segment)','AdminPesananController::pesanan_selesai/$1');
-    $routes->add('pesanan/detail/(:segment)','AdminPesananController::detail/$1');
+    $routes->add('pesanan_selesai/(:segment)','AdminPesananController::pesanan_selesai/$1');
     $routes->add('hapus_pesanan/(:segment)','AdminPesananController::delete_pesanan/$1');
 
     $routes->get('riwayat','AdminRiwayatController::index');
-    $routes->get('laporan','AdminLaporanController::index');
+    $routes->add('laporan','AdminLaporanController::index');
     
     $routes->add('keranjang','AdminKeranjangController::index');
     $routes->add('tambah_keranjang','AdminKeranjangController::tambah_keranjang');
