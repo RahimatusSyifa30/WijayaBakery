@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Produk</title>
-    <link rel="shortcut icon" href="../image/logo/logo.png" />
+    <link rel="shortcut icon" href="<?= base_url('image/logo/logo.png')?>" />
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -24,9 +24,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="/css/basic.css" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/pesanan.css" />
+    <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
   </head>
   
   <body>
@@ -92,7 +92,7 @@
                       <div class="swiper-slide">
                         <div class="card border-warning" >
                           <img
-                            src="/image/bg/jenis_produk/<?= $jen_pro["gambar_kel"]?>"
+                            src="<?= base_url('image/bg/jenis_produk/')?><?= $jen_pro["gambar_kel"]?>"
                             class="card-img-top"
                             alt="..."
                             
@@ -152,7 +152,7 @@
               ?>
               <div class="card border-warning m-2 " style="width: 100%;">
                 <img
-                src="/image/roti/<?= $pro["gambar_produk"]?>"
+                src="<?= base_url('image/roti/')?><?= $pro["gambar_produk"]?>"
                 class=""
                 alt="..."              
                 />
@@ -245,8 +245,8 @@
         feather.replace();
       </script>
       <!-- Script Manual -->
-      <script src="/assets/js/pesanan.js" type="text/javascript"></script>
-      <script src="/assets/js/script.js" type="text/javascript"></script>
+      <script src="<?= base_url('assets/js/pesanan.js')?>" type="text/javascript"></script>
+      <script src="<?= base_url('assets/js/script.js')?>" type="text/javascript"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
   
   </body>

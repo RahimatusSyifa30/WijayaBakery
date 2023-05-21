@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - Keranjang</title>
-  <link rel="shortcut icon" href="../image/logo/logo.png" />
+  <link rel="shortcut icon" href="<?= base_url('image/logo/logo.png')?>" />
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="/css/basic.css" />
-  <link rel="stylesheet" href="/css/pesanan.css" />
+  <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
+  <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
 </head>
 
 <body>
@@ -61,7 +61,7 @@
         foreach($isi_ker as $keranjang):?>
         <tr>
           
-          <td><img style="width:75px" src="/image/roti/<?= $keranjang['options']['gambar']?>"></img></td>
+          <td><img style="width:75px" src="image/roti/<?= $keranjang['options']['gambar']?>"></img></td>
           <td><h1><?= $keranjang['name']?></h1></td>
           <?php echo form_open('admin/ubah_keranjang')?>
           <td><input type="number" min=1 max=<?= $keranjang['options']['stok']?> 
@@ -112,7 +112,7 @@
     feather.replace();
   </script>
   <!-- Script Manual -->
-  <script src="../assets/js/script.js" type="text/javascript"></script>
+  <script src="<?= base_url('assets/js/script.js')?>" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </body>

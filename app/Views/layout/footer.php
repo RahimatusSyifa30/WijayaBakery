@@ -4,7 +4,7 @@
           <div class="ms-lg-4 m-0" id="nav-logo" >
             <a href="#"
               ><img
-                src="/image/logo/logo.png"
+                src="<?= base_url('/image/logo/logo.png')?>"
                 alt="Logo Toko"
             /></a>
             </div>

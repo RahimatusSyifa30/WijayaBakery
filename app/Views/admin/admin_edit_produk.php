@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Edit Produk</title>
-    <link rel="shortcut icon" href="/image/logo/logo.png" />
+    <link rel="shortcut icon" href="<?= base_url('image/logo/logo.png')?>" />
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -23,8 +23,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="/css/basic.css" />
-    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
 </head>
 <body>
     <!-- Header Start -->
@@ -56,8 +56,8 @@
       <input type="text" name="gambar" class="visually-hidden" value="<?= $produk['gambar_produk']?>">
       <label for="gambar_pro">Gambar Produk</label>
       <br>
-      <img style="width:200px" src="/image/roti/<?= $produk['gambar_produk']?>" alt="">
-      <input type="file" src="/image/roti/<?= $produk['gambar_produk']?>" name="gambar_pro" id="gambar_pro" class="bg-secondary bg-opacity-10 form-control" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk">    
+      <img style="width:200px" src="<?= base_url('image/roti/')?><?= $produk['gambar_produk']?>" alt="">
+      <input type="file" src="<?= base_url('image/roti/')?><?= $produk['gambar_produk']?>" name="gambar_pro" id="gambar_pro" class="bg-secondary bg-opacity-10 form-control" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk">    
         
       <br><br>
       <div class="text-center">
@@ -75,6 +75,6 @@
         feather.replace();
       </script>
       <!-- Script Manual -->
-      <script src="/assets/js/script.js" type="text/javascript"></script>
+      <script src="<?= base_url('assets/js/script.js')?>" type="text/javascript"></script>
 </body>
 </html>

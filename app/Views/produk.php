@@ -47,7 +47,7 @@
                       <div class="swiper-slide ">
                         <div class="card border-warning" >
                           <img
-                            src="/image/bg/jenis_produk/<?= $jen_pro["gambar_kel"]?>"
+                            src="image/bg/jenis_produk/<?= $jen_pro["gambar_kel"]?>"
                             class="card-img-top"
                             alt="..."
                             
