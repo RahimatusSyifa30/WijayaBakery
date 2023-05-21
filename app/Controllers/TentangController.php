@@ -8,6 +8,6 @@ class TentangController extends BaseController
     {
         $keran=new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
-        return view('tentang',$data);
+        return view('tentangkami',$data);
     }
 }
