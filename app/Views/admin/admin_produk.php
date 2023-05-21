@@ -66,12 +66,12 @@
       <content>
       <div class="col-12">
           <?php 
-          if(session()->getFlashdata('notif')){
-            echo '<div class="alert alert-success justify-content-between d-flex fade show" style="transition:0.6ms" role="alert">';
-            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
+          if(session()->getFlashdata('notif')){ 
+            echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
+              echo '<h5>'.session()->getFlashdata('notif').'</h5>';
+              echo '
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
           }
           ?>
         </div>
@@ -133,10 +133,13 @@
             </div>
           
             <!--  BUAT SELURUH PRODUK-->
+            <div class="container flex-wrap justify-content-center" id="SelProduk" >
+            <div class="row">
+
             
-            <div class="d-flex flex-wrap justify-content-center" id="SelProduk" >
               <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             <?php foreach ($produk as $pro) :?>
+              <div class="col-md-6 col-xs-12">
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
               <?php 
             
@@ -147,10 +150,10 @@
                  echo form_hidden('stok',$pro['stok_produk']);
                  echo form_hidden('gambar',$pro['gambar_produk']);
               ?>
-              <div class="card border-warning m-2 " style="width: 320px;">
+              <div class="card border-warning m-2 " style="width: 100%;">
                 <img
-                src="../image/roti/<?= $pro["gambar_produk"]?>"
-                class="card-img-top"
+                src="/image/roti/<?= $pro["gambar_produk"]?>"
+                class=""
                 alt="..."              
                 />
                 <div class="card-body text-center" >
@@ -173,6 +176,7 @@
                   </button>                 
                  </div>
                 </div>
+              </div>
               </div>
               </div>
               

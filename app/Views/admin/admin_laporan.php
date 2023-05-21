@@ -31,9 +31,15 @@ include($filePath . '\layout\admin_header.php') ?>
 <!-- Header End -->
     <div class="col-12">
         <?php 
-        if(session()->getFlashdata('pesan')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" style="transition:0.6ms" role="alert">';
-            echo '<h5>'.session()->getFlashdata('pesan').'</h5>';
+        if(session()->getFlashdata('notif')){ 
+          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
+            echo '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }else if(session()->getFlashdata('error')){ 
+          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('error').'</h5>';
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
@@ -43,20 +49,29 @@ include($filePath . '\layout\admin_header.php') ?>
       </div>
     <div class="row p-md-4 p-sm-1">
         <div class="col-12 bg-secondary bg-opacity-10 text-center border border-2">
-            <h1>Pesanan Selesai</h1>
-              <!-- <a href="<?= base_url('admin/pilih_pesanan')?>" class="ms-4 align-self-center" title="Tambah Pesanan"><i data-feather="plus-square"></i></a> -->
+            <h1>Laporan Keuangan</h1>
             <div class="row">
+              <div class="col-md-6">
+              <form action="<?= base_url('admin/laporan'); ?>" method="post">
+                <label for="start">Tanggal Awal:</label>
+                <input type="date" name="start" id="start">
+
+                <label for="end">Tanggal Akhir:</label>
+                <input type="date" name="end" id="end" >
+
+
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+              </div>
             <div class="col-12">
             <?php $counter=0;
-            foreach($pesanan_selesai as $pesan){?>
+            foreach($pesanan_filter as $pesan){?>
               <table class="table table-warning">
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>
                 <th>No HP</th>
-                <th>Status</th>
 
-                <th></th>
                 <th></th>
                 <th></th>
               </tr>
@@ -65,9 +80,8 @@ include($filePath . '\layout\admin_header.php') ?>
                 <td><?= $pesan['nama_pelanggan']?></td>
                 <td><?= $pesan['tanggal']?></td>
                 <td><?= $pesan['no_hp_pelanggan']?></td>
-                <td><?= $pesan['status']?></td>
+
                 
-                <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
                 <td><button id="detail" class="btn btn-primary" onclick="detail(<?=$counter?>)">Detail</button></td>
                 <td>Total Harga : <?= $pesan['total_harga']?></td>
               </tr>

@@ -32,23 +32,11 @@ include($filePath . '\layout\admin_header.php') ?>
 
 <!-- Header End -->
     <div class="col-12">
-    <script src="/assets/izitoast/js/iziToast.min.js">
-      iziToast.settings({
-      timeout: 3000, // default timeout
-      resetOnHover: true,
-      // icon: '', // icon class
-      transitionIn: 'flipInX',
-      transitionOut: 'flipOutX',
-      position: 'topRight',});
-  iziToast.success({
-    title: 'Hey',
-    message: 'dsadsa'
-  });
-</script>
+
         <?php 
-        if(session()->getFlashdata('pesan')){ 
+        if(session()->getFlashdata('notif')){ 
           echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('pesan').'</h5>';
+            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
@@ -56,15 +44,17 @@ include($filePath . '\layout\admin_header.php') ?>
         
         ?>
       </div>
+
+
+      <!-- Pesanan Masuk -->
     <div class="row p-md-4 p-sm-1">
         <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Pesanan Masuk</h1>
-              <!-- <a href="<?= base_url('admin/pilih_pesanan')?>" class="ms-4 align-self-center" title="Tambah Pesanan"><i data-feather="plus-square"></i></a> -->
             <div class="row">
-            <div class="col-12">
+            <div class="col-8 ">
             <?php $counter=0;
             foreach($pesanan_belum as $pesan){?>
-              <table class="table table-warning">
+              <table class="table table-warning table-responsive">
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>
@@ -86,37 +76,52 @@ include($filePath . '\layout\admin_header.php') ?>
               </tr>
             </table>
             <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
-            <table class="table table-warning" >
+            <table class="table table-responsive" >
               <tr>
                 <th>Kuantitas</th>
                 <th>Nama Produk</th>
+                <th>Modal Produk</th>
+                <th>Sub Modal</th>
+                <th>Harga Produk</th>
                 <th>Sub Total</th>
               </tr>
-              <?php 
+              <?php $totalmodal[]=0;$totalharga[]=0;
             foreach($join_pro[$counter] as $detail){?>
               <tr>
                 
                 <td><?= $detail['kuantitas']?></td>
                 <td><?= $detail['nama_produk']?></td>
-                <td><?= $detail['sub_total']?></td>
-                
+                <td><?= $detail['modal_produk']?></td>
+                <td><?= $submodal=$detail['kuantitas']*$detail['modal_produk']?></td>
+                <td><?= $detail['harga_produk']?></td>
+                <td><?= $subtotal=$detail['kuantitas']*$detail['harga_produk']?></td>
+                              
               </tr>
-              <?php }?>
+              <?php 
+              $totalmodal[$counter]+=$submodal;  
+              $totalharga[$counter]+=$subtotal;  
+              }?>
               <tr>
                 <td></td>
                 <td></td>
-                <td>Total Harga : <?= $pesan['total_harga']?></td>
+                <td></td>
+                <td><?=$totalmodal[$counter];?></td>
+                <td></td>
+                <td><?=$totalharga[$counter];?></td>
+
               </tr>
 
             </table>
             </div>
-            <div class="col-12 text-center">
-              <a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill"></i></a>
-              <a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill"></i></a>
-            </div>
-              <?php 
+            
+              <?php
             $counter++;
+
             }?>
+            </div>
+            <div class="col-4 text-center">
+              <a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a>
+              <a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a>
             </div>
             </div>
           </div>
@@ -149,40 +154,62 @@ include($filePath . '\layout\admin_header.php') ?>
               </tr>
             </table>
             <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
-            <table class="table table-warning" >
+            <table class="table table-responsive" >
               <tr>
                 <th>Kuantitas</th>
                 <th>Nama Produk</th>
+                <th>Modal Produk</th>
+                <th>Sub Modal</th>
+                <th>Harga Produk</th>
                 <th>Sub Total</th>
               </tr>
-              <?php 
+              <?php $totalmodal1[$counter]=0;$totalharga1[$counter]=0;;
             foreach($join_pro1[$counter] as $detail){?>
               <tr>
                 
                 <td><?= $detail['kuantitas']?></td>
                 <td><?= $detail['nama_produk']?></td>
-                <td><?= $detail['sub_total']?></td>
+                <td><?= $detail['modal_produk']?></td>
+                <td><?= $submodal1=$detail['kuantitas']*$detail['modal_produk']?></td>
+                <td><?= $detail['harga_produk']?></td> 
+                <td><?= $subtotal1=$detail['kuantitas']*$detail['harga_produk']?></td>
                 
               </tr>
+              
+              <?php 
+              $totalmodal1[$counter]+=$submodal1;  
+              $totalharga1[$counter]+=$subtotal1;  
+              }
+              $untung=$totalharga1[$counter]-$totalmodal1[$counter];
+              ?>
               <tr>
                 <td></td>
                 <td></td>
-                <td>Total Harga : <?= $pesan_sel['total_harga']?></td>
+                <td></td>
+                <td><?=$totalmodal1[$counter];?></td>
+                <td></td>
+                <td><?=$totalharga1[$counter];?></td>
               </tr>
-              <?php }?>
+              
             </table>
             </div>
             <div class="col-12 text-center">
+            <?php echo form_open('admin/pesanan_selesai/'.$pesan_sel['id_pesanan']);?>
+                <?php echo form_hidden('total_modal'.$pesan_sel['id_pesanan'],$totalmodal1[$counter]);?>
+                <?php echo form_hidden('untung_kotor'.$pesan_sel['id_pesanan'],$totalharga1[$counter]);?>
+                <?php echo form_hidden('untung_bersih',$untung)?>
               <a href="<?= base_url('admin/hapus_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i class="bi bi-x-circle-fill"></i></a>
-              <a href="<?= base_url('admin/pesanan_selesai/'.$pesan_sel['id_pesanan'])?>"><i class="bi bi-check-circle-fill"></i></a>
+              <button type="submit"><i class="bi bi-check-circle-fill"></i></button>
             </div>
-            <?php 
+            <?php
+            
               $counter++;
             }?>
             </div>
             </div>
           </div>
           </div>
+          <?php echo form_close(); ?>
     </div>
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
