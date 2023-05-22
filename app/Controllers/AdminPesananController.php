@@ -6,6 +6,7 @@ use App\Models\ProdukModel;
 use App\Models\PesananModel;
 use App\Models\DetailPesananModel;
 use App\Models\KeranjangModel;
+use Exception;
 
 class AdminPesananController extends BaseController
 {
@@ -61,6 +62,7 @@ class AdminPesananController extends BaseController
                 'kuantitas' => $detail['qty'],
                 'sub_total' => $detail['subtotal'],
             ];
+            
             $detail_pes->insert_detail_pesanan($array);
 
         }
@@ -68,6 +70,47 @@ class AdminPesananController extends BaseController
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan berhasil dibuat. Silahkan menuju ke Wijaya Bakery untuk konfirmasi.');
         return redirect('admin');
         }
+    }
+    public function insert_detail_pesanan(){
+        $keran = new KeranjangModel();
+        $produk = new ProdukModel();
+        $pes = new PesananModel();
+        $detail_pes = new DetailPesananModel();
+        $nama_pel = $this->request->getPost('nama_pel');
+            foreach($keran->viewAll() as $detail){
+                $data_produk=$produk->getProdukByName( $detail['name']);
+                $data_pesan=$pes->getPesananByName( $nama_pel);
+                $join = $detail_pes->getJoinPesanan($nama_pel);
+                $id=$data_produk['id_produk'];
+                $id_pesan=$data_pesan['id_pesanan'];
+                foreach($join as $data_join){
+                    if($id != $data_join['id_produk']){
+                        $array_detail = [
+                            'id_pesanan' => $id_pesan,
+                            'id_produk' => $id,
+                            'kuantitas' => $detail['qty'],
+                            'sub_total' => $detail['subtotal'],
+                        ];
+                        $total = $data_pesan['total_harga']+$keran->totalHarga();
+                        $array_pesan = [
+                            'total_harga'=>$total
+                        ];
+                        
+                        $detail_pes->insert_detail_pesanan($array_detail);
+                        $pes->update_pesanan($id_pesan,$array_pesan);
+                        $keran->delete_semua_keranjang();
+                        session()->setFlashdata('notif','Data pelanggan atas nama '.$nama_pel.' berhasil diubah');
+                        return redirect('admin');
+                    }else{
+                        session()->setFlashdata('error','Produk yang ditambahkan sudah ada');
+                        return redirect('admin/keranjang');
+                    }
+                }
+                
+                
+            }
+
+        
     }
     public function update_pesanan($id){
 

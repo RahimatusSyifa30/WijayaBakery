@@ -43,7 +43,7 @@
       <input type="datetime" name="tanggal" id="tanggal" class="bg-secondary bg-opacity-10 form-control" value="<?= $pesanan['tanggal']?>" disabled>
       <label for="no_hp">No HP</label>
       <input type="text" name="no_hp" id="No_hp" class="bg-secondary bg-opacity-10 form-control" value="<?= $pesanan['no_hp_pelanggan']?>">
-      <table class="table table-warning" >
+      <table class="table table-warning" id="tabel">
               <tr>
                 <th>Kuantitas</th>
                 <th>Nama Produk</th>
@@ -52,13 +52,13 @@
                 
                 <th>Sub Modal</th>
                 <th>Sub Total</th>
-                <th></th>
+
               </tr>
               <?php
               $i=0;
               $total=0; 
             foreach($join_pro as $detail){?>
-              <tr>
+              <tr id="row">
                 
                 <td><input type="number" name="kuantitas" id="kuantitas"  value="<?= $detail['kuantitas']?>"></td>
                 
@@ -70,8 +70,8 @@
                   <?php endforeach ?>
                 </select>
                 </td>
-                <td><input type="text" name="kuantitas" id="kuantitas"  value="<?= $detail['harga_produk']?>"></td>
-                <td><input type="text" name="kuantitas" id="kuantitas"  value="<?= $detail['modal_produk']?>"></td>
+                <td><input type="text" name="modal" id="modal"  value="<?= $detail['modal_produk']?>"></td>
+                <td><input type="text" name="harga" id="harga"  value="<?= $detail['harga_produk']?>"></td>
                 <td><input type="text" name="submodal" id="submodal"  value="<?= $submodal[$i]?>" disabled></td>
                 <td><input type="text" name="subtotal" id="subtotal"  value="<?= $subtotal[$i]?>" disabled></td>
               </tr>
@@ -89,7 +89,9 @@
               </tr>
 
             </table>
-      <br><br>
+      <br>
+      <a href="<?= base_url('admin/produk') ?>"class="btn btn-primary" id="tambah-pesanan"><i data-feather="plus-square"></i> Tambah Pesanan</a>
+      <br>
       <div class="text-center">
         <a href="<?= base_url('admin')?>" class="btn btn-danger btn-lg">Kembali</a>
         <input type="submit" name="sub" class="btn btn-success btn-lg" value="Selesai"></input>

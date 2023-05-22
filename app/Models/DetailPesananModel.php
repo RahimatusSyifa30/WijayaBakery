@@ -24,13 +24,17 @@ class DetailPesananModel extends Model
         $data=$data->getResultArray();
         return $data;
     }
+    public function getJoinPesanan($nama){
+        $db=db_connect();
+        $sql="SELECT pesanan.id_pesanan,id_produk FROM detail_pesanan JOIN pesanan ON pesanan.id_pesanan = detail_pesanan.id_pesanan WHERE nama_pelanggan='".$nama."'";
+        $data=$db->query($sql);
+        $data=$data->getResultArray();
+        return $data;
+    }
     public function getSubTotal($a,$b){
         return $a*$b;
     }
-    public function getTotalHarga($id, $subtotal){
-        
-        return $subtotal+=$subtotal;
-    }
+
     public function insert_detail_pesanan($data){
         $this->insert($data);
     }

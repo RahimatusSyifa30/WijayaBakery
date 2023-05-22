@@ -39,6 +39,12 @@ include($filePath . '\layout\admin_header.php') ?>
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
+        }else if(session()->getFlashdata('error')){ 
+          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('error').'</h5>';
+            echo '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
         }
         
         ?>
@@ -50,7 +56,7 @@ include($filePath . '\layout\admin_header.php') ?>
         <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Pesanan Masuk</h1>
             <div class="row">
-            <div class="col-8 ">
+            <div class="col-12 ">
             <?php $counter=0;
             foreach($pesanan_belum as $pesan){?>
               <table class="table table-warning table-responsive">
@@ -118,7 +124,7 @@ include($filePath . '\layout\admin_header.php') ?>
 
             }?>
             </div>
-            <div class="col-4 text-center">
+            <div class="col-12 text-center">
               <a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a>
               <a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a>
             </div>

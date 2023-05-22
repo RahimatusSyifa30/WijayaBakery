@@ -32,6 +32,9 @@ class PesananModel extends Model
     public function getPesananById($id){
         return $this->find($id);
     }
+    public function getPesananByName($nama){
+        return $this->where('nama_pelanggan',$nama)->first();
+    }
     public function insert_pesanan($data){
         $db=db_connect();
         $db->query('alter table pesanan auto_increment=1');

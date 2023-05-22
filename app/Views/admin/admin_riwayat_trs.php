@@ -38,6 +38,12 @@ include($filePath . '\layout\admin_header.php') ?>
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
+        }else if(session()->getFlashdata('error')){ 
+          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('error').'</h5>';
+            echo '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
         }
         
         ?>
