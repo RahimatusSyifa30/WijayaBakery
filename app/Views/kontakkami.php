@@ -56,7 +56,7 @@
                     <tr>
                         <td>Subjek</td>
                         <td>:</td>
-                        <td><input type="text" name="no_telp_costumer" placeholder="masukan judul/tema dari pertanyaan/pesan Anda"></td>
+                        <td><input type="text" name="subjek_costumer" placeholder="masukan judul/tema dari pertanyaan/pesan Anda"></td>
                     </tr>
                     <tr>
                         <td>Pesan</td>
