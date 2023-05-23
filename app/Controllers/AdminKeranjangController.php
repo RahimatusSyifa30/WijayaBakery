@@ -2,10 +2,13 @@
 
 namespace App\Controllers;
 use App\Models\KeranjangModel;
+use App\Models\PesananModel;
 
 class AdminKeranjangController extends BaseController
 {
     public function index(){
+        $pesanan = new PesananModel();
+        $data['pesanan']=$pesanan->view_belum();
         $keran = new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
         $data['isi_ker'] = $keran->viewAll();

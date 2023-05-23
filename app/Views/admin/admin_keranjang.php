@@ -33,6 +33,12 @@
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
+        }else if(session()->getFlashdata('error')){ 
+          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('error').'</h5>';
+            echo '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
         }
         
         ?>
@@ -61,7 +67,7 @@
         foreach($isi_ker as $keranjang):?>
         <tr>
           
-          <td><img style="width:75px" src="image/roti/<?= $keranjang['options']['gambar']?>"></img></td>
+          <td><img style="width:75px" src="<?= base_url('image/roti/')?><?= $keranjang['options']['gambar']?>"></img></td>
           <td><h1><?= $keranjang['name']?></h1></td>
           <?php echo form_open('admin/ubah_keranjang')?>
           <td><input type="number" min=1 max=<?= $keranjang['options']['stok']?> 
@@ -71,7 +77,7 @@
           <td><a href="<?= base_url('admin/hapus_keranjang/'.$keranjang['rowid'])?>"><i data-feather="trash"></i></a></td>
           
         </tr>
-          <?php endforeach?>
+        <?php endforeach?>
           </table>
           
           <div class="total text-center">
@@ -92,10 +98,39 @@
             <input type="datetime" name="tanggal" id="tanggal" class="bg-secondary bg-opacity-10 form-control" value="<?= date('d-m-y H:i')?>">
             <label for="no_hp">No HP</label>
             <input type="text" name="no_hp" id="No_hp" class="bg-secondary bg-opacity-10 form-control">
-            <button type="submit" class="btn btn-primary">Buat Pesanan</button>
+            <button type="submit"  class="btn btn-primary">Buat Pesanan</button>
+            <?= form_close()?>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Tambahkan ke pesanan yang sudah ada
+            </button>
           </div>
-          <?=  
-          form_close()?>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Nama Pelanggan</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="<?= base_url('admin/tambah_detail_pesanan')?>" method="post">
+                <select name="nama_pel" id="nama_pel" class="form-control">
+                  <?php foreach($pesanan as $pesan):?>
+                  <option value="<?= $pesan['nama_pelanggan']?>"><?= $pesan['nama_pelanggan']?></option>
+                  <?php endforeach ?>
+                </select>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </form>
+                
+              </div>
+            </div>
+          </div>
           <?php }?>
       </div>
 

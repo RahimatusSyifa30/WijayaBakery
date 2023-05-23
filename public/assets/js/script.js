@@ -124,3 +124,7 @@ element.style.display = "block";
 setTimeout(function () {
   element.style.display = "none";
 }, 1000); // 1000ms = 1 second
+
+/////Tambah Pesanan di edit pesanan
+const button11 = document.querySelectorAll("#tambah-pesanan");
+const table11 = document.querySelectorAll("#tabel");
