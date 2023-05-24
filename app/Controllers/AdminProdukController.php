@@ -40,7 +40,7 @@ class AdminProdukController extends BaseController
                 'stok_produk' => $this->request->getPost('stok_pro'),
                 'modal_produk' => $this->request->getPost('modal_pro'),
                 'harga_produk' => $this->request->getPost('harga_pro'),
-                'info_produk' => $this->request->getPost('info_pro'),
+                'informasi_produk' => $this->request->getPost('info_pro'),
                 'gambar_produk' => $fileName
             ];
             $produk->insert_Produk($array);
@@ -76,10 +76,12 @@ class AdminProdukController extends BaseController
                     'stok_produk' => $this->request->getPost('stok_pro'),
                     'modal_produk' => $this->request->getPost('modal_pro'),
                     'harga_produk' => $this->request->getPost('harga_pro'),
-                    'info_produk' => $this->request->getPost('info_pro'),
+                    'informasi_produk' => $this->request->getPost('info_pro'),
                     'gambar_produk' => $fileName
                 ];
                 $produk->update_Produk($id,$array);
+                session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Diubah');
+                return redirect('admin/produk');
             }else{
                 $array=[
                     'nama_produk' => $nama_pro,
@@ -87,14 +89,13 @@ class AdminProdukController extends BaseController
                     'stok_produk' => $this->request->getPost('stok_pro'),
                     'modal_produk' => $this->request->getPost('modal_pro'),
                     'harga_produk' => $this->request->getPost('harga_pro'),
-                    'info_produk' => $this->request->getPost('info_pro'),
+                    'informasi_produk' => $this->request->getPost('info_pro'),
                 ];
                 $produk->update_Produk($id,$array);
-                
+                session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Diubah');
+                return redirect('admin/produk');
             }
-            return redirect('admin/produk');
         }
-        session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Diubah');
         echo view('admin/admin_edit_produk',$data);
     }
     public function delete_produk($id){

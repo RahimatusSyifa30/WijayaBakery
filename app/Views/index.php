@@ -145,11 +145,12 @@
                     />
                     <div class="card-body">
                       <h2 class="card-title">Pizza Mini</h2>
+                      <hr>
                       <p class="fs-4">
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                       </p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="#" class="btn btn-warning">Go somewhere</a>
                     </div>
                   </div>
                 </div>
@@ -163,11 +164,12 @@
                     />
                     <div class="card-body">
                       <h2 class="card-title">Pizza Mini</h2>
+                      <hr>
                       <p class="fs-4">
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                       </p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="#" class="btn btn-warning">Go somewhere</a>
                     </div>
                   </div>
                 </div>
@@ -181,11 +183,12 @@
                     />
                     <div class="card-body">
                       <h2 class="card-title">Pizza Mini</h2>
+                      <hr>
                       <p class="fs-4">
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                       </p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="#" class="btn btn-warning">Go somewhere</a>
                     </div>
                   </div>
                 </div>
@@ -199,11 +202,12 @@
                     />
                     <div class="card-body">
                       <h2 class="card-title">Pizza Mini</h2>
+                      <hr>
                       <p class="fs-4">
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                       </p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="#" class="btn btn-warning">Go somewhere</a>
                     </div>
                   </div>
                 </div>
@@ -217,11 +221,12 @@
                     />
                     <div class="card-body">
                       <h2 class="card-title">Pizza Mini</h2>
+                      <hr>
                       <p class="fs-4">
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                       </p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="#" class="btn btn-warning">Go somewhere</a>
                     </div>
                   </div>
                 </div>

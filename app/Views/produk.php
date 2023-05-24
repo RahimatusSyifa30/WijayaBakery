@@ -23,8 +23,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="css/basic.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="<?= base_url('css/basic.css')?>">
+    <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/produk.css')?>" />
   </head>
   <body>
     <!-- Header Start -->
@@ -55,7 +56,7 @@
                           <div class="card-body">
                             <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
                             <div class="buttonCon">
-                                  <button href="#SelProduk" class="filter-btn btn btn-primary" data-kategori="<?= str_replace(" ","", $jen_pro['nama_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                                  <button href="#SelProduk" class="filter-btn btn btn-warning" data-kategori="<?= str_replace(" ","", $jen_pro['nama_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
                             </div>
                           </div>
                         </div>
@@ -78,7 +79,7 @@
             <div class="col-12">
               <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">            
-              <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+              <button class="form-control btn btn-warning filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             </div>
             <!--  BUAT SELURUH PRODUK-->
             <div class="d-flex flex-wrap justify-content-center" id="SelProduk">
@@ -96,7 +97,7 @@
                   <h2 class="card-title"><?= $pro["nama_produk"]?></h2>
                   <p><?= $pro["informasi_produk"]?></p>
                   <h3>Rp. <?= $pro["harga_produk"]?></h3>
-                  <a href="#" class="btn btn-primary">Lihat Produk</a>
+                  <a href="#" class="btn btn-warning">Lihat Produk</a>
                 </div>
               </div>
               </div>

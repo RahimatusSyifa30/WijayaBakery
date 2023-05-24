@@ -32,7 +32,7 @@
     
     <section id="about">
       <div class="about-1">
-        <h1>Tentang Kami</h1>
+      <h1 id="bakery" class="text-center stroke">Tentang Wijaya<span class="text-warning">Bakery.</span></h1>
         <img
                 src="image/logo/logo.png"
                 class="rounded mx-auto d-block"
