@@ -1,0 +1,75 @@
+.about-1{
+    margin: 30px;
+    padding: 5px;
+}
+.about-1 h1{
+    text-align: center;
+    color: rgb(4, 4, 4);
+    font-weight: bold;
+}
+.about-1 p{
+    text-align: center;
+    padding: 3px;
+    color: rgb(11, 11, 11);
+}
+.about-1 hr{
+    width: 1000px;
+    height: 3px;
+    background-color: rgb(249, 179, 87);
+    margin: 0 auto;
+    border: nome;
+}
+.about-1:hover h1,
+.about-1:hover p{
+    color: rgba(117, 0, 0, 255);
+}
+.about-1:hover hr{
+    background-color: rgba(117, 0, 0, 255);
+}
+.about-item:hover hr{
+    background-color: rgba(117, 0, 0, 255);
+}
+.about-item{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: rgba(255, 253, 243, 255);
+    padding: 90px,40px;
+    box-shadow: 0 0 9px rgba(135, 83, 83, 0.6);
+}
+.about-item i{
+    font: size 40px;;
+    margin: 0;
+}
+.about-item h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.about-item hr{
+    width: 45px;
+    height: 3px;
+    background-color: rgb(237, 165, 72);
+    margin: 0 auto;
+    border: nome;
+}
+.about-item p{
+    margin-top: 20px;
+}
+.about-item:hover{
+   background-color: rgba(255, 182, 45, 0.8);
+}
+.about-item:hover i,
+.about-item:hover h3,
+.about-item:hover p{
+    color: rgba(117, 0, 0, 255);
+}
+.about-item:hover hr{
+    background-color: rgba(117, 0, 0, 255);
+}
+.about-item:hover i{
+    transform: translateY(-30px);
+}
+.about-item:hover i,
+.about-item:hover h3,
+.about-item:hover p{
+    transition: all 500ms ease-in-out;
+}
