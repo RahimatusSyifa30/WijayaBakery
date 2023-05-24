@@ -71,47 +71,6 @@ class AdminPesananController extends BaseController
         return redirect('admin');
         }
     }
-    public function insert_detail_pesanan(){
-        $keran = new KeranjangModel();
-        $produk = new ProdukModel();
-        $pes = new PesananModel();
-        $detail_pes = new DetailPesananModel();
-        $nama_pel = $this->request->getPost('nama_pel');
-            foreach($keran->viewAll() as $detail){
-                $data_produk=$produk->getProdukByName( $detail['name']);
-                $data_pesan=$pes->getPesananByName( $nama_pel);
-                $join = $detail_pes->getJoinPesanan($nama_pel);
-                $id=$data_produk['id_produk'];
-                $id_pesan=$data_pesan['id_pesanan'];
-                foreach($join as $data_join){
-                    if($id != $data_join['id_produk']){
-                        $array_detail = [
-                            'id_pesanan' => $id_pesan,
-                            'id_produk' => $id,
-                            'kuantitas' => $detail['qty'],
-                            'sub_total' => $detail['subtotal'],
-                        ];
-                        $total = $data_pesan['total_harga']+$keran->totalHarga();
-                        $array_pesan = [
-                            'total_harga'=>$total
-                        ];
-                        
-                        $detail_pes->insert_detail_pesanan($array_detail);
-                        $pes->update_pesanan($id_pesan,$array_pesan);
-                        $keran->delete_semua_keranjang();
-                        session()->setFlashdata('notif','Data pelanggan atas nama '.$nama_pel.' berhasil diubah');
-                        return redirect('admin');
-                    }else{
-                        session()->setFlashdata('error','Produk yang ditambahkan sudah ada');
-                        return redirect('admin/keranjang');
-                    }
-                }
-                
-                
-            }
-
-        
-    }
     public function update_pesanan($id){
 
         $produk = new ProdukModel();
@@ -161,19 +120,10 @@ class AdminPesananController extends BaseController
         $detail_pes = new DetailPesananModel();
         $data=$pes->getPesananById($id);
         $nama = $data['nama_pelanggan'];
-        $detail_pes->delete_detail_pesanan($id);
+        $detail_pes->delete_detail_pesananByIdPesanan($id);
         $pes->delete_pesanan($id);
         session()->setFlashdata('notif','Pesanan atas nama '.$nama.' berhasil dihapus');
         return redirect('admin');
-    }
-    public function pilih_pesanan(){
-        
-        helper('form');
-        $produk = new ProdukModel();
-        $keran = new KeranjangModel();
-        $data['jumlah_item'] = $keran->getTotalBarang();
-        $data['produk']=$produk->findAll();
-        echo view('admin/admin_pilih_pesanan',$data);
     }
     public function pesanan_diproses($id){
         $pesan = new PesananModel();

@@ -56,10 +56,13 @@ include($filePath . '\layout\admin_header.php') ?>
         <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Pesanan Masuk</h1>
             <div class="row">
-            <div class="col-12 ">
+              <div class="col-12">
+              <input type="text" name="cari_pesan_belum" id="cariBelum" onkeyup="pesanBelum()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
+              </div>
+            <div class="col-12 " >
             <?php $counter=0;
             foreach($pesanan_belum as $pesan){?>
-              <table class="table table-warning table-responsive">
+              <table class="table table-warning table-responsive" id="pesanan_belum">
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>
@@ -118,26 +121,27 @@ include($filePath . '\layout\admin_header.php') ?>
 
             </table>
             </div>
-            
-              <?php
-            $counter++;
-
-            }?>
-            </div>
             <div class="col-12 text-center">
               <a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a>
               <a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a>
             </div>
+            <?php $counter++; }?>
             </div>
+            
+            </div>
+            
           </div>
-        <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2">
+        <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2" >
             <h1>Pesanan Diterima</h1>
         
         <div class="row">
             <div class="col-12">
+              <input type="text" name="cari_pesan_sudah" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
+            </div>
+            <div class="col-12" >
             <?php 
             foreach($pesanan_diproses as $pesan_sel){?>
-              <table class="table table-warning">
+              <table class="table table-warning" id="pesanan_sudah">
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>
@@ -224,6 +228,7 @@ include($filePath . '\layout\admin_header.php') ?>
       feather.replace();
       </script>
     <script src="<?= base_url('assets/js/script.js')?>"></script>
+    <script src="<?= base_url('assets/js/onkeyup.js')?>"></script>
     
 </body>
 </html>

@@ -35,6 +35,24 @@
     include($filePath.'\layout\admin_header.php') ?>
     <!-- Header End -->
     <content>
+    <div class="col-12">
+        <?php 
+        if(session()->getFlashdata('notif')){ 
+          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
+            echo '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }else if(session()->getFlashdata('error')){ 
+          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('error').'</h5>';
+            echo '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+        
+        ?>
+      </div>
     <form action="" method="post" enctype="multipart/form-data" class="p-5">
 
       <label for="nama_pel">Nama Pelanggan</label>
@@ -52,7 +70,7 @@
                 
                 <th>Sub Modal</th>
                 <th>Sub Total</th>
-
+                <th></th>
               </tr>
               <?php
               $i=0;
@@ -74,6 +92,9 @@
                 <td><input type="text" name="harga" id="harga"  value="<?= $detail['harga_produk']?>"></td>
                 <td><input type="text" name="submodal" id="submodal"  value="<?= $submodal[$i]?>" disabled></td>
                 <td><input type="text" name="subtotal" id="subtotal"  value="<?= $subtotal[$i]?>" disabled></td>
+                <td><a href="<?= base_url('admin/hapus_detail_pesanan/'.$detail['id_produk'])?>" class="">
+                    <i data-feather="trash"></i>
+                </a></td>
               </tr>
               <?php 
               

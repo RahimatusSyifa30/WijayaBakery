@@ -96,7 +96,9 @@ class AdminProdukController extends BaseController
                 return redirect('admin/produk');
             }
         }
-        echo view('admin/admin_edit_produk',$data);
+          
+
+      echo view('admin/admin_edit_produk',$data);
     }
     public function delete_produk($id){
         $produk = new ProdukModel();

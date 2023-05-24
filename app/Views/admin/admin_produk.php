@@ -64,23 +64,27 @@
     include($filePath.'\layout\admin_header.php') ?>
     <!-- Header End -->
       <content>
-      <div class="col-12">
+      
           <?php 
           if(session()->getFlashdata('notif')){ 
+            echo '<div class="col-12">';
             echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
               echo '<h5>'.session()->getFlashdata('notif').'</h5>';
               echo '
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
-          }else if(session()->getFlashdata('error')){ 
+              echo '</div>';
+          }else if(session()->getFlashdata('error')){
+            echo '<div class="col-12">'; 
             echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
               echo '<h5>'.session()->getFlashdata('error').'</h5>';
               echo '
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
+              echo '</div>';
           }
           ?>
-        </div>
+        
         <!-- Jenis Produk  Start  -->
         <section>
           
@@ -145,7 +149,7 @@
             
               <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             <?php foreach ($produk as $pro) :?>
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-3 col-xs-12">
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
               <?php 
             
@@ -252,6 +256,8 @@
       </script>
       <!-- Script Manual -->
       <script src="<?= base_url('assets/js/pesanan.js')?>" type="text/javascript"></script>
+      <script src="<?= base_url('assets/js/onkeyup.js')?>"></script>
+
       <script src="<?= base_url('assets/js/script.js')?>" type="text/javascript"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
   
