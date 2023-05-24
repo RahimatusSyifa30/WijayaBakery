@@ -1,35 +1,59 @@
 <header>
-<?php 
-  date_default_timezone_set('Asia/Jakarta');
+  <?php
+  date_default_timezone_set('Asia/Jakarta'); 
+
 ?>
-      <div
-        class="nav justify-content-between border-2 border-bottom border-warning p-lg-4 p-sm-3 p-2" 
-        id="header"
-      >
-        <div id="nav-logo" class="align-self-center">
-          <a href="<?= base_url('/')?>" title="Logo WijayaBakery." class="text-dark text-decoration-none stroke"
-            ><h1 id="bakery">Wijaya<span class="text-warning">Bakery.</span></h1></a
-          >
-        </div>
-        
-        <div class="nav-item align-self-center">
-          <a href="<?= base_url('/')?>" class="btn fs-5 btnhover" id="" title="Beranda">Beranda</a>
-          <a href="<?= base_url('produk')?>" class="btn fs-5 btnhover" id="" title="Produk">Produk</a>
-          <a href="<?= base_url('tentang_kami')?>" class="btn fs-5 btnhover" id="" title="Tentang Kami">Tentang Kami</a>
-          <a href="<?= base_url('kontak_kami')?>" target="_blank" class="btn fs-5 btnhover" id="" title="Kontak Kami">Kontak Kami</a>    
-           
-          <a href="<?= base_url('admin')?>" target="_blank" class="btn fs-5 btnhover" id="" title="Login Admin">Login Admin</a>        
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-2 border-bottom border-warning" id="header">
+  <div class="container-fluid">
+  
+    <a href="<?= base_url('/')?>" title="Logo WijayaBakery." class="navbar-brand stroke">
+      <h1>Wijaya<span class="text-warning">Bakery.</span></h1>
+    </a>    
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+          <a href="<?= base_url('admin/keranjang');?>" class="btn fs-5 featherr position-relative" title="Keranjang">
+            <i data-feather="shopping-cart"></i> 
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              <?= $jumlah_item?>
+              </span>
+              
+            </a>
+        <h3 class="offcanvas-title stroke coklat" id="offcanvasNavbarLabel">Menu Wijaya<span class="text-warning">Bakery.</span></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="navbar-extra align-self-center">
-        
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a href="<?= base_url('/')?>" class="nav-link btn btnhover fs-5" title="Beranda">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('produk')?>" class="nav-link btn btnhover fs-5" title="Produk">Produk</a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('tentang_kami')?>" class="nav-link btn btnhover fs-5" title="Tentang Kami">Tentang Kami</a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('kontak_kami')?>" target="_blank" class="nav-link btn btnhover fs-5" title="Kontak Kami">Kontak Kami</a>    
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin')?>" target="_blank" class="nav-link btn btnhover fs-5" title="Login Admin">Login Admin</a>        
+          </li>
           
-        <a href="<?= base_url('keranjang');?>" class="btn fs-5 btnhover position-relative" title="Keranjang">
-          <i data-feather="shopping-cart"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          <?= $jumlah_item?>
-          </span>
-        </a>   
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+          <li class="nav-item mt-lg-2 mt-sm-5" >
+            <a href="<?= base_url('keranjang');?>" class="btn btnhover fs-5 featherr position-relative" title="Keranjang " id="keranjang">
+            <i data-feather="shopping-cart"></i> 
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              <?= $jumlah_item?>
+              </span>
+            </a>
+          </li>
+        </ul>
       </div>
-      
+    </div>
+  </div>
+</nav>
 </header>

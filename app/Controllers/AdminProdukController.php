@@ -80,6 +80,8 @@ class AdminProdukController extends BaseController
                     'gambar_produk' => $fileName
                 ];
                 $produk->update_Produk($id,$array);
+                session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Diubah');
+                return redirect('admin/produk');
             }else{
                 $array=[
                     'nama_produk' => $nama_pro,
@@ -90,9 +92,10 @@ class AdminProdukController extends BaseController
                     'informasi_produk' => $this->request->getPost('info_pro'),
                 ];
                 $produk->update_Produk($id,$array);
+                session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Diubah');
+                return redirect('admin/produk');
             }
-            session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Diubah');
-            return redirect('admin/produk');
+            
         }
         
         echo view('admin/admin_edit_produk',$data);

@@ -18,16 +18,16 @@ function stickyheader() {
 }
 ///////
 // Hamburger
-const navbarNav = document.querySelector(".nav-item");
-document.querySelector("#hamburger-menu").onclick = () => {
-  navbarNav.classList.toggle("active");
-};
-const menu = document.querySelector("#hamburger-menu");
-document.addEventListener("click", function (e) {
-  if (!menu.contains(e.target) && !navbarNav.contains(e.target)) {
-    navbarNav.classList.remove("active");
-  }
-});
+// const navbarNav = document.querySelector(".nav-item");
+// document.querySelector("#hamburger-menu").onclick = () => {
+//   navbarNav.classList.toggle("active");
+// };
+// const menu = document.querySelector("#hamburger-menu");
+// document.addEventListener("click", function (e) {
+//   if (!menu.contains(e.target) && !navbarNav.contains(e.target)) {
+//     navbarNav.classList.remove("active");
+//   }
+// });
 //////
 // Btn Scroll to top
 let mybutton = document.getElementById("btntotop");
@@ -80,10 +80,12 @@ detail = ($id) => {
 };
 
 var element = document.querySelector(".alert");
-element.style.display = "block";
-setTimeout(function () {
-  element.style.display = "none";
-}, 1000); // 1000ms = 1 second
+if (element) {
+  element.style.display = "block";
+  setTimeout(function () {
+    element.style.display = "none";
+  }, 1000); // 1000ms = 1 second
+}
 
 /////Tambah Pesanan di edit pesanan
 const button11 = document.querySelectorAll("#tambah-pesanan");
