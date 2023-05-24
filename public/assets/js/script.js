@@ -20,7 +20,7 @@ function stickyheader() {
 // Hamburger
 const navbarNav = document.querySelector(".nav-item");
 document.querySelector("#hamburger-menu").onclick = () => {
-  "navbarNav.classList.toggle"("active");
+  navbarNav.classList.toggle("active");
 };
 const menu = document.querySelector("#hamburger-menu");
 document.addEventListener("click", function (e) {
@@ -44,47 +44,7 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
-///////
-//Search Filter Produk
-function myFunction() {
-  // Declare variables
-  var input, filter, row, li, a, i, txtValue;
-  input = document.getElementById("cari");
-  filter = input.value.toUpperCase();
-  row = document.getElementById("SelProduk");
-  li = row.getElementsByClassName("card");
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByClassName("card-title")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-function cariProdukModal() {
-  // Declare variables
-  var input, filter, row, li, a, i, txtValue;
-  input = document.getElementById("cari1");
-  filter = input.value.toUpperCase();
-  row = document.getElementById("modalProduk");
-  li = row.getElementsByClassName("card");
-
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByClassName("card-title")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-///
 ///// Filter Button Jenis Produk
 const filterButtons = document.querySelectorAll(".filter-btn");
 const produkItems = document.querySelectorAll(".produk");

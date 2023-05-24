@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\KeranjangModel;
 use App\Models\PesananModel;
+use App\Models\ProdukModel;
 
 class AdminKeranjangController extends BaseController
 {
@@ -18,17 +19,39 @@ class AdminKeranjangController extends BaseController
     }
     public function tambah_keranjang(){
         $keran = new KeranjangModel();
-        $id      = $this->request->getPost('id');
-        $qty     = 1;
-        $price   = $this->request->getPost('price');
+        $pro = new ProdukModel();
+        $data = $keran->viewAll();
         $nama_prod=$this->request->getPost('name');
-        $stok = $this->request->getPost('stok');
-        $gambar = $this->request->getPost('gambar');
- 
-
-         $keran->insert_keranjang($id,$qty,$price,$nama_prod,$stok,$gambar);
-        session()->setFlashdata('notif','Produk '.$nama_prod.' berhasil dimasukkan ke keranjang');
-        return redirect('admin/produk');
+        $data_pro = $pro->getProdukByName($nama_prod);
+        if($data!=null){
+            foreach($data as $isi){
+                if($isi['name']==$data_pro['nama_produk']){
+                    session()->setFlashdata('error','Produk '.$nama_prod.' hanya bisa dimasukkan 1 kali');
+                    return redirect('admin/produk');
+                }else{
+                    $id      = $this->request->getPost('id');
+                $qty     = 1;
+                $price   = $this->request->getPost('price');
+                $stok = $this->request->getPost('stok');
+                $gambar = $this->request->getPost('gambar');
+        
+                $keran->insert_keranjang($id,$qty,$price,$nama_prod,$stok,$gambar);
+                }
+            }
+                
+                session()->setFlashdata('notif','Produk '.$nama_prod.' berhasil dimasukkan ke keranjang');
+                return redirect('admin/produk');
+        }else{
+            $id      = $this->request->getPost('id');
+                $qty     = 1;
+                $price   = $this->request->getPost('price');
+                $stok = $this->request->getPost('stok');
+                $gambar = $this->request->getPost('gambar');
+        
+                $keran->insert_keranjang($id,$qty,$price,$nama_prod,$stok,$gambar);
+                session()->setFlashdata('notif','Produk '.$nama_prod.' berhasil dimasukkan ke keranjang');
+                return redirect('admin/produk');
+        }
     }
     public function update_keranjang(){
         $keran = new KeranjangModel();

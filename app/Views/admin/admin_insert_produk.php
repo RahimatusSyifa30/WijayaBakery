@@ -34,7 +34,7 @@
     include($filePath.'\layout\admin_header.php') ?>
     <!-- Header End -->
     <content>
-    <form action="" method="post" enctype="multipart/form-data" class="p-5">
+    <form action="<?= base_url('admin/tambah_produk')?>" method="post" enctype="multipart/form-data" class="p-5">
       <label for="nama_pro">Nama Produk</label>
       <input type="text" name="nama_pro" id="nama_pro" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Nama Produk" required>
       <label for="jenis_pro">Jenis Produk</label>

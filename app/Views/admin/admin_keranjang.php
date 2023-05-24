@@ -52,7 +52,7 @@
           <?php }else{?>
         <div class="col-8 text-center">
 
-        <table class="table table-warning">
+        <table class="table table-warning table-striped">
         <tr>
           <th>Gambar Produk</th>
           <th>Nama Produk</th>

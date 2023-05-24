@@ -27,9 +27,9 @@
   <content>
       <div class="col-12">
         <?php 
-        if(session()->getFlashdata('pesan')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex" style="transition:0.6ms" role="alert">';
-            echo '<h5>'.session()->getFlashdata('pesan').'</h5>';
+        if(session()->getFlashdata('notif')){ 
+          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
+            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
             echo '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';

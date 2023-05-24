@@ -39,9 +39,9 @@ class KeranjangModel extends Model
     public function getTotalBarang(){
         $jumlah_item = 0;
         $keranjang=$this->cart->contents();
-        foreach ($keranjang as $ker):{
+        foreach ($keranjang as $ker):
           $jumlah_item = $jumlah_item + $ker['qty'];
-        }
+        
         endforeach;
         return $jumlah_item;
     }
@@ -49,6 +49,14 @@ class KeranjangModel extends Model
 
         $keranjang=$this->cart->total();
         return $keranjang;
+    }
+    public function cekBarangSudahAda($nama,$nama1){
+        if($nama == $nama1){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
 }
