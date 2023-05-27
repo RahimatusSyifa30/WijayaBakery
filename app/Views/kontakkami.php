@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>>Wijaya Bakery - Kontak Kami</title>
+    <title>Wijaya Bakery - Kontak Kami</title>
     <link rel="shortcut icon" href="image/logo/logo.png" />
   
     <link
@@ -41,12 +41,12 @@
       </div><br><br>
       <fieldset style="margin-left: 8%; margin-right: 8%;">
             <legend style="background-color: rgb(255, 97, 179);">Kirim Sebuah Pesan Kepada Kami</legend><br>
-            <form action="" method="post" enctype="multipart/form-data" style="margin-left: 10%;">
+            <form action="<?= base_url('kirim_pesan')?>" method="post" style="margin-left: 10%;">
                 <table>
                 <tr>
                         <td>Nama </td>
                         <td>:</td>
-                        <td><input type="text" name="nama_costumer" placeholder="masukan nama Anda"></td>
+                        <td><input type="text" name="nama" placeholder="masukan nama Anda"></td>
                     </tr>
                     <tr>
                         <td>No Telepon</td>
@@ -61,7 +61,7 @@
                     <tr>
                         <td>Pesan</td>
                         <td>:</td>
-                        <td><input type="textarea" name="pesan_costumer" placeholder="masukan nama kota"></td>
+                        <td><input type="textarea" name="pesan" placeholder="masukan nama kota"></td>
                     </tr>
                     <tr>
                     <td></td>

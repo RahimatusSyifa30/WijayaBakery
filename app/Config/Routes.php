@@ -32,7 +32,8 @@ $routes->set404Override();
 $routes->get('/', 'IndexController::index');
 $routes->get('produk', 'ProdukController::produk');
 $routes->get('tentang_kami', 'TentangController::tentang');
-$routes->get('kontak_kami', 'KontakController::kontak');
+$routes->get('kontak_kami', 'KontakUsController::index');
+$routes->add('kirim_pesan', 'KontakUsController::kirim_pesan');
 $routes->get('cek', 'AdminPesananController::cek');
 
 $routes->group('admin', function ($routes) {

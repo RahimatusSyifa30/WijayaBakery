@@ -6,6 +6,35 @@ use CodeIgniter\Model;
 
 class KontakUsModel extends Model
 {
+    public function __construct(){
+        $this->no_hp_owner;
+    }
+    private $no_hp_owner = '6281359316368';
+    public function pertanyaan_WA($nama,$pesan){
+        
+        $formatted_message = urlencode(
+            "Hai, Wijaya Bakery.\nSaya ".$nama.".\n".$pesan." "
+        );
+        $url = "https://wa.me/".$this->no_hp_owner."?text=$formatted_message";
+        return $url;
+        
+    }
+    public function pesanan_diproses_WA($nama){
+        $formatted_message = urlencode(
+            "Hai, ".$nama.". Kami dari Wijaya Bakery. Pesanan anda sedang diproses"
+        );
+        $url = "https://wa.me/".$this->no_hp_owner."?text=$formatted_message";
+        return $url;
+        
+    }
+    public function pesanan_selesai_WA($nama){
+        $formatted_message = urlencode(
+            "Hai, ".$nama.". Kami dari Wijaya Bakery. Pesanan anda sudah selesai"
+        );
+        $url = "https://wa.me/".$this->no_hp_owner."?text=$formatted_message";
+        return $url;
+        
+    }
     protected $table      = 'kontak_us';
     protected $primaryKey = 'id_kontak_us';
 

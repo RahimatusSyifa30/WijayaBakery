@@ -3,16 +3,21 @@
 namespace App\Controllers;
 use App\Models\KontakUsModel;
 
-use Exception;
+use App\Models\KeranjangModel;
 
-class AdminKontakUsController extends BaseController
+class KontakUsController extends BaseController
 {
     public function index(){
-        helper('form');
-        $pesan= new KontakUsModel();
-        $data['pesanan_belum']=$pesan->view_belum_dibaca();
-        
-        return view('admin/admin_kontak_us',$data); //blm buat view ini
+        $keran=new KeranjangModel();
+        $data['jumlah_item'] = $keran->getTotalBarang();
+        return view('kontakkami',$data); //blm buat view ini
+    }
+    public function kirim_pesan(){
+        $kontak = new KontakUsModel();
+        $nama = $this->request->getPost('nama');
+        $pesan = $this->request->getPost('pesan');
+        $url = $kontak->pertanyaan_WA($nama,$pesan);
+        return redirect()->to($url);
     }
 
     public function insert_kontak_us()
@@ -34,7 +39,7 @@ class AdminKontakUsController extends BaseController
             'pesan_customer' => $this->request->getPost('pesan_customer'),
             
         ];
-        $pesan->insert_kontak_us($array1);
+        $pesan->insert_kontak_us($array);
         
         return redirect('admin');
         }

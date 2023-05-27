@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\KontakUsModel;
 use App\Models\LaporanModel;
 use App\Models\ProdukModel;
 use App\Models\PesananModel;
@@ -37,6 +38,7 @@ class AdminPesananController extends BaseController
         $pes= new PesananModel();
         $detail_pes= new DetailPesananModel();
         $keran = new KeranjangModel();
+        $isi_ker=$keran->viewAll();
         $data['jumlah_item'] = $keran->getTotalBarang();
         $validation =  \Config\Services::validation();
         $validation->setRules([
@@ -52,9 +54,11 @@ class AdminPesananController extends BaseController
         ];
         $pes->insert_pesanan($array1);
         
-        foreach($keran->viewAll() as $detail){
+        foreach($isi_ker as $detail){
             $data=$produk->getProdukByName( $detail['name']);
             $id=$data['id_produk'];
+            $stok_baru = $data['stok_produk']-$detail['qty'];
+            
             $total=$pes->totalPesanan();
             $array = [
                 'id_pesanan' => $total,
@@ -62,9 +66,11 @@ class AdminPesananController extends BaseController
                 'kuantitas' => $detail['qty'],
                 'sub_total' => $detail['subtotal'],
             ];
-            
+            $array_stok=[
+                'stok_produk' => $stok_baru
+            ];
             $detail_pes->insert_detail_pesanan($array);
-
+            $produk->update_Produk($id,$array_stok);
         }
         $keran->delete_semua_keranjang();
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan berhasil dibuat. Silahkan menuju ke Wijaya Bakery untuk konfirmasi.');
@@ -126,14 +132,18 @@ class AdminPesananController extends BaseController
         return redirect('admin');
     }
     public function pesanan_diproses($id){
+        $kontak = new KontakUsModel();
         $pesan = new PesananModel();
         $data = $pesan->getPesananById($id);
         $nama_pel = $data['nama_pelanggan'];
         $pesan->pesanan_diproses($id);
+        $url = $kontak->pesanan_diproses_WA($nama_pel);
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan sedang diproses.');
-        return redirect('admin');
+        return redirect('admin')->to($url);
+
     }
     public function pesanan_selesai($id){
+        $kontak = new KontakUsModel();
         $laporan= new LaporanModel();
         $pesan = new PesananModel();
         $data = $pesan->getPesananById($id);
@@ -146,8 +156,9 @@ class AdminPesananController extends BaseController
             'keuntungan_bersih'=>$this->request->getPost('untung_bersih'),
         ];
         $laporan->insert_laporan($array);
+        $url = $kontak->pesanan_selesai_WA($nama_pel);
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan sudah selesai. Selamat Menikmati');
-        return redirect('admin');
+        return redirect('admin')->to($url);
     }
     
 }
