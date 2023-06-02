@@ -37,7 +37,7 @@
             <a href="<?= base_url('tentang_kami')?>" class="nav-link btn btnhover fs-5" title="Tentang Kami">Tentang Kami</a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('kontak_kami')?>" target="_blank" class="nav-link btn btnhover fs-5" title="Kontak Kami">Kontak Kami</a>    
+            <a href="<?= base_url('kontak_kami')?>" class="nav-link btn btnhover fs-5" title="Kontak Kami">Kontak Kami</a>    
           </li>
           <li class="nav-item">
             <a href="<?= base_url('admin')?>" target="_blank" class="nav-link btn btnhover fs-5" title="Login Admin">Login Admin</a>        

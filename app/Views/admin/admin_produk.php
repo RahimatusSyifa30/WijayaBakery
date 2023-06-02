@@ -150,7 +150,7 @@
               <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             <?php foreach ($produk as $pro) :?>
               <div class="col-md-3 col-xs-12">
-              <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
+              <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
               <?php 
             
                  echo form_open('admin/tambah_keranjang');
@@ -193,8 +193,12 @@
             <?php 
             echo form_close(); 
             endforeach ?>
+            <div class="col-12">
+              
+            </div>
             </div>
           </div>
+
           <!-- Modal Konfirmasi Delete Produk-->
           <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -257,9 +261,7 @@
       <!-- Script Manual -->
       <script src="<?= base_url('assets/js/pesanan.js')?>" type="text/javascript"></script>
       <script src="<?= base_url('assets/js/onkeyup.js')?>"></script>
-
       <script src="<?= base_url('assets/js/script.js')?>" type="text/javascript"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-  
   </body>
 </html>

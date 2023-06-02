@@ -1,5 +1,3 @@
-//Alert Produk
-
 // Scroll Window
 window.onscroll = function () {
   stickyheader();
@@ -16,19 +14,6 @@ function stickyheader() {
     header.classList.remove("sticky");
   }
 }
-///////
-// Hamburger
-// const navbarNav = document.querySelector(".nav-item");
-// document.querySelector("#hamburger-menu").onclick = () => {
-//   navbarNav.classList.toggle("active");
-// };
-// const menu = document.querySelector("#hamburger-menu");
-// document.addEventListener("click", function (e) {
-//   if (!menu.contains(e.target) && !navbarNav.contains(e.target)) {
-//     navbarNav.classList.remove("active");
-//   }
-// });
-//////
 // Btn Scroll to top
 let mybutton = document.getElementById("btntotop");
 function scrollFunctiontoTop() {
@@ -87,6 +72,18 @@ if (element) {
   }, 1000); // 1000ms = 1 second
 }
 
-/////Tambah Pesanan di edit pesanan
-const button11 = document.querySelectorAll("#tambah-pesanan");
-const table11 = document.querySelectorAll("#tabel");
+////
+// Jika Stok Kosong, opacity berkurang
+const total = document.getElementById("SelProduk");
+const cards = total.querySelectorAll(".produk");
+cards.forEach((card) => {
+  const stok = parseInt(card.getAttribute("data-stok"));
+  if (stok === 0) {
+    card.classList.add("stok-abis");
+    // card.style.opacity = "0.5";
+  } else {
+    card.style.opacity = "1";
+  }
+});
+
+////
