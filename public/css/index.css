@@ -1,78 +1,42 @@
-/* Content */
-/* Profil WIjaya Bakery */
-#slidetoko {
-  background-color: rgba(255, 253, 243, 255);
+section{
+  padding: 5rem;
 }
-#slidetoko #carousel {
-  width: 1000px;
-  height: 500px;
-}
-#slidetoko #carousel img {
-  height: 500px;
-}
-.bg-slide {
-  max-width: 100%;
-  z-index: -2;
-  position: absolute;
-}
-/* Best Seller */
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
+.beranda{
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-image: url('../image/bg/body-head.png');
+  background-size: cover;
+  background-position: center;
+  padding-top: 18 rem;
+  padding-bottom: 2rem;
 }
-.swiper-slide hr{
-    width: 45px;
-    height: 3px;
-    background-color: rgb(237, 165, 72);
-    margin: 0 auto;
-    border: nome;
+.beranda .btn{
+  background-color: rgb(250, 204, 111);
 }
-
-.swiper-slide .card {
-  width: 100%;
-  box-shadow: 0 0 9px rgba(135, 83, 83, 0.6);
+.beranda .btn:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-
-.swiper-slide .card img {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  min-height: 300px;
-  max-height: 300px;
-  object-fit: cover;
+.beranda .content{
+  text-align: center;
+  width: 60rem;
 }
-
-.swiper-slide .card:hover {
-  background-color: rgba(238, 208, 154, 0.8);
-  transform: scale(1.05);
-  transition: 0.6s;
+.beranda .content p{
+  color: rgb(10, 10, 10);
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  line-height:1.3;
 }
-.swiper-pagination-bullet {
- background-color: rgb(231, 149, 48);
+.beranda .content .cta{
+  margin-top: 0.1rem;
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  color: rgb(239, 146, 47);
+  background-color: rgb(157, 97, 19);
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px rgba(247, 200, 61, 0.6);
 }
-/* Alamat */
-#alamat {
-  background-color: rgba(255, 253, 243, 255);
-}
-#alamat .col-5 img {
-  width: 90%;
-}
-#alamat iframe {
-  width: 700px;
-  height: 400px;
-}
-
-/*  */
 
 @media (max-width: 768px) {
   /* Content */

@@ -18,6 +18,9 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
@@ -31,33 +34,31 @@
     <!-- Header Start -->
     <?php include("layout/header.php") ?>
     <!-- Header End -->
+    
       <content>
         <!-- Jenis Produk  Start  -->
+        <div class="con">
+          <h1 id="bakery" class="text-center stroke">Produk Wijaya Bakery</h1>
+        </div>
+
         <section>
           <div class="container-fluid p-5">
-         <h1 id="bakery" class="text-center stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
-            <div class="row border border-warning">
-              <div class="col-xs-12 col-md-2 align-self-center text-center p-2">
-                <h1>Jenis Produk</h1>
-              </div>
-
-                <div class="col-xs-12 col-md-10">
-                  <div class="swiper mySwiper p-4">
+          <h1 id="bakery" class="text-center stroke">Jenis<span class="text-warning"> Produk</span></h1>
+          <hr>
+                <div class="col-xs-9 col-md-15">
+                  <div class="swiper mySwiper p-3">
                     <div class="swiper-wrapper">
                     <?php foreach ($jenis_produk as $jen_pro) : ?>
                       <div class="swiper-slide ">
-                        <div class="card border-warning" >
+                        <div class="border border-warning" >
                           <img
                             src="image/bg/jenis_produk/<?= $jen_pro["gambar_kel"]?>"
-                            class="card-img-top"
-                            alt="..."
-                            
-                          />
-                          <div class="card-body">
+                            alt="..."/>
+                          <div class="card-body text-center">
                             <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
-                            <div class="buttonCon">
-                                  <button href="#SelProduk" class="filter-btn btn btn-warning" data-kategori="<?= str_replace(" ","", $jen_pro['nama_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
-                            </div>
+                          <div class="buttonCon">
+                            <button href="#SelProduk" class="filter-btn btn btn-warning" data-kategori="<?= str_replace(" ","", $jen_pro['nama_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                          </div>                     
                           </div>
                         </div>
                       </div>
@@ -68,16 +69,16 @@
                     <div class="swiper-pagination"></div>
                   </div>
                 </div>
-                
-            </div>
-        </div>
+          </div>
         </section>
         <!-- Jenis Produk  End  --> 
         <!-- Seluruh Produk  Start  -->
         <section>
-          <div class="container-fluid p-5 m-2 border border-warning">
+          <div class="container-fluid p-5 m-2">
             <div class="col-12">
-              <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+              <h1 id="bakery" class="text-center stroke">Semua Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+              <hr>
+              <br>
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">            
               <button class="form-control btn btn-warning filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             </div>
@@ -105,8 +106,10 @@
             </div>
           </div>
         </section>
+          
         <!-- Seluruh Produk  Start  -->          
       </content>
+
       <!-- Footer Start -->
       <?php include("layout/footer.php") ?>
       <!-- Footer End -->

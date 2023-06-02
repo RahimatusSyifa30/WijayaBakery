@@ -54,6 +54,7 @@ body {
   /* background-color: rgba(255, 253, 243, 255); */
 }
 .btnhover {
+  text-shadow: 1px 1px 3px rgba(247, 200, 61, 0.6);;
   color: var(--coklat);
   top: -5px;
 }
@@ -124,7 +125,6 @@ footer {
 }
 #footer {
   background-color: rgba(255, 253, 243, 255);
-
   background-image: url(../image/bg/body-foot.png);
   background-size: 180%;
   background-repeat: no-repeat;
