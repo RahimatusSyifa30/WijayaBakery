@@ -55,7 +55,6 @@
                           <img
                             src="image/bg/jenis_produk/<?= $jen_pro["gambar_kel"]?>"
                             alt="..."/>
-                            
                             <div class="card-body text-center">
                               <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
                               <br>
@@ -88,7 +87,7 @@
             <div class="d-flex flex-wrap justify-content-center" id="SelProduk">
               <?php foreach ($produk as $pro) :?>
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
-                <div class="content-1">
+                <div class="card">
                   <img
                   src="image/roti/<?= $pro["gambar_produk"]?>"
                   class="card-img-top"
@@ -107,9 +106,9 @@
             </div>
           </div>
         </section>
-          
         <!-- Seluruh Produk  End  -->          
       </content>
+
       <!-- Footer Start -->
       <?php include("layout/footer.php") ?>
       <!-- Footer End -->
