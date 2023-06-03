@@ -10,12 +10,61 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.jen .box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem,1fr));
-    gap: 1.5rem;
+.container hr{
+    width: 100px;
+    height: 3px;
+    background-color: rgb(237, 154, 72);
+    margin: 0 auto;
+    border: nome;
 }
-.jen .box-container .box{
-    outline: rgb(224, 128, 27);
-    outline-offset: 0rem;
+.content{
+    width: 100%;
+    margin: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 20px;
+    padding-top: 5px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transition: .4s;
+    background: rgb(247, 247, 246);
+}
+.content:hover{
+    box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0,0,0,0.23) ;
+    transform: translate(0px, 08px);
+}
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 0 auto;
+}
+h2{
+    color: black;
+}
+.content-1{
+    width: 100%;
+    margin: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 20px;
+    padding-top: 5px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transition: .4s;
+    background: rgb(247, 247, 246);
+}
+.content-1:hover{
+    box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0,0,0,0.23) ;
+    transform: translate(0px, 08px);
+}
+
+button{ 
+    font-size: 24px;
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    outline: none;
+    margin-top: 5px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
