@@ -19,7 +19,7 @@ class DetailPesananModel extends Model
     }
     public function getJoinProdukById($id){
         $db=db_connect();
-        $sql='SELECT produk.id_produk,nama_produk,kuantitas,sub_total,modal_produk,harga_produk FROM detail_pesanan JOIN produk ON produk.id_produk = detail_pesanan.id_produk WHERE id_pesanan='.$id;
+        $sql='SELECT produk.id_produk,nama_produk,kuantitas,sub_total,sub_modal,modal_produk,harga_produk FROM detail_pesanan JOIN produk ON produk.id_produk = detail_pesanan.id_produk WHERE id_pesanan='.$id;
         $data=$db->query($sql);
         $data=$data->getResultArray();
         return $data;
@@ -33,9 +33,6 @@ class DetailPesananModel extends Model
             ->countAllResults();
 
         return $query > 0;
-    }
-    public function getSubTotal($a,$b){
-        return $a*$b;
     }
 
     public function insert_detail_pesanan($data){
@@ -56,5 +53,15 @@ class DetailPesananModel extends Model
         $data=$db->query($sql);
         $data=$data->getResult();
         return $data;
+    }
+    public function getTotalModal($id_pesanan){
+        $db=db_connect();
+        $sql='SELECT SUM(modal_produk*kuantitas) FROM produk JOIN detail_pesanan ON produk.id_produk = detail_pesanan.id_produk WHERE id_pesanan= '.$id_pesanan;
+        $data=$db->query($sql);
+        $tes=$data->getResultArray();
+        foreach($tes as $yahaha){
+            return $yahaha;
+        }
+        
     }
 }

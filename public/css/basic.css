@@ -25,6 +25,9 @@
   animation-name: fade;
   animation-duration: 0.4s;
 }
+.bakery {
+  color: var(--coklat);
+}
 .bi {
   font-size: 3rem;
   background: white;
@@ -60,25 +63,20 @@ body {
 .btnhover:hover {
   color: var(--kuning);
 }
-.stok-abis {
-  opacity: 0.5;
-  position: relative;
+
+#tes {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  right: 0;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.stok-abis::after {
-  content: "Stok Habis";
+#tes .card {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: red;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  animation: pulse 1s ease-in-out infinite;
+  top: 0;
 }
 
 @keyframes pulse {

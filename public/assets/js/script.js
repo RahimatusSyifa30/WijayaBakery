@@ -55,7 +55,7 @@ filterButtons.forEach((button) => {
 
 // Tambahkan event listener untuk tombol
 detail = ($id) => {
-  const dataTable = document.getElementById("data-table" + $id);
+  const dataTable = document.getElementById("tes" + $id);
   // Toggle tampilan tabel
   if (dataTable.style.display == "none") {
     dataTable.style.display = "block";
@@ -63,7 +63,8 @@ detail = ($id) => {
     dataTable.style.display = "none";
   }
 };
-
+/////
+/////
 var element = document.querySelector(".alert");
 if (element) {
   element.style.display = "block";
@@ -80,10 +81,29 @@ cards.forEach((card) => {
   const stok = parseInt(card.getAttribute("data-stok"));
   if (stok === 0) {
     card.classList.add("stok-abis");
-    // card.style.opacity = "0.5";
   } else {
     card.style.opacity = "1";
   }
 });
 
 ////
+
+// Ambil elemen-elemen yang dibutuhkan
+const exampleModal = document.getElementById("exampleModal");
+if (exampleModal) {
+  exampleModal.addEventListener("show.bs.modal", (event) => {
+    // Button that triggered the modal
+    const button = event.relatedTarget;
+    // Extract info from data-bs-* attributes
+    const recipient = button.getAttribute("data-bs-order");
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+
+    // Update the modal's content.
+    const modalTitle = exampleModal.querySelector(".modal-title");
+    const modalBodyInput = exampleModal.querySelector(".modal-body input");
+    console.log(`${recipient}`);
+    modalTitle.textContent = `New message to ${recipient}`;
+    modalBodyInput.value = recipient;
+  });
+}

@@ -61,8 +61,9 @@ include($filePath . '\layout\admin_header.php') ?>
               </div>
             <div class="col-12 " >
             <?php $counter=0;
-            foreach($pesanan_belum as $pesan){?>
-              <table class="table table-warning table-responsive" id="pesanan_belum">
+            foreach($pesanan_belum as $pesan){?> 
+            <div class="" id="pesanan_belum">
+              <table class="table table-warning table-responsive" >
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>
@@ -76,13 +77,14 @@ include($filePath . '\layout\admin_header.php') ?>
 
                 <td><?= $pesan['nama_pelanggan']?></td>
                 <td><?= $pesan['tanggal']?></td>
-                <td><?= $pesan['no_hp_pelanggan']?></td>
+                <td>0<?= $pesan['no_hp_pelanggan']?></td>
                 <td><?= $pesan['status']?></td>
                 
                 <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
                 <td><button id="detail" class="btn btn-primary" onclick="detail(<?=$counter?>)">Detail</button></td>
               </tr>
             </table>
+            </div>
             <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
             <table class="table table-responsive" >
               <tr>
@@ -93,29 +95,27 @@ include($filePath . '\layout\admin_header.php') ?>
                 <th>Harga Produk</th>
                 <th>Sub Total</th>
               </tr>
-              <?php $totalmodal[]=0;$totalharga[]=0;
+              <?php
             foreach($join_pro[$counter] as $detail){?>
               <tr>
                 
                 <td><?= $detail['kuantitas']?></td>
                 <td><?= $detail['nama_produk']?></td>
                 <td><?= $detail['modal_produk']?></td>
-                <td><?= $submodal=$detail['kuantitas']*$detail['modal_produk']?></td>
+                <td><?= $detail['kuantitas']*$detail['modal_produk']?></td>
                 <td><?= $detail['harga_produk']?></td>
-                <td><?= $subtotal=$detail['kuantitas']*$detail['harga_produk']?></td>
+                <td><?= $detail['kuantitas']*$detail['harga_produk']?></td>
                               
               </tr>
               <?php 
-              $totalmodal[$counter]+=$submodal;  
-              $totalharga[$counter]+=$subtotal;  
               }?>
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><?=$totalmodal[$counter];?></td>
+                <td><?= $pesan['total_modal']?></td>
                 <td></td>
-                <td><?=$totalharga[$counter];?></td>
+                <td><?= $pesan['total_harga']?></td>
 
               </tr>
 
@@ -155,7 +155,7 @@ include($filePath . '\layout\admin_header.php') ?>
 
                 <td><?= $pesan_sel['nama_pelanggan']?></td>
                 <td><?= $pesan_sel['tanggal']?></td>
-                <td><?= $pesan_sel['no_hp_pelanggan']?></td>
+                <td>0<?= $pesan_sel['no_hp_pelanggan']?></td>
                 <td><?= $pesan_sel['status']?></td>
                 
                 <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
@@ -172,48 +172,43 @@ include($filePath . '\layout\admin_header.php') ?>
                 <th>Harga Produk</th>
                 <th>Sub Total</th>
               </tr>
-              <?php $totalmodal1[$counter]=0;$totalharga1[$counter]=0;;
-            foreach($join_pro1[$counter] as $detail){?>
+              <?php $y=0;
+            foreach($join_pro1[$y] as $detail1){?>
               <tr>
                 
-                <td><?= $detail['kuantitas']?></td>
-                <td><?= $detail['nama_produk']?></td>
-                <td><?= $detail['modal_produk']?></td>
-                <td><?= $submodal1=$detail['kuantitas']*$detail['modal_produk']?></td>
-                <td><?= $detail['harga_produk']?></td> 
-                <td><?= $subtotal1=$detail['kuantitas']*$detail['harga_produk']?></td>
+                <td><?= $detail1['kuantitas']?></td>
+                <td><?= $detail1['nama_produk']?></td>
+                <td><?= $detail1['modal_produk']?></td>
+                <td><?= $detail1['kuantitas']*$detail1['modal_produk']?></td>
+                <td><?= $detail1['harga_produk']?></td> 
+                <td><?= $detail1['kuantitas']*$detail1['harga_produk']?></td>
                 
               </tr>
               
               <?php 
-              $totalmodal1[$counter]+=$submodal1;  
-              $totalharga1[$counter]+=$subtotal1;  
               }
-              $untung=$totalharga1[$counter]-$totalmodal1[$counter];
               ?>
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><?=$totalmodal1[$counter];?></td>
+                <td><?= $pesan_sel['total_modal']?></td>
                 <td></td>
-                <td><?=$totalharga1[$counter];?></td>
+                <td><?= $pesan_sel['total_harga']?></td>
               </tr>
               
             </table>
             </div>
             <div class="col-12 text-center">
-            <?php echo form_open('admin/pesanan_selesai/'.$pesan_sel['id_pesanan']);?>
-                <?php echo form_hidden('total_modal'.$pesan_sel['id_pesanan'],$totalmodal1[$counter]);?>
-                <?php echo form_hidden('untung_kotor'.$pesan_sel['id_pesanan'],$totalharga1[$counter]);?>
-                <?php echo form_hidden('untung_bersih',$untung)?>
+              <?= form_open('admin/pesanan_selesai/'.$pesan_sel['id_pesanan'])?>
               <a href="<?= base_url('admin/hapus_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i class="bi bi-x-circle-fill"></i></a>
               <button type="submit"><i class="bi bi-check-circle-fill"></i></button>
             </div>
             <?php
             
-              $counter++;
+              $y++;
             }?>
+            <?= form_close()?>
             </div>
             </div>
           </div>

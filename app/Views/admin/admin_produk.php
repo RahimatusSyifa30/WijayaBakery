@@ -26,7 +26,7 @@
     />
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
     <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
-    <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/produk.css')?>" />
   </head>
   
   <body>
@@ -89,10 +89,10 @@
         <section>
           
         <div class="container-fluid p-5">
-         <h1 id="bakery" class="text-center stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+         <h1 class="text-center bakery stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
             <div class="row border border-warning">
               <div class="col-xs-12 col-md-2 align-self-center text-center p-2">
-                <h1 id="bakery" class="stroke">Jenis Produk</h1>
+                <h1 class="bakery stroke">Jenis Produk</h1>
                 <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn btn-success" onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
                 </div>
               <div class="col-xs-12 col-md-10">
@@ -137,19 +137,19 @@
         
           <div class="container-fluid p-5 m-2 border border-warning">
             <div class="col-12 text-center">
-              <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+              <h1 class="text-center bakery stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
               <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-success">Tambah Produk +</a>
             </div>
           
             <!--  BUAT SELURUH PRODUK-->
-            <div class="container flex-wrap justify-content-center" id="SelProduk" >
-            <div class="row">
-
-            
+            <div class="container  justify-content-center" id="SelProduk" >
+              
+              
               <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+              <div class="d-flex flex-wrap">
             <?php foreach ($produk as $pro) :?>
-              <div class="col-md-3 col-xs-12">
+              <!-- <div class="col-md-3 col-xs-12"> -->
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
               <?php 
             
@@ -160,7 +160,7 @@
                  echo form_hidden('stok',$pro['stok_produk']);
                  echo form_hidden('gambar',$pro['gambar_produk']);
               ?>
-              <div class="card border-warning m-2 " style="width: 100%;">
+              <div class="card border-warning m-2 " >
                 <img
                 src="<?= base_url('image/roti/')?><?= $pro["gambar_produk"]?>"
                 class=""
@@ -169,7 +169,7 @@
                 <div class="card-body text-center" >
                   <h2 class="card-title"><?= $pro["nama_produk"]?></h2>
                   <p><?= $pro["informasi_produk"]?></p>
-                  <h3 id="bakery">Modal Rp. <?= $pro["modal_produk"]?></h3>
+                  <h3>Modal Rp. <?= $pro["modal_produk"]?></h3>
                   <h3>Rp. <?= $pro["harga_produk"]?></h3>
                   <h3>Stok : <?= $pro["stok_produk"]?></h3>
                   <div class="btn-group align-self-end">
@@ -188,14 +188,10 @@
                 </div>
               </div>
               </div>
-              </div>
+              <!-- </div> -->
               
-            <?php 
-            echo form_close(); 
+            <?php echo form_close(); 
             endforeach ?>
-            <div class="col-12">
-              
-            </div>
             </div>
           </div>
 

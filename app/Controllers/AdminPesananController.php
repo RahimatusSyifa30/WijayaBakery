@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\KontakUsModel;
+use App\Models\KontakModel;
 use App\Models\LaporanModel;
 use App\Models\ProdukModel;
 use App\Models\PesananModel;
@@ -25,11 +25,12 @@ class AdminPesananController extends BaseController
             $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
             $counter++;
         }
+        $y=0;
         foreach($data['pesanan_diproses'] as $tes){
-            $data['join_pro1'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
-            $counter++;
+            $data['join_pro1'][$y] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
+            $y++;
         }     
-        return view('admin/admin_pesanan',$data);
+        return view('admin/admin_pesanan1',$data);
     }
 
     public function insert_pesanan()
@@ -57,21 +58,33 @@ class AdminPesananController extends BaseController
         foreach($isi_ker as $detail){
             $data=$produk->getProdukByName( $detail['name']);
             $id=$data['id_produk'];
-            $stok_baru = $data['stok_produk']-$detail['qty'];
+            
             
             $total=$pes->totalPesanan();
             $array = [
                 'id_pesanan' => $total,
                 'id_produk' => $id,
                 'kuantitas' => $detail['qty'],
+                'sub_modal' =>$detail['qty']*$data['modal_produk'],
                 'sub_total' => $detail['subtotal'],
             ];
+            
+            $detail_pes->insert_detail_pesanan($array);
+            $stok_baru = $data['stok_produk']-$detail['qty'];
             $array_stok=[
                 'stok_produk' => $stok_baru
             ];
-            $detail_pes->insert_detail_pesanan($array);
+            
+            
             $produk->update_Produk($id,$array_stok);
         }
+        $to_modal = $detail_pes->getTotalModal($total);
+
+        $array_modal = [
+                
+            'total_modal' => $to_modal,
+        ];
+        $pes->update_pesanan($total,$array_modal);
         $keran->delete_semua_keranjang();
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan berhasil dibuat. Silahkan menuju ke Wijaya Bakery untuk konfirmasi.');
         return redirect('admin');
@@ -89,16 +102,7 @@ class AdminPesananController extends BaseController
         $keran = new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
         $data['join_pro'] = $detail_pes->getJoinProdukById($id_pesan);
-        $tes = $detail_pes->getJoinProdukById($id_pesan);
-        $i=0;
-        foreach($tes as $yipi){
-            $data['submodal'][$i] = $detail_pes->getSubTotal($yipi['kuantitas'],$yipi['modal_produk']);
-            $data['subtotal'][$i] = $detail_pes->getSubTotal($yipi['kuantitas'],$yipi['harga_produk']);
-            
-            $i++;
-        }
-        $data['totalmodal']=array_sum($data['submodal']);
-        $data['totalharga']=array_sum($data['subtotal']);
+
 
         $validation =  \Config\Services::validation();
         $validation->setRules([
@@ -132,22 +136,24 @@ class AdminPesananController extends BaseController
         return redirect('admin');
     }
     public function pesanan_diproses($id){
-        $kontak = new KontakUsModel();
+        $kontak = new KontakModel();
         $pesan = new PesananModel();
         $data = $pesan->getPesananById($id);
         $nama_pel = $data['nama_pelanggan'];
+        $no_pel = $data['no_hp_pelanggan'];
         $pesan->pesanan_diproses($id);
-        $url = $kontak->pesanan_diproses_WA($nama_pel);
+        $url = $kontak->pesanan_diproses_WA($no_pel,$nama_pel);
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan sedang diproses.');
         return redirect('admin')->to($url);
 
     }
     public function pesanan_selesai($id){
-        $kontak = new KontakUsModel();
+        $kontak = new KontakModel();
         $laporan= new LaporanModel();
         $pesan = new PesananModel();
         $data = $pesan->getPesananById($id);
         $nama_pel = $data['nama_pelanggan'];
+        $no_pel = $data['no_hp_pelanggan'];
         $pesan->pesanan_selesai($id);
         $array=[
             'id_pesanan'=>$id,
@@ -156,7 +162,7 @@ class AdminPesananController extends BaseController
             'keuntungan_bersih'=>$this->request->getPost('untung_bersih'),
         ];
         $laporan->insert_laporan($array);
-        $url = $kontak->pesanan_selesai_WA($nama_pel);
+        $url = $kontak->pesanan_selesai_WA($no_pel,$nama_pel);
         session()->setFlashdata('notif','Hai, '.$nama_pel.'!!! Pesanan sudah selesai. Selamat Menikmati');
         return redirect('admin')->to($url);
     }

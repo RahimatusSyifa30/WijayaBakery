@@ -52,15 +52,14 @@ include($filePath . '\layout\admin_header.php') ?>
             <h1>Laporan Keuangan</h1>
             <div class="row">
               <div class="col-md-6">
-              <form action="<?= base_url('admin/laporan'); ?>" method="post">
-                <label for="start">Tanggal Awal:</label>
-                <input type="date" name="start" id="start">
-
-                <label for="end">Tanggal Akhir:</label>
-                <input type="date" name="end" id="end" >
-
-
-                <button type="submit" class="btn btn-primary">Filter</button>
+              <form action="<?= base_url('admin/filter_laporan'); ?>" method="post">
+                <div class="d-flex flex-nowrap m-2">
+                  <label for="start">Tanggal Awal:</label>
+                  <input type="date" name="start" id="start" class="form-control me-3">
+                  <label for="floatingInput">Tanggal Akhir:</label>
+                  <input type="date" name="end" id="floatingInput" class="form-control">
+                  <button type="submit" class="btn btn-primary">Filter</button>
+                </div> 
             </form>
               </div>
             <div class="col-12">

@@ -75,14 +75,14 @@
         <!-- Jenis Produk  End  --> 
         <!-- Seluruh Produk  Start  -->
         <section>
-          <div class="container-fluid p-5 m-2 border border-warning">
+          <div class="container-fluid p-5 m-2 border border-warning justify-content-center">
             <div class="col-12">
               <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">            
               <button class="form-control btn btn-warning filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             </div>
             <!--  BUAT SELURUH PRODUK-->
-            <div class="d-flex flex-wrap justify-content-center" id="SelProduk">
+            <div class="d-flex flex-wrap m-auto" id="SelProduk">
             <?php foreach ($produk as $pro) :?>
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
 
