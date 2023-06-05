@@ -1,3 +1,72 @@
+.con {
+  color: rgb(224, 128, 27);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-image: url("../image/bg/bakery1.jpg");
+  min-height: 35rem;
+  background-attachment: fixed;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  box-shadow: 0 14px 35px rgba(224, 131, 39, 0.25),
+    0 10px 10px rgba(224, 131, 39, 0.22);
+}
+.container hr {
+  width: 100px;
+  height: 3px;
+  background-color: rgb(224, 131, 39);
+  margin: 0 auto;
+  border: nome;
+}
+.content {
+  width: 100%;
+  margin: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 20px;
+  padding-top: 5px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: 0.4s;
+  background: rgb(247, 247, 246);
+}
+.content:hover {
+  box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translate(0px, 08px);
+}
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 auto;
+}
+h2 {
+  color: black;
+}
+.card {
+  width: 100%;
+  margin: 30px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding-top: 5px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: 0.4s;
+  background: rgb(247, 247, 246);
+}
+.card:hover {
+  box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translate(0px, 08px);
+}
+.card .card-img-top {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: center;
+}
 .stok-abis {
   opacity: 0.7;
   position: relative;
@@ -29,4 +98,15 @@
   min-height: 300px;
   max-height: 300px;
   object-fit: cover;
+}
+
+button {
+  font-size: 24px;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  outline: none;
+  margin-top: 5px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }

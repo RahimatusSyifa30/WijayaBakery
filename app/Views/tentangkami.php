@@ -42,7 +42,7 @@
           Beralamatkan di Jl. Raya Pakuniran, RT.16/RW.04, Kolor, Bucor Kulon, Kec. Pakuniran, Kabupaten Probolinggo, Jawa Timur 67292. 
           Wijaya Bakery menyajikan roti lezat dan inovatif yang memuaskan selera pelanggan. </p>
           <p>Wijaya Bakery memiliki berbagai macam pilihan roti, seperti brownis, donat, kue tart, pizza, dan roti.</p>
-          <hr>
+          <hr>  
       </div>
       <div id="about-2">
         <div class="content-box-lg">
