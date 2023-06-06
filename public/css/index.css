@@ -8,8 +8,8 @@ section{
   background-image: url('../image/bg/body-head.png');
   background-size: cover;
   background-position: center;
-  padding-top: 18 rem;
-  padding-bottom: 2rem;
+  padding-top: 5 rem;
+  padding-bottom: 1rem;
 }
 .beranda .btn{
   background-color: rgb(250, 204, 111);
@@ -36,6 +36,7 @@ section{
   background-color: rgb(157, 97, 19);
   border-radius: 0.5rem;
   box-shadow: 1px 1px 3px rgba(247, 200, 61, 0.6);
+  
 }
 
 @media (max-width: 768px) {

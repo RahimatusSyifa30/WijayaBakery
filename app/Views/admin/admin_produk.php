@@ -26,6 +26,7 @@
     />
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
     <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/produk.css')?>"/>
     <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
   </head>
   
@@ -86,21 +87,26 @@
           ?>
         
         <!-- Jenis Produk  Start  -->
-        <section>
-          
-        <div class="container-fluid p-5">
-         <h1 id="bakery" class="text-center stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
-            <div class="row border border-warning">
+        <div class="title">
+        <h1 id="bakery" class="text-center stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+        <hr>
+        </div>
+
+        <section>  
+        <div class="container">
+           <div class="row">
               <div class="col-xs-12 col-md-2 align-self-center text-center p-2">
                 <h1 id="bakery" class="stroke">Jenis Produk</h1>
+                <hr>
+                <br>
                 <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn btn-success" onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
                 </div>
-              <div class="col-xs-12 col-md-10">
+                <div class="col-xs-12 col-md-10">
                   <div class="swiper mySwiper p-4">
                     <div class="swiper-wrapper">
                     <?php foreach ($kel_produk as $jen_pro) : ?>
                       <div class="swiper-slide">
-                        <div class="card border-warning" >
+                        <div class="card" >
                           <img
                             src="<?= base_url('image/bg/jenis_produk/')?><?= $jen_pro["gambar_kel"]?>"
                             class="card-img-top"
@@ -126,33 +132,34 @@
                     <div class="swiper-pagination"></div>
                   </div>
                 </div>
-                
+              </div>
+            </div>
             </div>
         </div>
         
         </section>
         <!-- Jenis Produk  End  --> 
+        
         <!-- Seluruh Produk  Start  -->
         <section>
         
-          <div class="container-fluid p-5 m-2 border border-warning">
+          <div class="container">
             <div class="col-12 text-center">
               <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+              <hr>
+              <br>
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
               <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-success">Tambah Produk +</a>
+              <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             </div>
           
             <!--  BUAT SELURUH PRODUK-->
-            <div class="container flex-wrap justify-content-center" id="SelProduk" >
+            <div class="flex-wrap justify-content-center" id="SelProduk" >
             <div class="row">
-
-            
-              <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
-            <?php foreach ($produk as $pro) :?>
+              <?php foreach ($produk as $pro) :?>
               <div class="col-md-3 col-xs-12">
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
               <?php 
-            
                  echo form_open('admin/tambah_keranjang');
                  echo form_hidden('id',$pro['id_produk']);
                  echo form_hidden('price',$pro['harga_produk']);
@@ -160,10 +167,10 @@
                  echo form_hidden('stok',$pro['stok_produk']);
                  echo form_hidden('gambar',$pro['gambar_produk']);
               ?>
-              <div class="card border-warning m-2 " style="width: 100%;">
+              <div class="card">
                 <img
                 src="<?= base_url('image/roti/')?><?= $pro["gambar_produk"]?>"
-                class=""
+                class="card-img-top"
                 alt="..."              
                 />
                 <div class="card-body text-center" >

@@ -84,8 +84,10 @@
               <button class="form-control btn btn-warning filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             
             <!--  BUAT SELURUH PRODUK-->
-            <div class="d-flex flex-wrap justify-content-center" id="SelProduk">
-              <?php foreach ($produk as $pro) :?>
+            <div class="flex-wrap justify-content-center" id="SelProduk">
+            <div class="row">  
+            <?php foreach ($produk as $pro) :?>
+              <div class="col-md-3 col-xs-12">  
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
                 <div class="card">
                   <img
@@ -102,7 +104,9 @@
                   </div>
                 </div>
               </div>
+              </div>
               <?php endforeach ?>
+            </div>
             </div>
           </div>
         </section>
