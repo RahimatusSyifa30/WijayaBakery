@@ -54,8 +54,6 @@ include($filePath . '\layout\admin_header.php') ?>
             <h1>Riwayat Transaksi</h1>
             <div class="row">
             <div class="col-12">
-            <input type="text" name="cari_pesan_sudah" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
-
             <form action="<?= base_url('admin/filter_riwayat'); ?>" method="post">
                 <div class="col-md-6 d-flex flex-nowrap m-2">
                   <label for="start">Tanggal Awal:</label>
@@ -67,7 +65,7 @@ include($filePath . '\layout\admin_header.php') ?>
             </form>
             <?php $counter=0;
             foreach($pesanan_selesai as $pesan){?>
-              <table class="table table-warning" id="pesanan_sudah">
+              <table class="table table-warning">
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>

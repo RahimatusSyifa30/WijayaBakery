@@ -75,7 +75,7 @@
         <!-- Jenis Produk  End  --> 
         <!-- Seluruh Produk  Start  -->
         <section>
-          <div class="container">
+          <div class="container justify-content-center">
             
               <h1 id="bakery" class="text-center stroke">Semua Produk Wijaya<span class="text-warning">Bakery.</span></h1>
               <hr>
@@ -84,10 +84,15 @@
               <button class="form-control btn btn-warning filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             
             <!--  BUAT SELURUH PRODUK-->
+<<<<<<< HEAD
             <div class="flex-wrap justify-content-center" id="SelProduk">
             <div class="row">  
             <?php foreach ($produk as $pro) :?>
               <div class="col-md-3 col-xs-12">  
+=======
+            <div class="d-flex flex-wrap justify-content-center" id="SelProduk">
+            <?php foreach ($produk as $pro) :?>
+>>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
                 <div class="card">
                   <img

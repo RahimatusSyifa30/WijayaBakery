@@ -90,8 +90,8 @@
                 </td>
                 <td><input type="text" name="modal" id="modal"  value="<?= $detail['modal_produk']?>"></td>
                 <td><input type="text" name="harga" id="harga"  value="<?= $detail['harga_produk']?>"></td>
-                <td><input type="text" name="submodal" id="submodal"  value="<?= $submodal[$i]?>" disabled></td>
-                <td><input type="text" name="subtotal" id="subtotal"  value="<?= $subtotal[$i]?>" disabled></td>
+                <td><input type="text" name="submodal" id="submodal"  value="<?= $detail['sub_modal']?>" disabled></td>
+                <td><input type="text" name="subtotal" id="subtotal"  value="<?= $detail['sub_total']?>" disabled></td>
                 <td><a href="<?= base_url('admin/hapus_detail_pesanan/'.$detail['id_produk'])?>" class="">
                     <i data-feather="trash"></i>
                 </a></td>
@@ -104,9 +104,9 @@
                 <td></td>
 
                 <td></td>
-                <td>Total Modal : <?= $totalmodal?></td>
+                <td>Total Modal : <?= $pesanan['total_modal']?></td>
                 <td></td>
-                <td>Total Harga : <?= $totalharga?></td>
+                <td>Total Harga : <?= $pesanan['total_harga']?></td>
               </tr>
 
             </table>

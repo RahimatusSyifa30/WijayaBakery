@@ -97,7 +97,10 @@
             <label for="tanggal">Tanggal</label>
             <input type="datetime" name="tanggal" id="tanggal" class="bg-secondary bg-opacity-10 form-control" value="<?= date('d-m-y H:i')?>">
             <label for="no_hp">No HP</label>
-            <input type="text" name="no_hp" id="No_hp" class="bg-secondary bg-opacity-10 form-control">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">+62</span>
+              <input type="text" name="no_hp" id="No_hp" class="bg-secondary bg-opacity-10 form-control">
+            </div>
             <button type="submit"  class="btn btn-primary">Buat Pesanan</button>
             <?= form_close()?>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

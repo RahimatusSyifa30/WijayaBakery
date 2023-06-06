@@ -21,4 +21,43 @@ class AdminRiwayatController extends BaseController
         }
         return view('admin/admin_riwayat_trs',$data);
     }
+    public function filter_riwayat(){
+        setlocale(LC_TIME,'IND');
+        helper('form');
+            $keran=new KeranjangModel();
+            $data['jumlah_item'] = $keran->getTotalBarang();
+    
+            $pes= new PesananModel();
+            $detail_pes = new DetailPesananModel();
+        $start=$this->request->getPost('start');
+            $end=$this->request->getPost('end');
+            if($start > $end){
+                session()->setFlashdata('error',"Tanggal awal tidak boleh melebihi tanggal akhir");
+                $data['pesanan_selesai']=$pes->view_selesai();
+                $counter=0;
+                foreach($data['pesanan_selesai'] as $tes){
+                    $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
+                    $counter++;
+                }
+                session()->setFlashdata('error',"Tanggal awal dan akhir tidak boleh kosong");
+            }else if ($start!=null && $end!=null) {
+                    
+                    $data['pesanan_selesai']=$pes->filter_pesanan($start,$end);
+                    $counter=0;
+                    foreach($data['pesanan_selesai'] as $tes){
+                        $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
+                        $counter++;
+                    }     
+                    $awal = strftime('%d %B %Y', strtotime($start));
+                    $akhir = strftime('%d %B %Y', strtotime($end));
+                    session()->setFlashdata('notif',"Menampilkan tanggal dari ".$awal." sampai ".$akhir);
+            }else{
+                session()->setFlashdata('error',"Tanggal tidak boleh kosong");
+                return redirect()->back();
+               
+                
+    
+    } 
+    return view('admin/admin_riwayat_trs',$data);
+    }
 }

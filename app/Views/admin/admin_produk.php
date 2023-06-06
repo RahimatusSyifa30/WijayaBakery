@@ -26,8 +26,12 @@
     />
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
     <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="<?= base_url('css/produk.css')?>"/>
     <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
+=======
+    <link rel="stylesheet" href="<?= base_url('css/produk.css')?>" />
+>>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
   </head>
   
   <body>
@@ -87,6 +91,7 @@
           ?>
         
         <!-- Jenis Produk  Start  -->
+<<<<<<< HEAD
         <div class="title">
         <h1 id="bakery" class="text-center stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
         <hr>
@@ -99,6 +104,15 @@
                 <h1 id="bakery" class="stroke">Jenis Produk</h1>
                 <hr>
                 <br>
+=======
+        <section>
+          
+        <div class="container-fluid p-5">
+         <h1 class="text-center bakery stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+            <div class="row border border-warning">
+              <div class="col-xs-12 col-md-2 align-self-center text-center p-2">
+                <h1 class="bakery stroke">Jenis Produk</h1>
+>>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
                 <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn btn-success" onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
                 </div>
                 <div class="col-xs-12 col-md-10">
@@ -145,19 +159,33 @@
         
           <div class="container">
             <div class="col-12 text-center">
+<<<<<<< HEAD
               <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
               <hr>
               <br>
+=======
+              <h1 class="text-center bakery stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+>>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
               <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-success">Tambah Produk +</a>
               <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
             </div>
           
             <!--  BUAT SELURUH PRODUK-->
+<<<<<<< HEAD
             <div class="flex-wrap justify-content-center" id="SelProduk" >
             <div class="row">
               <?php foreach ($produk as $pro) :?>
               <div class="col-md-3 col-xs-12">
+=======
+            <div class="container  justify-content-center" id="SelProduk" >
+              
+              
+              <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+              <div class="d-flex flex-wrap">
+            <?php foreach ($produk as $pro) :?>
+              <!-- <div class="col-md-3 col-xs-12"> -->
+>>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
               <?php 
                  echo form_open('admin/tambah_keranjang');
@@ -167,7 +195,11 @@
                  echo form_hidden('stok',$pro['stok_produk']);
                  echo form_hidden('gambar',$pro['gambar_produk']);
               ?>
+<<<<<<< HEAD
               <div class="card">
+=======
+              <div class="card border-warning m-2 " >
+>>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
                 <img
                 src="<?= base_url('image/roti/')?><?= $pro["gambar_produk"]?>"
                 class="card-img-top"
@@ -176,7 +208,7 @@
                 <div class="card-body text-center" >
                   <h2 class="card-title"><?= $pro["nama_produk"]?></h2>
                   <p><?= $pro["informasi_produk"]?></p>
-                  <h3 id="bakery">Modal Rp. <?= $pro["modal_produk"]?></h3>
+                  <h3>Modal Rp. <?= $pro["modal_produk"]?></h3>
                   <h3>Rp. <?= $pro["harga_produk"]?></h3>
                   <h3>Stok : <?= $pro["stok_produk"]?></h3>
                   <div class="btn-group align-self-end">
@@ -195,14 +227,10 @@
                 </div>
               </div>
               </div>
-              </div>
+              <!-- </div> -->
               
-            <?php 
-            echo form_close(); 
+            <?php echo form_close(); 
             endforeach ?>
-            <div class="col-12">
-              
-            </div>
             </div>
           </div>
 

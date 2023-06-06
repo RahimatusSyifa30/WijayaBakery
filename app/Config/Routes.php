@@ -32,8 +32,8 @@ $routes->set404Override();
 $routes->get('/', 'IndexController::index');
 $routes->get('produk', 'ProdukController::produk');
 $routes->get('tentang_kami', 'TentangController::tentang');
-$routes->get('kontak_kami', 'KontakUsController::index');
-$routes->add('kirim_pesan', 'KontakUsController::kirim_pesan');
+$routes->get('kontak_kami', 'KontakController::index');
+$routes->add('kirim_pesan', 'KontakController::kirim_pesan');
 $routes->get('cek', 'AdminPesananController::cek');
 
 $routes->group('admin', function ($routes) {
@@ -49,7 +49,9 @@ $routes->group('admin', function ($routes) {
     $routes->add('hapus_detail_pesanan/(:segment)','AdminDetailPesananController::delete_detail_pesanan/$1');
 
     $routes->get('riwayat','AdminRiwayatController::index');
+    $routes->add('filter_riwayat','AdminRiwayatController::filter_riwayat');
     $routes->add('laporan','AdminLaporanController::index');
+    $routes->add('filter_laporan','AdminLaporanController::filter_laporan');
     
     $routes->add('keranjang','AdminKeranjangController::index');
     $routes->add('tambah_keranjang','AdminKeranjangController::tambah_keranjang');

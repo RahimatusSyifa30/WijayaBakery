@@ -5,9 +5,8 @@
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary border-2 border-bottom border-warning" id="header">
   <div class="container-fluid">
-  
     <a href="<?= base_url('/')?>" title="Logo WijayaBakery." class="navbar-brand stroke">
-      <h1>Wijaya<span class="text-warning">Bakery.</span></h1>
+      <h1 class="bakery">Wijaya<span class="text-warning">Bakery.</span></h1>
     </a>    
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

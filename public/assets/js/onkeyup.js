@@ -6,7 +6,7 @@ function myFunction() {
   input = document.getElementById("cari");
   filter = input.value.toUpperCase();
   row = document.getElementById("SelProduk");
-  li = row.getElementsByClassName("card");
+  li = row.getElementsByClassName("produk");
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
