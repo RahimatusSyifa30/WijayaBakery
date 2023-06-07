@@ -20,6 +20,7 @@
     ></script>
     <!-- Bootstrap End -->
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>">
+    <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>">
 </head>
 <body>
  <!-- Header Start -->
@@ -50,15 +51,58 @@ include($filePath . '\layout\admin_header.php') ?>
         ?>
       </div>
 
-
+      
       <!-- Pesanan Masuk -->
     <div class="row m-auto">
+      
         <div class="col-sm-6 col-md-12 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Pesanan Masuk</h1>
             <div class="row">
               <div class="col-12">
               <input type="text" name="cari_pesan_belum" id="cariBelum" onkeyup="pesanBelum()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
-              </div>
+            <!-- Detail Pesanan Start -->
+      <div class="container p-2" style="display: none;">
+        <?php $yipi=0;
+        foreach($pesanan_belum as $pesan):?>
+      
+        <div class="card mt-3" style="display: none;" id="detail<?= $yipi?>">
+          
+        <div class="card-body">
+          <div class="top d-flex justify-content-between">
+            <h5 class=""></h5>
+            <h5 class="card-title"><?= $pesan['nama_pelanggan']?></h5>
+            <button type="button" class="btn-close justify-content-end" aria-label="Close"></button>
+          </div>
+            <table class="table">
+                    <tr>
+                      <th>Kuantitas</th>
+                      <th>Nama Produk</th>
+                      <th>Modal Produk</th>
+                      <th>Sub Modal</th>
+                      <th>Harga Produk</th>
+                      <th>Sub Total</th>
+                    </tr>
+                    <?php
+                  foreach($join_pro[$yipi] as $detail){?>
+                    <tr>
+                      
+                      <td><?= $detail['kuantitas']?></td>
+                      <td><?= $detail['nama_produk']?></td>
+                      <td><?= $detail['modal_produk']?></td>
+                      <td><?= $detail['sub_modal']?></td>
+                      <td><?= $detail['harga_produk']?></td>
+                      <td><?= $detail['sub_total']?></td>
+                                    
+                    </tr>
+                  <?php  } $yipi++; ?>
+                  
+            </table>
+          </div>
+        </div>        
+      <?php endforeach?>
+      </div>
+      <!-- Detail Pesanan End -->
+            </div>
             <div class="col-12 " >
               <table class="table table-warning table-responsive" id="pesanan_belum" aria-disabled="">
               <tr>
@@ -86,63 +130,93 @@ include($filePath . '\layout\admin_header.php') ?>
                 <td><button class="btn btn-primary trigger" onclick="detail(<?= $counter ?>)">Tampilkan Card</button></td>
 
                 <td><a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a></td>
-              <td><a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a></td>
-            
+              <td><a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a></td>           
               </tr>
-
-                
-
-              
-              
               <?php $counter++; endforeach ?>
             </table>
-<!-- Button trigger modal -->
-
-
-
-            <div class="container m-auto position-absolute" >
-            <?php $yipi=0;
-            foreach($pesanan_belum as $pesan):?>
-
-      <!-- Penting -->
-      
-  
-  <div class="card mt-3" style="display: none;" id="tes<?= $yipi?>">
-    <div class="card-body">
-      <h5 class="card-title"><?= $pesan['nama_pelanggan']?></h5>
-      
-      <table class="table">
-              <tr>
-                <th>Kuantitas</th>
-                <th>Nama Produk</th>
-                <th>Modal Produk</th>
-                <th>Sub Modal</th>
-                <th>Harga Produk</th>
-                <th>Sub Total</th>
-              </tr>
-              <?php
-            foreach($join_pro[$yipi] as $detail){?>
-              <tr>
-                
-                <td><?= $detail['kuantitas']?></td>
-                <td><?= $detail['nama_produk']?></td>
-                <td><?= $detail['modal_produk']?></td>
-                <td><?= $detail['sub_modal']?></td>
-                <td><?= $detail['harga_produk']?></td>
-                <td><?= $detail['sub_total']?></td>
-                              
-              </tr>
-            <?php  } $yipi++; ?>
+            <!--  -->
+            <!-- Pesanan Diproses -->
+            <div class="row m-auto">
+              
+              <div class="col-sm-6 col-md-12 bg-secondary bg-opacity-10 text-center border border-2">
+                  <h1>Pesanan Diproses</h1>
+                  <div class="row">
+                    <div class="col-12">
+                    <input type="text" name="cari_pesan_sudah" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
+                  <!-- Detail Pesanan Start -->
+            <div class="container sel p-2" style="display: none;">
+              <?php $yuhu=0;
+              foreach($pesanan_diproses as $pesan_sel):?>
             
-      </table>
+              <div class="card mt-3" style="display: none;" id="detail_sel<?= $yuhu?>">
+                
+              <div class="card-body">
+                <div class="top d-flex justify-content-between">
+                  <h5 class=""></h5>
+                  <h5 class="card-title"><?= $pesan_sel['nama_pelanggan']?></h5>
+                  <button type="button" class="btn-close justify-content-end" aria-label="Close"></button>
+                </div>
+                  <table class="table">
+                          <tr>
+                            <th>Kuantitas</th>
+                            <th>Nama Produk</th>
+                            <th>Modal Produk</th>
+                            <th>Sub Modal</th>
+                            <th>Harga Produk</th>
+                            <th>Sub Total</th>
+                          </tr>
+                          <?php
+                        foreach($join_pro1[$yuhu] as $detail){?>
+                          <tr>
+                            
+                            <td><?= $detail['kuantitas']?></td>
+                            <td><?= $detail['nama_produk']?></td>
+                            <td><?= $detail['modal_produk']?></td>
+                            <td><?= $detail['sub_modal']?></td>
+                            <td><?= $detail['harga_produk']?></td>
+                            <td><?= $detail['sub_total']?></td>
+                                          
+                          </tr>
+                        <?php  } $yipi++; ?>
+                        
+                  </table>
+                </div>
+              </div>        
+            <?php endforeach?>
             </div>
-  </div>
-  
-  <!-- Batas Penting -->
+            <!-- Detail Pesanan End -->
+                  </div>
+                  <div class="col-12 " >
+                    <table class="table table-warning table-responsive" id="pesanan_sudah">
+                    <tr>
+                      <th>Nama Pelanggan</th>
+                      <th>Tanggal</th>
+                      <th>No HP</th>
+                      <th>Status</th>
+                      <th>Total Modal</th>
+                      <th>Total Harga</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                    <?php $counter=0;
+                  foreach($pesanan_diproses as $pesan_sel):?>
+                    <tr>
+                      <td><?= $pesan_sel['nama_pelanggan']?></td>
+                      <td><?= $pesan_sel['tanggal']?></td>
+                      <td>0<?= $pesan_sel['no_hp_pelanggan']?></td>
+                      <td><?= $pesan_sel['status']?></td>
+                      <td><?= $pesan_sel['total_modal']?></td>
+                      <td><?= $pesan_sel['total_harga']?></td>
+                      <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
+                      <td><button class="btn btn-primary trigger" onclick="detail_sel(<?= $counter ?>)">Tampilkan Card</button></td>
 
-<?php endforeach?>
-          </div>
-        
+                      <td><a href="<?= base_url('admin/hapus_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a></td>
+                    <td><a href="<?= base_url('admin/pesanan_selesai/'.$pesan_sel['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a></td>           
+                    </tr>
+                    <?php $counter++; endforeach ?>
+                  </table>
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->
@@ -152,6 +226,7 @@ include($filePath . '\layout\admin_header.php') ?>
       </script>
     <script src="<?= base_url('assets/js/script.js')?>"></script>
     <script src="<?= base_url('assets/js/onkeyup.js')?>"></script>
+    <script src="<?= base_url('assets/js/pesanan.js')?>"></script>
     
 </body>
 </html>

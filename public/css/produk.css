@@ -10,54 +10,56 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.container {
+.container-fluid {
+  width: 100%;
   box-shadow: 0 14px 35px rgba(224, 131, 39, 0.25),
     0 10px 10px rgba(224, 131, 39, 0.22);
 }
-.container hr {
+.container-fluid hr {
   width: 100px;
   height: 3px;
   background-color: rgb(224, 131, 39);
-  margin: 0 auto;
+  margin: auto;
   border: nome;
 }
 .content {
   width: 100%;
-  margin: 30px;
+  /* margin: 30px; */
   box-sizing: border-box;
   text-align: center;
   border-radius: 20px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  transition: 0.4s;
   background: rgb(247, 247, 246);
 }
 .content:hover {
+  transition: 0.4s;
   box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transform: translate(0px, 08px);
 }
-img {
-  width: 200px;
-  height: 200px;
+.content img {
+  width: 300px;
+  height: 300px;
   border-radius: 10px;
   text-align: center;
   margin: 0 auto;
+  object-fit: fill;
 }
 h2 {
   color: black;
 }
 .card {
   width: 100%;
-  margin: 30px;
-  text-align: center;
-  box-sizing: border-box;
+  /* margin: 30px; */
+  /* text-align: center; */
+  /* box-sizing: border-box; */
   border-radius: 20px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  transition: 0.4s;
   background: rgb(247, 247, 246);
 }
 .card:hover {
+  transition: 0.4s;
   box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transform: translate(0px, 08px);
 }
@@ -109,4 +111,9 @@ button {
   margin-top: 5px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+}
+@media (max-width: 400px) {
+  .produk {
+    width: calc(100%);
+  }
 }

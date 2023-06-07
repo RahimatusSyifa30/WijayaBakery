@@ -110,11 +110,11 @@
                           <div class="card-body">
                             <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
                                 <div class="btn-group">
-                                    <a href="<?= base_url('admin/ubah_kel_produk/'.$jen_pro['nama_kel']) ?>"  class="btn btn-warning"><i data-feather="edit"></i> Edit</a>
-                                    <a href="<?= base_url('admin/delete_kel_produk/'.$jen_pro['nama_kel']) ?>"  class="btn btn-danger"><i data-feather="trash-2"></i> Hapus</a>
+                                    <a href="<?= base_url('admin/ubah_kel_produk/'.$jen_pro['id_kel']) ?>"  class="btn btn-warning"><i data-feather="edit"></i> Edit</a>
+                                    <a href="<?= base_url('admin/delete_kel_produk/'.$jen_pro['id_kel']) ?>"  class="btn btn-danger"><i data-feather="trash-2"></i> Hapus</a>
                                 </div>
                                 <div class="buttonCon">
-                                  <button class="filter-btn btn btn-primary" data-kategori="<?= str_replace(" ","", $jen_pro['nama_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                                  <button class="filter-btn btn btn-primary" data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
                                 </div>
                           </div>
                         </div>
@@ -181,7 +181,7 @@
                     </a>
                   </div>
                   <div>
-                  <button class="btn btn-primary text-wrap" type="submit" onclick="handleClick(this,<?= $pro['stok_produk']?>)">
+                  <button class="btn btn-primary text-wrap tambah" type="submit">
                     <i data-feather="shopping-cart"></i> Tambah ke Keranjang
                   </button>                 
                  </div>
@@ -255,7 +255,7 @@
         feather.replace();
       </script>
       <!-- Script Manual -->
-      <script src="<?= base_url('assets/js/pesanan.js')?>" type="text/javascript"></script>
+      <script src="<?= base_url('assets/js/produk.js')?>" type="text/javascript"></script>
       <script src="<?= base_url('assets/js/onkeyup.js')?>"></script>
       <script src="<?= base_url('assets/js/script.js')?>" type="text/javascript"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>

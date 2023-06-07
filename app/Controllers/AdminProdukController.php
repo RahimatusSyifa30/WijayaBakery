@@ -34,9 +34,11 @@ class AdminProdukController extends BaseController
 		    $fileName = $dataBerkas->getRandomName();
             $dataBerkas->move('image/roti/', $fileName);
             $nama_pro = $this->request->getPost('nama_pro');
+            $data_kel = $kel_pro->getKelProdukByName($this->request->getPost('jenis_pro'));
+            $id_kel = $data_kel['id_kel'];
             $array = [
                 'nama_produk' => $nama_pro,
-                'jenis_produk' => $this->request->getPost('jenis_pro'),
+                'jenis_produk' => $id_kel,
                 'stok_produk' => $this->request->getPost('stok_pro'),
                 'modal_produk' => $this->request->getPost('modal_pro'),
                 'harga_produk' => $this->request->getPost('harga_pro'),

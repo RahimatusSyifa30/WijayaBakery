@@ -59,7 +59,7 @@
                               <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
                               <br>
                               <div class="buttonCon">
-                              <button href="#SelProduk" class="filter-btn btn btn-warning" data-kategori="<?= str_replace(" ","", $jen_pro['nama_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                              <button href="#SelProduk" class="filter-btn btn btn-warning" data-kategori="<?= $jen_pro['id_kel']?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
                             </div>                     
                           </div>
                         </div>
@@ -75,16 +75,16 @@
         <!-- Jenis Produk  End  --> 
         <!-- Seluruh Produk  Start  -->
         <section>
-          <div class="container justify-content-center">
-            
+          <div class="container-fluid justify-content-center ">
+          <div>
               <h1 id="bakery" class="text-center stroke">Semua Produk Wijaya<span class="text-warning">Bakery.</span></h1>
               <hr>
               <br>
               <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">            
               <button class="form-control btn btn-warning filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
-            
+            </div>
             <!--  BUAT SELURUH PRODUK-->
-            <div class="d-flex flex-wrap justify-content-center" id="SelProduk">
+            <div class="d-flex flex-wrap justify-content-around" id="SelProduk">
             <?php foreach ($produk as $pro) :?>
               <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>">
                 <div class="card">
@@ -145,7 +145,8 @@
         feather.replace();
       </script>
       <!-- Script Manual -->
-      <script src="assets/js/script.js" type="text/javascript"></script>
+      <script src="<?= base_url("assets/js/script.js") ?>" type="text/javascript"></script>
+      <script src="<?= base_url("assets/js/produk.js") ?>" type="text/javascript"></script>
       
   </body>
 </html>

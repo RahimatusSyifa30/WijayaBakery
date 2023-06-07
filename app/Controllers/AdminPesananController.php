@@ -35,6 +35,7 @@ class AdminPesananController extends BaseController
 
     public function insert_pesanan()
     {
+        $t=time();
         $produk= new ProdukModel();
         $pes= new PesananModel();
         $detail_pes= new DetailPesananModel();
@@ -50,6 +51,7 @@ class AdminPesananController extends BaseController
         $nama_pel = $this->request->getPost('nama_pel');
         $array1=[
             'nama_pelanggan' => $nama_pel,
+            'tanggal' => date('Y-m-d H:i:sa',$t),
             'no_hp_pelanggan' => $this->request->getPost('no_hp'),
             'total_harga' => $keran->totalHarga(),
         ];
@@ -148,18 +150,23 @@ class AdminPesananController extends BaseController
 
     }
     public function pesanan_selesai($id){
+        $t=time();
         $kontak = new KontakModel();
         $laporan= new LaporanModel();
         $pesan = new PesananModel();
         $data = $pesan->getPesananById($id);
         $nama_pel = $data['nama_pelanggan'];
         $no_pel = $data['no_hp_pelanggan'];
+        $modal = $data['total_modal'];
+        $untung_kotor = $data['total_harga'];
+        $untung_bersih = $data['total_harga']-$data['total_modal'];
         $pesan->pesanan_selesai($id);
         $array=[
             'id_pesanan'=>$id,
-            'modal'=>$this->request->getPost('total_modal'.$id),
-            'keuntungan_kotor'=>$this->request->getPost('untung_kotor'.$id),
-            'keuntungan_bersih'=>$this->request->getPost('untung_bersih'),
+            'tanggal_laporan' => date('Y-m-d H:i:sa',$t),
+            'modal'=>$modal,
+            'keuntungan_kotor'=>$untung_kotor,
+            'keuntungan_bersih'=>$untung_bersih,
         ];
         $laporan->insert_laporan($array);
         $url = $kontak->pesanan_selesai_WA($no_pel,$nama_pel);

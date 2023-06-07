@@ -87,7 +87,7 @@ include($filePath . '\layout\admin_header.php') ?>
             </div>
             <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
             <table class="table table-responsive" >
-              <tr>
+              <tr class="position-sticky">
                 <th>Kuantitas</th>
                 <th>Nama Produk</th>
                 <th>Modal Produk</th>

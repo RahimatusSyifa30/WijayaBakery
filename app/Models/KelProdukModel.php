@@ -7,15 +7,18 @@ use CodeIgniter\Model;
 class KelProdukModel extends Model
 {
     protected $table      = 'kelompok_produk';
-    protected $primaryKey = 'nama_kel';
+    protected $primaryKey = 'id_kel';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['nama_kel','gambar_kel'];
+    protected $allowedFields = ['id_kel','nama_kel','gambar_kel'];
     public function viewAll(){
         return $this->findAll();
     }
     public function getKelProdukById($id){
         return $this->find($id);
+    }
+    public function getKelProdukByName($name){
+        return $this->where('nama_kel',$name)->first();
     }
     public function insert_KelProduk($data){
         return $this->insert($data);

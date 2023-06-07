@@ -10,7 +10,7 @@ class LaporanModel extends Model
     protected $primaryKey = 'id_laporan';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['id_laporan','id_pesanan','tanggal','modal','keuntungan_kotor','keuntungan_bersih'];
+    protected $allowedFields = ['id_laporan','id_pesanan','tanggal_laporan','modal','keuntungan_kotor','keuntungan_bersih'];
     public function viewAll(){
         return $this->findAll();
     }

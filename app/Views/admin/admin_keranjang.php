@@ -56,7 +56,7 @@
         <tr>
           <th>Gambar Produk</th>
           <th>Nama Produk</th>
-          <th>Stok Produk</th>
+          <th>Jumlah Barang</th>
           <th>Harga Produk</th>
           <th>Sub Total</th>
           <th></th>
@@ -93,7 +93,7 @@
             <h2>Total jumlah barang : <?= $jumlah_item?></h2>
             <?= form_open('admin/tambah_pesanan')?>
             <label for="nama_pel">Nama Pelanggan</label>
-            <input type="text" name="nama_pel" id="nama_pel" class="bg-secondary bg-opacity-10 form-control">
+            <input type="text" name="nama_pel" id="nama_pel" class="bg-secondary bg-opacity-10 form-control" required>
             <label for="tanggal">Tanggal</label>
             <input type="datetime" name="tanggal" id="tanggal" class="bg-secondary bg-opacity-10 form-control" value="<?= date('d-m-y H:i')?>">
             <label for="no_hp">No HP</label>

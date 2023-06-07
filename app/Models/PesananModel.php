@@ -21,6 +21,9 @@ class PesananModel extends Model
     public function view_selesai(){
         return $this->where('status','Selesai')->findAll();
     }
+    public function view_all(){
+        return $this->findAll();
+    }
     public function filter_pesanan($start,$end){
         $db = db_connect();
         $sql = "SELECT * FROM pesanan WHERE tanggal BETWEEN '".$start." 00:00:00' AND '".$end." 23:59:59'";
