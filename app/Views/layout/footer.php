@@ -9,18 +9,7 @@
             /></a>
             </div>
             <!-- Logo Footer End -->
-            <!-- Logo Sosmed Start-->
-            
-            <div class="d-flex align-self-end" id="sosmed" >
-              <p class="m-1 text-light">Temukan kami di</p>
-              <a href="#" class="p-1  bg-white rounded-2 m-1"
-                ><i data-feather="facebook"></i
-              ></a>
-              <a href="#" class="p-1 bg-white rounded-2 m-1"
-                ><i data-feather="instagram"></i
-              ></a>
-            </div>  
-          <!-- Logo Sosmed End -->
+           
           <!-- Copyr start -->
           <div class="align-self-end">
             <p class="text-center text-light opacity-75 m-0 ">

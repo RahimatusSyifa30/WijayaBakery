@@ -10,8 +10,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.container-fluid {
-  width: 100%;
+<<<<<<< HEAD
+.container{
+    box-shadow: 0 14px 50px rgba(224, 131, 39, 0.25), 0 10px 10px rgba(224, 131, 39, 0.22);
+    outline: double;
+=======
+.container {
   box-shadow: 0 14px 35px rgba(224, 131, 39, 0.25),
     0 10px 10px rgba(224, 131, 39, 0.22);
 }
@@ -74,7 +78,24 @@ h2 {
   position: relative;
 }
 
-.stok-abis::after {
+<<<<<<< HEAD button {
+  font-size: 24px;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  outline: none;
+  margin-top: 5px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.title hr {
+  width: 100px;
+  height: 3px;
+  background-color: rgb(224, 131, 39);
+  margin: 0 auto;
+  border: nome;
+}
+======= .stok-abis::after {
   content: "Stok Habis";
   position: absolute;
   top: 50%;
@@ -111,9 +132,4 @@ button {
   margin-top: 5px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-}
-@media (max-width: 400px) {
-  .produk {
-    width: calc(100%);
-  }
 }

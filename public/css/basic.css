@@ -54,7 +54,7 @@ th {
   --coklat: rgba(117, 0, 0, 255);
 }
 body {
-  min-height: 93vh;
+  min-height: 50vh;
   position: relative;
   font-family: Ubuntu, Poppins, "Times New Roman", Times, serif;
   /* background-color: rgba(255, 253, 243, 255); */

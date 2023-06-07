@@ -46,7 +46,7 @@
 
 
     <!-- Footer Start -->
-    <?php include("layout/footer.php") ?>
+    
     <!-- Footer End -->
     <!-- Script Swiper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
