@@ -30,26 +30,7 @@ $rootPath = ROOTPATH;
 $filePath = $rootPath . 'app\Views';
 include($filePath . '\layout\admin_header.php') ?>
 <!-- Header End -->
-<div class="row">
-    <div class="col-12">
-        <?php 
-        if(session()->getFlashdata('notif')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }else if(session()->getFlashdata('error')){ 
-          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('error').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }
-        
-        ?>
-      </div>
-      </div>
+<?php include($filePath.'\layout\alert.php') ?>
     <div class="row p-md-4 p-sm-1">
         <div class="col-12 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Riwayat Transaksi</h1>
@@ -139,6 +120,7 @@ include($filePath . '\layout\admin_header.php') ?>
         
           </div>
     </div>
+    <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->

@@ -23,13 +23,12 @@ filterButtons.forEach((button) => {
 // Jika Stok Kosong, opacity berkurang
 const total = document.getElementById("SelProduk");
 const cards = total.querySelectorAll(".produk");
-const tes = document.getElementsByClassName("tambah");
+
 // const tambah = cards.getElementsByName("tambah");
 cards.forEach((card) => {
   const stok = parseInt(card.getAttribute("data-stok"));
   if (stok === 0) {
     card.classList.add("stok-abis");
-    tes.classList.add("hide");
   } else {
     card.style.opacity = "1";
   }

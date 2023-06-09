@@ -33,7 +33,7 @@
     $filePath = $rootPath . 'app\Views';
     include($filePath.'\layout\admin_header.php') ?>
     <!-- Header End -->
-    <content>
+    <main>
     <form action="<?=base_url('admin/ubah_produk/'.$produk['id_produk'])?>" method="post" enctype="multipart/form-data" class="p-5">
 
       <label for="nama_pro">Nama Produk</label>
@@ -65,7 +65,9 @@
         <input type="submit" name="sub" class="btn btn-success btn-lg" value="Selesai"></input>
       </div>
     </form>
-    </content>
+      </main>
+      <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
+
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->

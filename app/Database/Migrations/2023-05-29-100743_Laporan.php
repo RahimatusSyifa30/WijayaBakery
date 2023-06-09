@@ -18,7 +18,7 @@ class Laporan extends Migration
 			'id_pesanan'          => [
 				'type'           => 'INT',
 			],
-			'tanggal'       => [
+			'tanggal_laporan'       => [
 				'type'           => 'TIMESTAMP',
 			],
 			'modal'      => [

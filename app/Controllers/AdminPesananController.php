@@ -7,7 +7,6 @@ use App\Models\ProdukModel;
 use App\Models\PesananModel;
 use App\Models\DetailPesananModel;
 use App\Models\KeranjangModel;
-use Exception;
 
 class AdminPesananController extends BaseController
 {
@@ -30,7 +29,7 @@ class AdminPesananController extends BaseController
             $data['join_pro1'][$y] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
             $y++;
         }     
-        return view('admin/admin_pesanan1',$data);
+        return view('admin/admin_pesanan',$data);
     }
 
     public function insert_pesanan()
@@ -150,7 +149,7 @@ class AdminPesananController extends BaseController
 
     }
     public function pesanan_selesai($id){
-        $t=time();
+        $d=time();
         $kontak = new KontakModel();
         $laporan= new LaporanModel();
         $pesan = new PesananModel();
@@ -163,7 +162,7 @@ class AdminPesananController extends BaseController
         $pesan->pesanan_selesai($id);
         $array=[
             'id_pesanan'=>$id,
-            'tanggal_laporan' => date('Y-m-d H:i:sa',$t),
+            'tanggal_laporan' => date('Y-m-d H:i:sa',$d),
             'modal'=>$modal,
             'keuntungan_kotor'=>$untung_kotor,
             'keuntungan_bersih'=>$untung_bersih,

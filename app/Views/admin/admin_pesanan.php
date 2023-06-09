@@ -20,6 +20,7 @@
     ></script>
     <!-- Bootstrap End -->
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>">
+    <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>">
 </head>
 <body>
  <!-- Header Start -->
@@ -30,200 +31,182 @@ $filePath = $rootPath . 'app\Views';
 include($filePath . '\layout\admin_header.php') ?>
 
 <!-- Header End -->
-    <div class="col-12">
-
-        <?php 
-        if(session()->getFlashdata('notif')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }else if(session()->getFlashdata('error')){ 
-          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('error').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }
-        
-        ?>
-      </div>
-
-
+<?php include($filePath.'\layout\alert.php') ?>
       <!-- Pesanan Masuk -->
-    <div class="row p-md-4 p-sm-1">
-        <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2">
+      <main>
+    <div class="row m-auto">
+      
+        <div class="col-sm-6 col-md-12 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Pesanan Masuk</h1>
             <div class="row">
               <div class="col-12">
               <input type="text" name="cari_pesan_belum" id="cariBelum" onkeyup="pesanBelum()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
-              </div>
+            <!-- Detail Pesanan Start -->
+      <div class="container con p-2" style="display: none;">
+        <?php $yipi=0;
+        foreach($pesanan_belum as $pesan):?>
+      
+        <div class="card mt-3" style="display: none;" id="detail<?= $yipi?>">
+          
+        <div class="card-body">
+          <div class="top d-flex justify-content-between">
+            <h5 class=""></h5>
+            <h5 class="card-title"><?= $pesan['nama_pelanggan']?></h5>
+            <button type="button" class="btn-close justify-content-end" aria-label="Close"></button>
+          </div>
+            <table class="table">
+                    <tr>
+                      <th>Kuantitas</th>
+                      <th>Nama Produk</th>
+                      <th>Modal Produk</th>
+                      <th>Sub Modal</th>
+                      <th>Harga Produk</th>
+                      <th>Sub Total</th>
+                    </tr>
+                    <?php
+                  foreach($join_pro[$yipi] as $detail){?>
+                    <tr>
+                      
+                      <td><?= $detail['kuantitas']?></td>
+                      <td><?= $detail['nama_produk']?></td>
+                      <td><?= $detail['modal_produk']?></td>
+                      <td><?= $detail['sub_modal']?></td>
+                      <td><?= $detail['harga_produk']?></td>
+                      <td><?= $detail['sub_total']?></td>
+                                    
+                    </tr>
+                  <?php  } $yipi++; ?>
+                  
+            </table>
+          </div>
+        </div>        
+      <?php endforeach?>
+      </div>
+      <!-- Detail Pesanan End -->
+            </div>
             <div class="col-12 " >
-            <?php $counter=0;
-            foreach($pesanan_belum as $pesan){?> 
-            <div class="" id="pesanan_belum">
-              <table class="table table-warning table-responsive" >
+              <table class="table table-warning table-hover table-striped table-responsive" id="pesanan_belum" aria-disabled="">
               <tr>
                 <th>Nama Pelanggan</th>
                 <th>Tanggal</th>
                 <th>No HP</th>
                 <th>Status</th>
-
+                <th>Total Modal</th>
+                <th>Total Harga</th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th></th>
               </tr>
+              <?php $counter=0;
+            foreach($pesanan_belum as $pesan):?>
               <tr>
-
                 <td><?= $pesan['nama_pelanggan']?></td>
                 <td><?= $pesan['tanggal']?></td>
                 <td>0<?= $pesan['no_hp_pelanggan']?></td>
                 <td><?= $pesan['status']?></td>
-                
-                <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
-                <td><button id="detail" class="btn btn-primary" onclick="detail(<?=$counter?>)">Detail</button></td>
-              </tr>
-            </table>
-            </div>
-            <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
-            <table class="table table-responsive" >
-              <tr class="position-sticky">
-                <th>Kuantitas</th>
-                <th>Nama Produk</th>
-                <th>Modal Produk</th>
-                <th>Sub Modal</th>
-                <th>Harga Produk</th>
-                <th>Sub Total</th>
-              </tr>
-              <?php
-            foreach($join_pro[$counter] as $detail){?>
-              <tr>
-                
-                <td><?= $detail['kuantitas']?></td>
-                <td><?= $detail['nama_produk']?></td>
-                <td><?= $detail['modal_produk']?></td>
-                <td><?= $detail['kuantitas']*$detail['modal_produk']?></td>
-                <td><?= $detail['harga_produk']?></td>
-                <td><?= $detail['kuantitas']*$detail['harga_produk']?></td>
-                              
-              </tr>
-              <?php 
-              }?>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td><?= $pesan['total_modal']?></td>
-                <td></td>
                 <td><?= $pesan['total_harga']?></td>
+                <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
+                <td><button class="btn btn-primary trigger" onclick="detail(<?= $counter ?>)">Tampilkan Card</button></td>
 
+                <td><a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a></td>
+              <td><a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a></td>           
               </tr>
-
+              <?php $counter++; endforeach ?>
             </table>
-            </div>
-            <div class="col-12 text-center">
-              <a href="<?= base_url('admin/hapus_pesanan/'.$pesan['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a>
-              <a href="<?= base_url('admin/pesanan_diproses/'.$pesan['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a>
-            </div>
-            <?php $counter++; }?>
-            </div>
-            
-            </div>
-            
-          </div>
-        <div class="col-sm-6 col-md-6 bg-secondary bg-opacity-10 text-center border border-2" >
-            <h1>Pesanan Diterima</h1>
-        
-        <div class="row">
-            <div class="col-12">
-              <input type="text" name="cari_pesan_sudah" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
-            </div>
-            <div class="col-12" >
-            <?php 
-            foreach($pesanan_diproses as $pesan_sel){?>
-              <table class="table table-warning" id="pesanan_sudah">
-              <tr>
-                <th>Nama Pelanggan</th>
-                <th>Tanggal</th>
-                <th>No HP</th>
-                <th>Status</th>
-
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
-
-                <td><?= $pesan_sel['nama_pelanggan']?></td>
-                <td><?= $pesan_sel['tanggal']?></td>
-                <td>0<?= $pesan_sel['no_hp_pelanggan']?></td>
-                <td><?= $pesan_sel['status']?></td>
-                
-                <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
-                <td><button id="detail" class="btn btn-primary" onclick="detail(<?=$counter?>)">Detail</button></td>
-              </tr>
-            </table>
-            <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
-            <table class="table table-responsive" >
-              <tr>
-                <th>Kuantitas</th>
-                <th>Nama Produk</th>
-                <th>Modal Produk</th>
-                <th>Sub Modal</th>
-                <th>Harga Produk</th>
-                <th>Sub Total</th>
-              </tr>
-              <?php $y=0;
-            foreach($join_pro1[$y] as $detail1){?>
-              <tr>
-                
-                <td><?= $detail1['kuantitas']?></td>
-                <td><?= $detail1['nama_produk']?></td>
-                <td><?= $detail1['modal_produk']?></td>
-                <td><?= $detail1['kuantitas']*$detail1['modal_produk']?></td>
-                <td><?= $detail1['harga_produk']?></td> 
-                <td><?= $detail1['kuantitas']*$detail1['harga_produk']?></td>
-                
-              </tr>
+            <!--  -->
+            <!-- Pesanan Diproses -->
+            <div class="row m-auto">
               
-              <?php 
-              }
-              ?>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><?= $pesan_sel['total_modal']?></td>
-                <td></td>
-                <td><?= $pesan_sel['total_harga']?></td>
-              </tr>
-              
-            </table>
-            </div>
-            <div class="col-12 text-center">
-              <?= form_open('admin/pesanan_selesai/'.$pesan_sel['id_pesanan'])?>
-              <a href="<?= base_url('admin/hapus_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i class="bi bi-x-circle-fill"></i></a>
-              <button type="submit"><i class="bi bi-check-circle-fill"></i></button>
-            </div>
-            <?php
+              <div class="col-sm-6 col-md-12 bg-secondary bg-opacity-10 text-center border border-2">
+                  <h1>Pesanan Diproses</h1>
+                  <div class="row">
+                    <div class="col-12">
+                    <input type="text" name="cari_pesan_sudah" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari pelanggan...">
+                  <!-- Detail Pesanan Start -->
+            <div class="container con sel p-2" style="display: none;">
+              <?php $yuhu=0;
+              foreach($pesanan_diproses as $pesan_sel):?>
             
-              $y++;
-            }?>
-            <?= form_close()?>
+              <div class="card mt-3" style="display: none;" id="detail_sel<?= $yuhu?>">
+                
+              <div class="card-body">
+                <div class="top d-flex justify-content-between">
+                  <h5 class=""></h5>
+                  <h5 class="card-title"><?= $pesan_sel['nama_pelanggan']?></h5>
+                  <button type="button" class="btn-close justify-content-end" aria-label="Close"></button>
+                </div>
+                  <table class="table">
+                          <tr>
+                            <th>Kuantitas</th>
+                            <th>Nama Produk</th>
+                            <th>Modal Produk</th>
+                            <th>Sub Modal</th>
+                            <th>Harga Produk</th>
+                            <th>Sub Total</th>
+                          </tr>
+                          <?php
+                        foreach($join_pro1[$yuhu] as $detail){?>
+                          <tr>
+                            
+                            <td><?= $detail['kuantitas']?></td>
+                            <td><?= $detail['nama_produk']?></td>
+                            <td><?= $detail['modal_produk']?></td>
+                            <td><?= $detail['sub_modal']?></td>
+                            <td><?= $detail['harga_produk']?></td>
+                            <td><?= $detail['sub_total']?></td>
+                                          
+                          </tr>
+                        <?php  } $yipi++; ?>
+                        
+                  </table>
+                </div>
+              </div>        
+            <?php endforeach?>
             </div>
-            </div>
-          </div>
-          </div>
-          <?php echo form_close(); ?>
-    </div>
-    <!-- Footer Start -->
-    <?php include($filePath.'\layout\footer.php') ?>
-      <!-- Footer End -->
+            <!-- Detail Pesanan End -->
+                  </div>
+                  <div class="col-12 " >
+                    <table class="table table-warning table-hover  table-responsive" id="pesanan_sudah">
+                    <tr>
+                      <th>Nama Pelanggan</th>
+                      <th>Tanggal</th>
+                      <th>No HP</th>
+                      <th>Status</th>
+                      <th>Total Modal</th>
+                      <th>Total Harga</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                    <?php $counter=0;
+                  foreach($pesanan_diproses as $pesan_sel):?>
+                    <tr>
+                      <td><?= $pesan_sel['nama_pelanggan']?></td>
+                      <td><?= $pesan_sel['tanggal']?></td>
+                      <td>0<?= $pesan_sel['no_hp_pelanggan']?></td>
+                      <td><?= $pesan_sel['status']?></td>
+                      <td><?= $pesan_sel['total_modal']?></td>
+                      <td><?= $pesan_sel['total_harga']?></td>
+                      <td><a href="<?= base_url('admin/ubah_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i data-feather="edit"></i></a></td>
+                      <td><button class="btn btn-primary trigger" onclick="detail_sel(<?= $counter ?>)">Tampilkan Card</button></td>
+
+                      <td><a href="<?= base_url('admin/hapus_pesanan/'.$pesan_sel['id_pesanan']) ?>"><i class="bi bi-x-circle-fill bg-opacity-10 bg-secondary"></i></a></td>
+                    <td><a href="<?= base_url('admin/pesanan_selesai/'.$pesan_sel['id_pesanan'])?>"><i class="bi bi-check-circle-fill bg-opacity-10 bg-secondary"></i></a></td>           
+                    </tr>
+                    <?php $counter++; endforeach ?>
+                  </table>
+                  </main>
+                  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
       feather.replace();
       </script>
     <script src="<?= base_url('assets/js/script.js')?>"></script>
     <script src="<?= base_url('assets/js/onkeyup.js')?>"></script>
+    <script src="<?= base_url('assets/js/pesanan.js')?>"></script>
     
 </body>
 </html>

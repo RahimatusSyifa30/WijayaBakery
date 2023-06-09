@@ -34,25 +34,8 @@
     $filePath = $rootPath . 'app\Views';
     include($filePath.'\layout\admin_header.php') ?>
     <!-- Header End -->
-    <content>
-    <div class="col-12">
-        <?php 
-        if(session()->getFlashdata('notif')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }else if(session()->getFlashdata('error')){ 
-          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('error').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }
-        
-        ?>
-      </div>
+    <main>
+    <?php include($filePath.'\layout\alert.php') ?>
     <form action="" method="post" enctype="multipart/form-data" class="p-5">
 
       <label for="nama_pel">Nama Pelanggan</label>
@@ -118,7 +101,9 @@
         <input type="submit" name="sub" class="btn btn-success btn-lg" value="Selesai"></input>
       </div>
     </form>
-    </content>
+                  </main>
+                  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
+
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->

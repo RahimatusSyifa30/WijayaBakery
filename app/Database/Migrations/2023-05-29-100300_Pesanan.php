@@ -17,7 +17,7 @@ class Pesanan extends Migration
 				// 'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'tanggal_laporan'       => [
+			'tanggal'       => [
 				'type'           => 'TIMESTAMP',
 			],
 			'nama_pelanggan'      => [
@@ -41,7 +41,6 @@ class Pesanan extends Migration
 			],
 		]);
         $this->forge->addKey('id_pesanan', TRUE);
-
 		// Membuat tabel news
 		$this->forge->createTable('pesanan', TRUE);
 		// //faker

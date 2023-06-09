@@ -26,17 +26,17 @@
     />
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
     <link rel="stylesheet" href="<?= base_url('css/index.css')?>" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="<?= base_url('css/produk.css')?>"/>
-    <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
-=======
-    <link rel="stylesheet" href="<?= base_url('css/produk.css')?>" />
->>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
   </head>
   
   <body>
+    <!-- Header Start -->
+  <?php 
+    $rootPath = ROOTPATH;
+    $filePath = $rootPath . 'app\Views';
+    include($filePath.'\layout\admin_header.php') ?>
+    <!-- Header End -->
   <!-- ModalTambahJenisProduk -->
-  
   <div class="modal fade" id="ModalTambahJenisProduk" tabindex="-1" aria-labelledby="tambahjenis" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -62,81 +62,47 @@
   </div>
   
   <!--  -->
-  <!-- Header Start -->
-    <?php 
-    $rootPath = ROOTPATH;
-    $filePath = $rootPath . 'app\Views';
-    include($filePath.'\layout\admin_header.php') ?>
-    <!-- Header End -->
-      <content>
-      
-          <?php 
-          if(session()->getFlashdata('notif')){ 
-            echo '<div class="col-12">';
-            echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
-              echo '<h5>'.session()->getFlashdata('notif').'</h5>';
-              echo '
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>';
-              echo '</div>';
-          }else if(session()->getFlashdata('error')){
-            echo '<div class="col-12">'; 
-            echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
-              echo '<h5>'.session()->getFlashdata('error').'</h5>';
-              echo '
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>';
-              echo '</div>';
-          }
-          ?>
-        
-        <!-- Jenis Produk  Start  -->
-<<<<<<< HEAD
-        <div class="title">
-        <h1 id="bakery" class="text-center stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
-        <hr>
+      <main>
+        <?php include($filePath.'\layout\alert.php') ?>
+        <div class="con">
+          <div class="title">
+            <h1 class="font-lg text-center bakery stroke-wt">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+          </div>
         </div>
-
-        <section>  
-        <div class="container">
+        
+      <!-- Jenis Produk  Start  -->
+      <section>
+        <div class="container jenis-pro">
            <div class="row">
               <div class="col-xs-12 col-md-2 align-self-center text-center p-2">
-                <h1 id="bakery" class="stroke">Jenis Produk</h1>
+                <h1 class="stroke">Jenis Produk</h1>
                 <hr>
                 <br>
-=======
-        <section>
-          
-        <div class="container-fluid p-5">
-         <h1 class="text-center bakery stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
-            <div class="row border border-warning">
-              <div class="col-xs-12 col-md-2 align-self-center text-center p-2">
-                <h1 class="bakery stroke">Jenis Produk</h1>
->>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
                 <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn btn-success" onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
                 </div>
-                <div class="col-xs-12 col-md-10">
-                  <div class="swiper mySwiper p-4">
+                <div class="col-xs-10 col-md-10">
+                  <div class="swiper mySwiper p-4 justify-content-center">
                     <div class="swiper-wrapper">
                     <?php foreach ($kel_produk as $jen_pro) : ?>
-                      <div class="swiper-slide">
-                        <div class="card" >
+                      <div class="swiper-slide ">
+                        <div class="card card-pro" >
                           <img
                             src="<?= base_url('image/bg/jenis_produk/')?><?= $jen_pro["gambar_kel"]?>"
                             class="card-img-top"
                             alt="..."
                             
                           />
-                          <div class="card-body">
+                          <div class="card-body ">
                             <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
                                 <div class="btn-group">
                                     <a href="<?= base_url('admin/ubah_kel_produk/'.$jen_pro['id_kel']) ?>"  class="btn btn-warning"><i data-feather="edit"></i> Edit</a>
                                     <a href="<?= base_url('admin/delete_kel_produk/'.$jen_pro['id_kel']) ?>"  class="btn btn-danger"><i data-feather="trash-2"></i> Hapus</a>
                                 </div>
-                                <div class="buttonCon">
-                                  <button class="filter-btn btn btn-primary" data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
-                                </div>
+                                
                           </div>
+                          <div class="card-footer buttonCon">
+                                  <button class="filter-btn btn btn-primary " data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                                </div>
                         </div>
                       </div>
                       <?php endforeach ?>
@@ -148,119 +114,98 @@
                 </div>
               </div>
             </div>
-            </div>
-        </div>
+ 
         
-        </section>
-        <!-- Jenis Produk  End  --> 
-        
-        <!-- Seluruh Produk  Start  -->
-        <section>
-        
-          <div class="container">
-            <div class="col-12 text-center">
-<<<<<<< HEAD
-              <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
-              <hr>
-              <br>
-=======
-              <h1 class="text-center bakery stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
->>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
-              <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
-              <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-success">Tambah Produk +</a>
-              <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
-            </div>
-          
-            <!--  BUAT SELURUH PRODUK-->
-<<<<<<< HEAD
-            <div class="flex-wrap justify-content-center" id="SelProduk" >
-            <div class="row">
-              <?php foreach ($produk as $pro) :?>
-              <div class="col-md-3 col-xs-12">
-=======
-            <div class="container  justify-content-center" id="SelProduk" >
-              
-              
-              <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
-              <div class="d-flex flex-wrap">
-            <?php foreach ($produk as $pro) :?>
-              <!-- <div class="col-md-3 col-xs-12"> -->
->>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
-              <div class="produk" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
-              <?php 
-                 echo form_open('admin/tambah_keranjang');
-                 echo form_hidden('id',$pro['id_produk']);
-                 echo form_hidden('price',$pro['harga_produk']);
-                 echo form_hidden('name',$pro['nama_produk']);
-                 echo form_hidden('stok',$pro['stok_produk']);
-                 echo form_hidden('gambar',$pro['gambar_produk']);
-              ?>
-<<<<<<< HEAD
-              <div class="card">
-=======
-              <div class="card border-warning m-2 " >
->>>>>>> 47cc751fbe165f1bee3d2a9b06a7fa57804b3d30
-                <img
-                src="<?= base_url('image/roti/')?><?= $pro["gambar_produk"]?>"
-                class="card-img-top"
-                alt="..."              
-                />
-                <div class="card-body text-center" >
-                  <h2 class="card-title"><?= $pro["nama_produk"]?></h2>
-                  <p><?= $pro["informasi_produk"]?></p>
-                  <h3>Modal Rp. <?= $pro["modal_produk"]?></h3>
-                  <h3>Rp. <?= $pro["harga_produk"]?></h3>
-                  <h3>Stok : <?= $pro["stok_produk"]?></h3>
-                  <div class="btn-group align-self-end">
-                    <a href="<?= base_url('admin/ubah_produk/'.$pro["id_produk"]) ?>" class="btn btn-warning">
-                      <i data-feather="edit"></i> Edit
-                    </a>
-                    <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action','<?= base_url('admin/delete_produk/'.$pro['id_produk']) ?>');" data-bs-toggle="modal" data-bs-target="#modalDelete" class="btn btn-danger">
-                      <i data-feather="trash-2" class="text-light"></i> Hapus
-                    </a>
-                  </div>
-                  <div>
-                  <button class="btn btn-primary text-wrap tambah" type="submit">
-                    <i data-feather="shopping-cart"></i> Tambah ke Keranjang
-                  </button>                 
-                 </div>
-                </div>
-              </div>
-              </div>
-              <!-- </div> -->
-              
-            <?php echo form_close(); 
-            endforeach ?>
-            </div>
+      </section>
+      <!-- Jenis Produk  End  --> 
+      
+      <!-- Seluruh Produk  Start  -->
+      <section>
+      
+        <div class="container jenis-pro">
+          <div class="text-center title">
+            <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+            <hr>
+            <br>
+            <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
+            <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-success">Tambah Produk +</a>
+            <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
           </div>
-
-          <!-- Modal Konfirmasi Delete Produk-->
-          <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          Yakin untuk menghapus ini?
-                        </div>
-                        <div class="modal-footer">
-                          <form id="formDelete" method="post">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                          </form>
-                        </div>
+        
+          <!--  BUAT SELURUH PRODUK-->
+          <div class="d-flex flex-wrap justify-content-around" id="SelProduk" >
+            <?php foreach ($produk as $pro) :?>
+            <div class="produk card-pro" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
+            <?php 
+               echo form_open('admin/tambah_keranjang');
+               echo form_hidden('id',$pro['id_produk']);
+               echo form_hidden('price',$pro['harga_produk']);
+               echo form_hidden('name',$pro['nama_produk']);
+               echo form_hidden('stok',$pro['stok_produk']);
+               echo form_hidden('gambar',$pro['gambar_produk']);
+            ?>
+            <div class="card ">
+              <img
+              src="<?= base_url('image/roti/')?><?= $pro["gambar_produk"]?>"
+              class="card-img-top"
+              alt="..."              
+              />
+              <div class="card-body text-center" >
+                <h2 class="card-title"><?= $pro["nama_produk"]?></h2>
+                <!-- <p><?= $pro["informasi_produk"]?></p> -->
+                <h3>Modal Rp. <?= $pro["modal_produk"]?></h3>
+                <h3>Rp. <?= $pro["harga_produk"]?></h3>
+                <h3>Stok : <?= $pro["stok_produk"]?></h3>
+                <div class="btn-group align-self-end">
+                  <a href="<?= base_url('admin/ubah_produk/'.$pro["id_produk"]) ?>" class="btn btn-warning">
+                    <i data-feather="edit"></i> Edit
+                  </a>
+                  <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action','<?= base_url('admin/delete_produk/'.$pro['id_produk']) ?>');" data-bs-toggle="modal" data-bs-target="#modalDelete" class="btn btn-danger">
+                    <i data-feather="trash-2" class="text-light"></i> Hapus
+                  </a>
+                </div>
+                <div class="card-footer buttonCon">
+                <button class="btn btn-primary text-wrap tambah" type="submit">
+                  <i data-feather="shopping-cart"></i> Tambah ke Keranjang
+                </button>                 
+               </div>
+              </div>
+            </div>
+            </div>
+            
+          <?php echo form_close(); 
+          endforeach ?>
+          </div>
+        
+          </div>
+      </section>
+      <!-- Modal Konfirmasi Delete Produk-->
+      <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Yakin untuk menghapus ini?
+                      </div>
+                      <div class="modal-footer">
+                        <form id="formDelete" method="post">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                          <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
                       </div>
                     </div>
                   </div>
-                  <!--  -->
-        </section>
-        <!-- Seluruh Produk  Start  -->          
-      </content>
+                </div>
+                <!--  -->
+      <!-- Seluruh Produk  Start  -->          
+            </main>
       <!-- Footer Start -->
       <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->
+      <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
       <!-- Script Swiper -->
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
       <script>

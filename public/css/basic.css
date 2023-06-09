@@ -1,30 +1,37 @@
 /* setting Default */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,500&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,300&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
-@keyframes alert {
+@keyframes fade {
   0% {
     opacity: 0;
   }
   20% {
-    opacity: 1;
+    opacity: 0.2;
   }
   40% {
-    opacity: 0.8;
+    opacity: 0.4;
   }
   60% {
     opacity: 0.6;
   }
   80% {
-    opacity: 0.4;
+    opacity: 0.8;
   }
   100% {
-    visibility: hidden;
+    opacity: 1;
   }
 }
-/* .alert {
-  animation-name: alert;
-  animation-duration: 5s;
-} */
+#alert {
+  position: fixed;
+  margin: auto;
+  left: 0px;
+  width: 100%;
+  z-index: 9999;
+}
+#alert .alert {
+  animation-name: fade;
+  transition: 0.6ms;
+}
 .bakery {
   color: var(--coklat);
 }
@@ -32,9 +39,6 @@
   font-size: 3rem;
   background: white;
   color: var(--coklat);
-}
-.alert {
-  transition: 0.6s;
 }
 th {
   pointer-events: none;
@@ -67,9 +71,6 @@ body {
 .btnhover:hover {
   color: var(--kuning);
 }
-.hide {
-  display: none;
-}
 @keyframes pulse {
   0% {
     opacity: 0.5;
@@ -101,7 +102,7 @@ body {
   -webkit-text-stroke-color: brown;
 }
 .stroke-wt {
-  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
 }
 /* Header */

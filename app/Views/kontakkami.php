@@ -72,6 +72,7 @@
             </form>         
        </fieldset><br>
     </section>
+    <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
 
     <!-- Footer Start -->
     <?php include("layout/footer.php") ?>

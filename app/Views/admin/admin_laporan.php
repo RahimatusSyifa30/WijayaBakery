@@ -29,24 +29,7 @@ $rootPath = ROOTPATH;
 $filePath = $rootPath . 'app\Views';
 include($filePath . '\layout\admin_header.php') ?>
 <!-- Header End -->
-    <div class="col-12">
-        <?php 
-        if(session()->getFlashdata('notif')){ 
-          echo '<div class="alert alert-success justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('notif').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }else if(session()->getFlashdata('error')){ 
-          echo '<div class="alert alert-danger justify-content-between d-flex fade show" role="alert">';
-            echo '<h5>'.session()->getFlashdata('error').'</h5>';
-            echo '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        }
-        
-        ?>
-      </div>
+<?php include($filePath.'\layout\alert.php') ?>
     <div class="row p-md-4 p-sm-1">
         <div class="col-12 bg-secondary bg-opacity-10 text-center border border-2">
             <h1>Laporan Keuangan</h1>
@@ -64,48 +47,25 @@ include($filePath . '\layout\admin_header.php') ?>
               </div>
             <div class="col-12">
             <?php $counter=0;
-            foreach($pesanan_filter as $pesan){?>
+            foreach($laporan as $lapor){?>
               <table class="table table-warning">
               <tr>
                 <th>Nama Pelanggan</th>
-                <th>Tanggal</th>
-                <th>No HP</th>
-
-                <th></th>
-                <th></th>
+                <th>Tanggal Laporan</th>
+                <th>Modal</th>
+                <th>Keuntungan Kotor</th>
+                <th>Keuntungan Bersih</th>
               </tr>
               <tr>
 
-                <td><?= $pesan['nama_pelanggan']?></td>
-                <td><?= $pesan['tanggal']?></td>
-                <td><?= $pesan['no_hp_pelanggan']?></td>
-
-                
-                <td><button id="detail" class="btn btn-primary" onclick="detail(<?=$counter?>)">Detail</button></td>
-                <td>Total Harga : <?= $pesan['total_harga']?></td>
+                <td><?= $lapor['nama_pelanggan']?></td>
+                <td><?= $lapor['tanggal_laporan']?></td>
+                <td><?= $lapor['modal']?></td>
+                <td><?= $lapor['keuntungan_kotor']?></td>
+                <td><?= $lapor['keuntungan_bersih']?></td>
               </tr>
             </table>
-            <div class="col-12" id="data-table<?= $counter;?>" style="display:none">
-            <table class="table table-warning" >
-              <tr>
-                <th>Kuantitas</th>
-                <th>Nama Produk</th>
-                <th>Sub Total</th>
-              </tr>
-              <?php 
-            foreach($join_pro[$counter] as $detail){?>
-              <tr>
-                
-                <td><?= $detail['kuantitas']?></td>
-                <td><?= $detail['nama_produk']?></td>
-                <td><?= $detail['sub_total']?></td>
-                
-              </tr>
-              <?php }?>
-
-
-            </table>
-            </div>
+          
               <?php 
             $counter++;
             }?>
@@ -118,6 +78,7 @@ include($filePath . '\layout\admin_header.php') ?>
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->
+      <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
       feather.replace();

@@ -1,92 +1,18 @@
 .con {
   color: rgb(224, 128, 27);
+  width: 100%;
   justify-content: center;
   align-items: center;
   display: flex;
   background-image: url("../image/bg/bakery1.jpg");
-  min-height: 35rem;
+  min-height: 45rem;
   background-attachment: fixed;
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
 }
-<<<<<<< HEAD
-.container{
-    box-shadow: 0 14px 50px rgba(224, 131, 39, 0.25), 0 10px 10px rgba(224, 131, 39, 0.22);
-    outline: double;
-=======
-.container {
-  box-shadow: 0 14px 35px rgba(224, 131, 39, 0.25),
-    0 10px 10px rgba(224, 131, 39, 0.22);
-}
-.container-fluid hr {
-  width: 100px;
-  height: 3px;
-  background-color: rgb(224, 131, 39);
-  margin: auto;
-  border: nome;
-}
-.content {
-  width: 100%;
-  /* margin: 30px; */
-  box-sizing: border-box;
-  text-align: center;
-  border-radius: 20px;
-  /* padding-top: 5px; */
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background: rgb(247, 247, 246);
-}
-.content:hover {
-  transition: 0.4s;
-  box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transform: translate(0px, 08px);
-}
-.content img {
-  width: 300px;
-  height: 300px;
-  border-radius: 10px;
-  text-align: center;
-  margin: 0 auto;
-  object-fit: fill;
-}
-h2 {
-  color: black;
-}
-.card {
-  width: 100%;
-  /* margin: 30px; */
-  /* text-align: center; */
-  /* box-sizing: border-box; */
-  border-radius: 20px;
-  /* padding-top: 5px; */
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background: rgb(247, 247, 246);
-}
-.card:hover {
-  transition: 0.4s;
-  box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transform: translate(0px, 08px);
-}
-.card .card-img-top {
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-  text-align: center;
-}
-.stok-abis {
-  opacity: 0.7;
-  position: relative;
-}
-
-<<<<<<< HEAD button {
-  font-size: 24px;
-  width: 100%;
-  padding: 15px;
-  border: 0;
-  outline: none;
-  margin-top: 5px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+.font-lg {
+  font-size: 72px;
 }
 .title hr {
   width: 100px;
@@ -95,7 +21,54 @@ h2 {
   margin: 0 auto;
   border: nome;
 }
-======= .stok-abis::after {
+
+.jenis-pro {
+  background-color: white;
+  box-shadow: 0 14px 35px rgba(224, 131, 39, 0.25),
+    0 10px 10px rgba(224, 131, 39, 0.22);
+}
+.jenis-pro hr {
+  width: 100px;
+  height: 3px;
+  background-color: rgb(224, 131, 39);
+  margin: auto;
+  border: none;
+}
+
+/* Setting card untuk semuanya */
+.card-pro {
+  width: 100%;
+  margin: 5px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 20px;
+  /* padding-top: 1px; */
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background: rgb(247, 247, 246);
+}
+.card-pro:hover {
+  transition: 0.4s;
+  box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translate(0px, 08px);
+}
+.card-pro .card-img-top {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+  text-align: center;
+}
+/*  */
+/* Setting flex semua produk */
+.produk {
+  width: calc(100% / 4);
+}
+/* STOK ABIS */
+.stok-abis {
+  opacity: 0.7;
+  position: relative;
+}
+.stok-abis::after {
   content: "Stok Habis";
   position: absolute;
   top: 50%;
@@ -110,20 +83,7 @@ h2 {
   text-transform: uppercase;
   animation: pulse 2s ease-in-out infinite;
 }
-.produk {
-  width: calc(100% / 3);
-}
-.produk .card img {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  min-height: 300px;
-  max-height: 300px;
-  object-fit: cover;
-}
-
-button {
+.buttonCon {
   font-size: 24px;
   width: 100%;
   padding: 15px;
@@ -132,4 +92,12 @@ button {
   margin-top: 5px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+}
+.buttonCon .filter-btn {
+  width: 100%;
+}
+@media (max-width: 400px) {
+  .produk {
+    width: calc(100%);
+  }
 }

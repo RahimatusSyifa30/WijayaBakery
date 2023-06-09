@@ -33,7 +33,7 @@
     $filePath = $rootPath . 'app\Views';
     include($filePath.'\layout\admin_header.php') ?>
     <!-- Header End -->
-    <content>
+    <main>
     <form action="<?= base_url('admin/tambah_produk')?>" method="post" enctype="multipart/form-data" class="p-5">
       <label for="nama_pro">Nama Produk</label>
       <input type="text" name="nama_pro" id="nama_pro" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Nama Produk" required>
@@ -60,10 +60,12 @@
         <button type="submit" name="sub" class="btn btn-success btn-lg" onclick="alertProdukSuccess()">Selesai</button>
       </div>
     </form>
-    </content>
+    </main>
+    <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
     <!-- Footer Start -->
     <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->
+
       <!-- Script feather-icons -->
       <script src="https://unpkg.com/feather-icons"></script>
       <script>

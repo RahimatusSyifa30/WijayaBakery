@@ -81,37 +81,8 @@
       </div>
     </section>   
     
-    <!-- Footer Start -->
-    <?php include("layout/footer.php") ?>
-    <!-- Footer End -->
-    <!-- Script Swiper -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 20,
-        freeMode: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      breakpoints: {
-        360: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        450: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-      },
-      });
-      
-    </script>
+    <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
+
     <!-- Script feather-icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
