@@ -34,10 +34,18 @@ $routes->get('produk', 'ProdukController::produk');
 $routes->get('tentang_kami', 'TentangController::tentang');
 $routes->get('kontak_kami', 'KontakController::index');
 $routes->add('kirim_pesan', 'KontakController::kirim_pesan');
-$routes->get('cek', 'AdminPesananController::cek');
+
+//Keranjang Cus
+$routes->add('keranjang','KeranjangController::index');
+$routes->add('tambah_keranjang','KeranjangController::tambah_keranjang');
+$routes->add('ubah_keranjang','KeranjangController::update_keranjang');
+$routes->add('hapus_keranjang/(:segment)','KeranjangController::hapus_keranjang/$1');
+$routes->add('hapus_total_keranjang','KeranjangController::hapus_isi_keranjang');
 
 $routes->group('admin', function ($routes) {
     $routes->get('/','AdminPesananController::index');
+    $routes->add('login','AdminLoginController::index');
+    $routes->get('logout','AdminLoginController::logout');
     $routes->add('tambah_pesanan','AdminPesananController::insert_pesanan');
     $routes->add('ubah_pesanan/(:segment)','AdminPesananController::update_pesanan/$1');
     $routes->get('pesanan_diproses/(:segment)','AdminPesananController::pesanan_diproses/$1');

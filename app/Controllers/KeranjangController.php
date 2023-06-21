@@ -1,29 +1,24 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\AdminKeranjangModel;
+use App\Models\KeranjangModel;
 use App\Models\PesananModel;
 use App\Models\ProdukModel;
 
-class AdminKeranjangController extends BaseController
+class KeranjangController extends BaseController
 {
     public function index(){
         $pesanan = new PesananModel();
         $data['pesanan']=$pesanan->view_belum();
-        $keran = new AdminKeranjangModel();
+        $keran = new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
         $data['isi_ker'] = $keran->viewAll();
         $data['total_harga'] = $keran->totalHarga();
         helper('form');
-        if(session()->get('isLoggedIn')){     
-            echo view('admin/admin_keranjang',$data);
-        }else{
-            session()->setFlashdata('error',"Login admin terlebih dahulu");
-            return redirect('admin/login');
-        }
+        echo view('keranjang',$data);
     }
     public function tambah_keranjang(){
-        $keran = new AdminKeranjangModel();
+        $keran = new KeranjangModel();
         $pro = new ProdukModel();
         $data = $keran->viewAll();
         $nama_prod=$this->request->getPost('name');
@@ -32,7 +27,7 @@ class AdminKeranjangController extends BaseController
             foreach($data as $isi){
                 if($isi['name']===$data_pro['nama_produk']){
                     session()->setFlashdata('error','Produk '.$nama_prod.' hanya bisa dimasukkan 1 kali');
-                    return redirect('admin/produk');
+                    return redirect('produk');
                 }
             }
             $id      = $this->request->getPost('id');
@@ -43,11 +38,11 @@ class AdminKeranjangController extends BaseController
     
             $keran->insert_keranjang($id,$qty,$price,$nama_prod,$stok,$gambar);
             session()->setFlashdata('notif','Produk '.$nama_prod.' berhasil dimasukkan ke keranjang');
-            return redirect('admin/produk');
+            return redirect('produk');
         // }
     }
     public function update_keranjang(){
-        $keran = new AdminKeranjangModel();
+        $keran = new KeranjangModel();
         $cart = $keran->viewAll();
         $i=1;
         foreach ($cart as $value):
@@ -59,21 +54,21 @@ class AdminKeranjangController extends BaseController
              $keran->update_keranjang($array);
         endforeach;
         session()->setFlashdata('notif','Berhasil mengubah semua produk dalam keranjang');
-        return redirect('admin/keranjang');
+        return redirect('keranjang');
 
     }
     public function hapus_keranjang($id){
-        $keran = new AdminKeranjangModel();
+        $keran = new KeranjangModel();
         $keran->delete_keranjang($id);
         session()->setFlashdata('notif','Berhasil menghapus salah satu produk dalam keranjang');
-        return redirect('admin/keranjang');
+        return redirect('keranjang');
 
     }
     public function hapus_isi_keranjang(){
-        $keran = new AdminKeranjangModel();
+        $keran = new KeranjangModel();
         $keran->delete_semua_keranjang();
         session()->setFlashdata('notif','Berhasil menghapus semua produk dalam keranjang');
-        return redirect('admin/keranjang');
+        return redirect('keranjang');
 
     }
 }

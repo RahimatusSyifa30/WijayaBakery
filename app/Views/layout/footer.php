@@ -1,5 +1,5 @@
 <footer >
-      <div class="pt-2 m-0 d-flex  justify-content-between" id="footer">
+      <div class="pt-2 mt-4 d-flex  justify-content-between" id="footer">
           <!-- Logo Footer Start -->
           <div class="ms-lg-4 m-0" id="nav-logo" >
             <a href="#"

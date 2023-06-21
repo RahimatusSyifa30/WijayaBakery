@@ -44,6 +44,12 @@ th {
   pointer-events: none;
 }
 * {
+}
+:root {
+  --kuning: rgba(255, 182, 45, 0.8);
+  --coklat: rgba(117, 0, 0, 255);
+}
+body {
   margin: 0;
   padding: 0;
   border: none;
@@ -52,12 +58,7 @@ th {
   text-decoration: none;
   box-sizing: border-box;
   max-width: 100%;
-}
-:root {
-  --kuning: rgba(255, 182, 45, 0.8);
-  --coklat: rgba(117, 0, 0, 255);
-}
-body {
+  background-color: rgba(255, 253, 243, 255);
   min-height: 50vh;
   position: relative;
   font-family: Ubuntu, Poppins, "Times New Roman", Times, serif;

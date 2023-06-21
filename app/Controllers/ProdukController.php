@@ -4,8 +4,12 @@ namespace App\Controllers;
 use App\Models\KeranjangModel;
 use App\Models\ProdukModel;
 use App\Models\KelProdukModel;
+
+use Codeigniter\RESTful\ResourceController;
+use CodeIgniter\API\ResponseTrait;
 class ProdukController extends BaseController
 {
+    use ResponseTrait;
     public function produk()
     {
         helper('form');
@@ -15,6 +19,7 @@ class ProdukController extends BaseController
         $data['produk'] = $produk->viewAll();
         $keran=new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
-        echo view('produk',$data);
+        return $this->respond($data);
+        // echo view('produk',$data);
     }
 }

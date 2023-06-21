@@ -16,7 +16,13 @@ class AdminProdukController extends BaseController
         $data['kel_produk'] = $kel_pro->viewAll();
         $data['produk'] = $pro->viewAll();
         $data['jumlah_item'] = $keran->getTotalBarang();
-        return view("admin/admin_produk",$data);
+        if(session()->get('isLoggedIn')){     
+            return view("admin/admin_produk",$data);
+        }else{
+            session()->setFlashdata('error',"Login admin terlebih dahulu");
+            return redirect('admin/loginW1j4Y4');
+        }
+        
     }
     public function insert_produk(){
         $produk = new ProdukModel();
@@ -49,7 +55,12 @@ class AdminProdukController extends BaseController
             session()->setFlashdata('notif','Produk '.$nama_pro.' Berhasil Ditambah');
            return redirect('admin/produk');
         }
-        echo view('admin/admin_insert_produk',$data);
+        if(session()->get('isLoggedIn')){     
+            echo view('admin/admin_insert_produk',$data);
+        }else{
+            session()->setFlashdata('error',"Login admin terlebih dahulu");
+            return redirect('admin/login');
+        }
     }
     public function update_produk($id){
         $produk = new ProdukModel();

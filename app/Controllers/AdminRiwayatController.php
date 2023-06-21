@@ -19,7 +19,13 @@ class AdminRiwayatController extends BaseController
             $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
             $counter++;
         }
-        return view('admin/admin_riwayat_trs',$data);
+        if(session()->get('isLoggedIn')){     
+            return view('admin/admin_riwayat_trs',$data);
+        }else{
+            session()->setFlashdata('error',"Login admin terlebih dahulu");
+            return redirect('admin/login');
+        }
+        
     }
     public function filter_riwayat(){
         setlocale(LC_TIME,'IND');

@@ -46,8 +46,6 @@ include($filePath . '\layout\admin_header.php') ?>
             </form>
               </div>
             <div class="col-12">
-            <?php $counter=0;
-            foreach($laporan as $lapor){?>
               <table class="table table-warning">
               <tr>
                 <th>Nama Pelanggan</th>
@@ -56,6 +54,8 @@ include($filePath . '\layout\admin_header.php') ?>
                 <th>Keuntungan Kotor</th>
                 <th>Keuntungan Bersih</th>
               </tr>
+            <?php 
+            foreach($laporan as $lapor){?>
               <tr>
 
                 <td><?= $lapor['nama_pelanggan']?></td>
@@ -64,11 +64,9 @@ include($filePath . '\layout\admin_header.php') ?>
                 <td><?= $lapor['keuntungan_kotor']?></td>
                 <td><?= $lapor['keuntungan_bersih']?></td>
               </tr>
+              <?php }?>
             </table>
           
-              <?php 
-            $counter++;
-            }?>
             </div>
             </div>
           </div>

@@ -3,18 +3,18 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-class KeranjangModel extends Model
+class AdminKeranjangModel extends Model
 {
-    private $cart1;
+    private $cart;
     public function __construct(){
-        $this->cart1=\Config\Services::cart();
+        $this->cart=\Config\Services::cart();
     }
     public function viewAll(){
-        $keranjang=$this->cart1->contents();
+        $keranjang=$this->cart->contents();
         return $keranjang;
     }
     public function insert_keranjang($id,$qty,$price,$name,$stok,$gambar){
-        $this->cart1->insert(array(
+        $this->cart->insert(array(
             'id'=>$id,
             'qty'=>$qty,
             'price'=>$price,
@@ -28,17 +28,17 @@ class KeranjangModel extends Model
         
     }
     public function update_keranjang($data){
-        return $this->cart1->update($data);
+        return $this->cart->update($data);
     }
     public function delete_keranjang($id){
-        $this->cart1->remove($id);
+        $this->cart->remove($id);
     }
     public function delete_semua_keranjang(){
-        $this->cart1->destroy();
+        $this->cart->destroy();
     }
     public function getTotalBarang(){
         $jumlah_item = 0;
-        $keranjang=$this->cart1->contents();
+        $keranjang=$this->cart->contents();
         foreach ($keranjang as $ker):
           $jumlah_item = $jumlah_item + $ker['qty'];
         
@@ -47,7 +47,7 @@ class KeranjangModel extends Model
     }
     public function totalHarga(){
 
-        $keranjang=$this->cart1->total();
+        $keranjang=$this->cart->total();
         return $keranjang;
     }
 }

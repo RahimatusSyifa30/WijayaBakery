@@ -39,7 +39,7 @@
                 alt="..."
               />
         <p>Toko Roti Wijaya Bakery adalah sebuah perusahaan toko roti yang didirikan pada tahun 2020 dengan tujuan menyediakan roti yang berkualitas kepada pelanggan. 
-          Beralamatkan di Jl. Raya Pakuniran, RT.16/RW.04, Kolor, Bucor Kulon, Kec. Pakuniran, Kabupaten Probolinggo, Jawa Timur 67292. 
+          Beralamatkan di Jl. Raya Pakuniran, RT.16/RW.04, Bucor Kulon, Kec. Pakuniran, Kabupaten Probolinggo, Jawa Timur 67292. 
           Wijaya Bakery menyajikan roti lezat dan inovatif yang memuaskan selera pelanggan. </p>
           <p>Wijaya Bakery memiliki berbagai macam pilihan roti, seperti brownis, donat, kue tart, pizza, dan roti.</p>
           <hr>  
@@ -82,7 +82,7 @@
     </section>   
     
     <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
-
+    <?php include('layout\footer.php') ?>
     <!-- Script feather-icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     <script>

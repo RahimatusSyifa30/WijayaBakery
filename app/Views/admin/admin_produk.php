@@ -78,7 +78,8 @@
                 <h1 class="stroke">Jenis Produk</h1>
                 <hr>
                 <br>
-                <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn btn-success" onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
+                <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" 
+                class="btn btn-warning" onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
                 </div>
                 <div class="col-xs-10 col-md-10">
                   <div class="swiper mySwiper p-4 justify-content-center">
@@ -100,9 +101,11 @@
                                 </div>
                                 
                           </div>
-                          <div class="card-footer buttonCon">
-                                  <button class="filter-btn btn btn-primary " data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
-                                </div>
+                          <!-- card-footer -->
+                          <button class="filter-btn btn btn-warning card-footer bg-warning" 
+                          data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" 
+                          onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                          <!--  -->
                         </div>
                       </div>
                       <?php endforeach ?>
@@ -127,9 +130,13 @@
             <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
             <hr>
             <br>
-            <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
-            <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-success">Tambah Produk +</a>
-            <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+            <div class="input-group">
+              <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" 
+              placeholder="Cari produk..." aria-label="Cari produk..." aria-describedby="basic-addon2">
+              <button class="btn btn-warning filter-btn active input-group-text mb-3" id="basic-addon2"data-kategori="all" 
+              onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+            </div>
+            <a href="<?= base_url('admin/tambah_produk')?>" class="btn btn-lg btn-warning">Tambah Produk +</a>
           </div>
         
           <!--  BUAT SELURUH PRODUK-->
@@ -164,12 +171,12 @@
                     <i data-feather="trash-2" class="text-light"></i> Hapus
                   </a>
                 </div>
-                <div class="card-footer buttonCon">
-                <button class="btn btn-primary text-wrap tambah" type="submit">
-                  <i data-feather="shopping-cart"></i> Tambah ke Keranjang
-                </button>                 
-               </div>
               </div>
+              <!-- card footer -->
+              <button class="btn btn-warning card-footer bg-warning" type="submit">
+                  <i data-feather="shopping-cart"></i> Tambah ke Keranjang
+                </button>
+                <!-- -->
             </div>
             </div>
             

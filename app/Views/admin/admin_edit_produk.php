@@ -46,7 +46,7 @@
         <?php endforeach?>
       </select>
       <label for="stok_pro">Stok Produk</label>
-      <input type="number" name="stok_pro" id="stok_pro" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Modal Produk" required value="<?= $produk["stok_produk"]?>">
+      <input type="number" name="stok_pro" id="stok_pro" min=0  class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Modal Produk" required value="<?= $produk["stok_produk"]?>">
       <label for="modal_pro">Modal Produk</label>
       <input type="text" name="modal_pro" id="modal_pro" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Modal Produk" required value="<?= $produk['modal_produk']?>">
       <label for="harga_pro">Harga Produk</label>

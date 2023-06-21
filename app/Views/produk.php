@@ -68,9 +68,11 @@
                             <h2 class="card-title"><?= $jen_pro["nama_kel"]?></h2>
                                 
                           </div>
-                          <div class="card-footer buttonCon">
-                                  <button class="filter-btn btn btn-primary " data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
-                                </div>
+                          <!-- card-footer -->
+                          <button class="filter-btn btn btn-warning card-footer bg-warning" 
+                          data-kategori="<?= str_replace(" ","", $jen_pro['id_kel'])?>" 
+                          onclick="alert('Jenis Produk Terpilih')">Lihat Produk</button>
+                          <!--  -->
                         </div>
                       </div>
                       <?php endforeach ?>
@@ -90,13 +92,17 @@
       <!-- Seluruh Produk  Start  -->
       <section>
       
-        <div class="container jenis-pro">
+        <div class="container jenis-pro mt-5 p-4">
           <div class="text-center title">
             <h1 id="bakery" class="text-center stroke">Cari Produk Wijaya<span class="text-warning">Bakery.</span></h1>
             <hr>
             <br>
-            <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk...">
-            <button class="form-control btn btn-primary filter-btn active" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+            <div class="input-group">
+              <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" 
+              placeholder="Cari produk..." aria-label="Cari produk..." aria-describedby="basic-addon2">
+              <button class="btn btn-warning filter-btn active input-group-text mb-3" id="basic-addon2"data-kategori="all" 
+              onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset</button>
+            </div>
           </div>
         
           <!--  BUAT SELURUH PRODUK-->
@@ -104,7 +110,7 @@
             <?php foreach ($produk as $pro) :?>
             <div class="produk card-pro" data-kategori="<?= str_replace(" ","", $pro['jenis_produk'])?>" data-stok=<?= $pro['stok_produk']?>>
             <?php 
-               echo form_open('admin/tambah_keranjang');
+               echo form_open('tambah_keranjang');
                echo form_hidden('id',$pro['id_produk']);
                echo form_hidden('price',$pro['harga_produk']);
                echo form_hidden('name',$pro['nama_produk']);
@@ -120,15 +126,15 @@
               <div class="card-body text-center" >
                 <h2 class="card-title"><?= $pro["nama_produk"]?></h2>
                 <!-- <p><?= $pro["informasi_produk"]?></p> -->
-                <h3>Modal Rp. <?= $pro["modal_produk"]?></h3>
+                <!-- <h3>Modal Rp. <?= $pro["modal_produk"]?></h3> -->
                 <h3>Rp. <?= $pro["harga_produk"]?></h3>
                 <h3>Stok : <?= $pro["stok_produk"]?></h3>
-                <div class="card-footer buttonCon">
-                <button class="btn btn-primary text-wrap tambah" type="submit">
+                </div>
+                <!-- card footer -->
+                <button class="btn btn-warning card-footer bg-warning" type="submit">
                   <i data-feather="shopping-cart"></i> Tambah ke Keranjang
-                </button>                 
-               </div>
-              </div>
+                </button>
+                <!-- -->
             </div>
             </div>
             
@@ -138,29 +144,8 @@
         
           </div>
       </section>
-      <!-- Modal Konfirmasi Delete Produk-->
-      <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        Yakin untuk menghapus ini?
-                      </div>
-                      <div class="modal-footer">
-                        <form id="formDelete" method="post">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                          <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--  -->
-      <!-- Seluruh Produk  Start  -->          
-            </main>
+      <!-- Seluruh Produk End  -->          
+      </main>
       <!-- Footer Start -->
       <?php include($filePath.'\layout\footer.php') ?>
       <!-- Footer End -->

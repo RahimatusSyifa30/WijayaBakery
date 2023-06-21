@@ -38,7 +38,7 @@
         <div class="content">
           <h1 id="bakery" class="text-center stroke">Selamat Datang di Wijaya<span class="text-warning">Bakery.</span></h1>
           <p>Tambahkan lebih banyak momen manis dengan produk kami.</p>
-          <a href="#" class="btn">Lihat Produk</a>
+          <a href="<?= base_url('produk')?>" class="btn">Lihat Produk</a>
         </div>
         </section>
       

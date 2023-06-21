@@ -9,14 +9,17 @@ use App\Models\LaporanModel;
 class AdminLaporanController extends BaseController
 { 
     public function index(){
-        
-
         helper('form');
         $keran=new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
         $lapor= new LaporanModel();
         $data['laporan']=$lapor->viewAll();
-        return view('admin/admin_laporan',$data);
+        if(session()->get('isLoggedIn')){     
+            return view('admin/admin_laporan',$data);
+        }else{
+            session()->setFlashdata('error',"Login admin terlebih dahulu");
+            return redirect('admin/login');
+        }
     }
 public function filter_laporan(){
     setlocale(LC_TIME,'IND');

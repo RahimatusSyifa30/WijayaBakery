@@ -40,7 +40,10 @@
             <a href="<?= base_url('admin/laporan')?>" class="nav-link btn btnhover fs-5" title="Laporan Keuangan">Laporan Keuangan</a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('')?>" class="nav-link bg-danger btn btnhover fs-5" title="Keluar">Keluar</a>             
+            <form action="<?= base_url('admin/logout') ?>" method="get">
+            <button type="submit" class="btn btn-danger btn-lg">Log Out</button>
+            <!-- <a href="<?= base_url('')?>" class="nav-link bg-danger btn btnhover fs-5" title="Keluar">Keluar</a> -->
+            </form>             
           </li>
           
           <li class="nav-item mt-lg-2 mt-sm-5" >

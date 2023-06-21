@@ -13,7 +13,7 @@
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
-  <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" />
+  <!-- <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" /> -->
 </head>
 
 <body>
@@ -25,15 +25,15 @@
   <!-- Header End -->
   <main>
   <?php include($filePath.'\layout\alert.php') ?>
-      <div class="row">
+      <div class="row" >
       <?php if(empty($jumlah_item)){?>
           <div class="col-12 text-center align-items-center p-5" style="height: 320px;">  
           <h1 class="">Keranjang kosong</h1>
           </div>
           <?php }else{?>
-        <div class="col-md-8 col-xs-12 text-center">
+        <div class="col-md-8 col-12 text-center">
 
-        <table class="table table-warning table-striped">
+        <table class="table table-warning">
         <tr>
           <th>Gambar Produk</th>
           <th>Nama Produk</th>
@@ -70,8 +70,9 @@
           </div>
           
           <div class="col-md-4 col-xs-4 d-flex align-items-center justify-content-center text-center border border-warning mt-2">
-          <fieldset>  
-          <h2>Total Pesanan</h2>
+            <br>
+            <fieldset>
+              <h2>Total Pesanan</h2>
             <h2>Total jumlah barang : <?= $jumlah_item?></h2>
             <?= form_open('admin/tambah_pesanan')?>
             <label for="nama_pel">Nama Pelanggan</label>
@@ -83,10 +84,7 @@
               <span class="input-group-text" id="basic-addon1">+62</span>
               <input type="text" name="no_hp" id="No_hp" class="bg-secondary bg-opacity-10 form-control">
             </div>
-            <button type="submit"  class="btn btn-lg btn-primary">Buat Pesanan</button>
-            <button type="button" class="btn btn-lg  btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambahkan ke pesanan yang sudah ada
-            </button>
+            <button type="submit"  class="btn btn-primary btn-lg mt-3">Buat Pesanan</button>
             <?= form_close()?>
             </fieldset>
           </div>

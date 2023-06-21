@@ -14,7 +14,7 @@
     
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-          <a href="<?= base_url('admin/keranjang');?>" class="btn fs-5 featherr position-relative" title="Keranjang">
+          <a href="<?= base_url('keranjang');?>" class="btn fs-5 featherr position-relative" title="Keranjang">
             <i data-feather="shopping-cart"></i> 
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               <?= $jumlah_item?>
@@ -39,7 +39,7 @@
             <a href="<?= base_url('kontak_kami')?>" class="nav-link btn btnhover fs-5" title="Kontak Kami">Kontak Kami</a>    
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin')?>" target="_blank" class="nav-link btn btnhover fs-5" title="Login Admin">Login Admin</a>        
+            <a href="<?= base_url('admin/login')?>" target="_blank" class="nav-link btn btnhover fs-5" title="Login Admin">Login Admin</a>        
           </li>
           
           <li class="nav-item mt-lg-2 mt-sm-5" >

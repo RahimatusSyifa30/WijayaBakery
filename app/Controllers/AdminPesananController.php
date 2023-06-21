@@ -28,8 +28,15 @@ class AdminPesananController extends BaseController
         foreach($data['pesanan_diproses'] as $tes){
             $data['join_pro1'][$y] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
             $y++;
-        }     
-        return view('admin/admin_pesanan',$data);
+        }
+
+        if(session()->get('isLoggedIn')){     
+            return view('admin/admin_pesanan',$data);
+        }else{
+            session()->setFlashdata('error',"Login admin terlebih dahulu");
+            return redirect('admin/login');
+        }
+
     }
 
     public function insert_pesanan()
