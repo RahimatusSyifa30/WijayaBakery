@@ -20,7 +20,7 @@ class AdminProdukController extends BaseController
             return view("admin/admin_produk",$data);
         }else{
             session()->setFlashdata('error',"Login admin terlebih dahulu");
-            return redirect('admin/loginW1j4Y4');
+            return redirect('admin/login');
         }
         
     }

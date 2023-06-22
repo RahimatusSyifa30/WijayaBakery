@@ -1,6 +1,6 @@
 //////Pesanan detail belum
 detail = ($id) => {
-  const con = document.querySelector(".container");
+  const con = document.querySelector(".con");
   const dataTable = document.getElementById("detail" + $id);
   const closeButtons = document.querySelectorAll(".btn-close");
   // Toggle tampilan tabel
@@ -45,3 +45,27 @@ detail_sel = ($id) => {
   }
 };
 /////
+///// Checkbox pesanan belum
+document.addEventListener("DOMContentLoaded", function () {
+  var selectAllCheckbox = document.getElementById("select-all-belum");
+  var orderCheckboxes = document.querySelectorAll(".order-checkbox-belum");
+
+  selectAllCheckbox.addEventListener("change", function () {
+    for (var i = 0; i < orderCheckboxes.length; i++) {
+      orderCheckboxes[i].checked = selectAllCheckbox.checked;
+    }
+  });
+});
+//////
+///// Checkbox pesanan selesai
+document.addEventListener("DOMContentLoaded", function () {
+  var selectAllCheckbox = document.getElementById("select-all-sel");
+  var orderCheckboxes = document.querySelectorAll(".order-checkbox-sel");
+
+  selectAllCheckbox.addEventListener("change", function () {
+    for (var i = 0; i < orderCheckboxes.length; i++) {
+      orderCheckboxes[i].checked = selectAllCheckbox.checked;
+    }
+  });
+});
+//////

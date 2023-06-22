@@ -58,7 +58,7 @@ class AdminKeranjangController extends BaseController
             ];
              $keran->update_keranjang($array);
         endforeach;
-        session()->setFlashdata('notif','Berhasil mengubah semua produk dalam keranjang');
+        session()->setFlashdata('notif','Berhasil mengubah produk dalam keranjang');
         return redirect('admin/keranjang');
 
     }

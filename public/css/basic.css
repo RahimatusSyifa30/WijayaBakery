@@ -21,10 +21,18 @@
     opacity: 1;
   }
 }
+.bg-btnhover:hover {
+  background-color: var(--kuning);
+  color: var(--coklat);
+}
+.bg-btnhover {
+  background-color: rgb(195, 111, 26);
+  color: white;
+}
 #alert {
+  top: 0;
+  left: 0;
   position: fixed;
-  margin: auto;
-  left: 0px;
   width: 100%;
   z-index: 9999;
 }
@@ -43,8 +51,6 @@
 th {
   pointer-events: none;
 }
-* {
-}
 :root {
   --kuning: rgba(255, 182, 45, 0.8);
   --coklat: rgba(117, 0, 0, 255);
@@ -59,7 +65,7 @@ body {
   box-sizing: border-box;
   max-width: 100%;
   background-color: rgba(255, 253, 243, 255);
-  min-height: 50vh;
+  min-height: 72vh;
   position: relative;
   font-family: Ubuntu, Poppins, "Times New Roman", Times, serif;
   /* background-color: rgba(255, 253, 243, 255); */
@@ -83,14 +89,11 @@ body {
     opacity: 0.5;
   }
 }
-.feather {
-  width: 24px;
-  height: 24px;
+* {
+  color: var(--coklat);
+}
+.featherr {
   stroke: var(--coklat);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
 }
 .featherr:hover {
   stroke: var(--kuning);
@@ -191,7 +194,9 @@ footer {
   html {
     font-size: 50%;
   }
-
+  body {
+    min-height: 91vh;
+  }
   #footer #nav-logo img {
     width: 75px;
   }

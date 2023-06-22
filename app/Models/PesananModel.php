@@ -57,7 +57,7 @@ class PesananModel extends Model
         return $this->update($id,$data);
     }
     public function delete_pesanan($id){
-        return $this->delete($id);
+        return $this->where('id_pesanan',$id)->delete();
     }
     public function totalPesanan(){
         $db=db_connect();

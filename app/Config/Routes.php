@@ -51,6 +51,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('pesanan_diproses/(:segment)','AdminPesananController::pesanan_diproses/$1');
     $routes->add('pesanan_selesai/(:segment)','AdminPesananController::pesanan_selesai/$1');
     $routes->add('hapus_pesanan/(:segment)','AdminPesananController::delete_pesanan/$1');
+    $routes->add('hapus_banyak_pesanan','AdminPesananController::delete_banyak_pesanan');
     
     $routes->add('tambah_detail_pesanan','AdminDetailPesananController::insert_detail_pesanan');
     $routes->add('ubah_detail_pesanan/(:segment)','AdminDetailPesananController::update_detail_pesanan/$1');

@@ -12,8 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" />
-  <!-- <link rel="stylesheet" href="<?= base_url('css/pesanan.css')?>" /> -->
+  <!-- <link rel="stylesheet" href="<?= base_url('css/basic.css')?>" /> -->
+  <link rel="stylesheet" href="<?= base_url('css/cart.css')?>" />
 </head>
 
 <body>
@@ -25,70 +25,106 @@
   <!-- Header End -->
   <main>
   <?php include($filePath.'\layout\alert.php') ?>
-      <div class="row" >
-      <?php if(empty($jumlah_item)){?>
+  <section class="h-100 h-custom" >
+  <?php if(empty($jumlah_item)){?>
           <div class="col-12 text-center align-items-center p-5" style="height: 320px;">  
           <h1 class="">Keranjang kosong</h1>
           </div>
           <?php }else{?>
-        <div class="col-md-8 col-12 text-center">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card shopping-cart" style="border-radius: 15px;">
+          <div class="card-body text-black">
 
-        <table class="table table-warning">
-        <tr>
-          <th>Gambar Produk</th>
-          <th>Nama Produk</th>
-          <th>Jumlah Barang</th>
-          <th>Harga Produk</th>
-          <th>Sub Total</th>
-          <th></th>
-        </tr>
-        <?php 
+            <div class="row">
+              <div class="col-lg-6 px-5 py-4">
 
-        $i=1;
-        foreach($isi_ker as $keranjang):?>
-        <tr>
-          
-          <td><img style="width:75px" src="<?= base_url('image/roti/')?><?= $keranjang['options']['gambar']?>"></img></td>
-          <td><h1><?= $keranjang['name']?></h1></td>
-          <?php echo form_open('admin/ubah_keranjang')?>
-          <td><input type="number" min=1 max=<?= $keranjang['options']['stok']?> 
-          name="qty<?= $i++?>" id="kuantitas"  class=" form-control" style="width:100px" placeholder="Masukkan jumlah barang" value="<?= $keranjang['qty']?>"></td>
-          <td><h2><?= $keranjang['price']?></h2></td>
-          <td><h2><?= $keranjang['subtotal']?></h2></td>
-          <td><a href="<?= base_url('admin/hapus_keranjang/'.$keranjang['rowid'])?>"><i data-feather="trash"></i></a></td>
-          
-        </tr>
-        <?php endforeach?>
-          </table>
-          
-          <div class="total text-center">
-            <h2>Total : <?= $total_harga; ?></h2>
-            <button type="submit" class="btn btn-warning"><i data-feather="save"></i></button>
+                <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Produk Anda</h3>
+                <?php 
+                $i=1;
+                foreach($isi_ker as $keranjang):?>
+                <div class="d-flex align-items-center mb-5">
+                  <div class="flex-shrink-0">
+                    <img src="<?= base_url('image/roti/').$keranjang['options']['gambar']?>"
+                      class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
+                    <h5 class="text-primary"><?= $keranjang['name']?></h5>
+                    <?php echo form_open('admin/ubah_keranjang')?>
+                    <div class="d-flex align-items-center">
+                      <p class="fw-bold mb-0 me-5 pe-3">Rp <?= $keranjang['price']?></p>
+                      <div class="def-number-input number-input safari_only">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                        <input class="quantity fw-bold text-black" min="0" max=<?= $keranjang['options']['stok']?> name="qty<?= $i++?>" value="<?= $keranjang['qty']?>"
+                          type="number">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="mb-4 text-warning" style="height: 2px; opacity: 1;">
+<?php endforeach ?>
+                <div class="d-flex justify-content-between px-x">
+                  <p class="fw-bold">Rp <?= $keranjang['subtotal']?></p>
+                  <a href="<?= base_url('admin/hapus_total_keranjang') ?>" class="btn btn-warning"><i data-feather="trash"></i></a>
+                </div>
+                <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
+                  <h5 class="fw-bold mb-0">Total:</h5>
+                  <h5 class="fw-bold mb-0">Rp <?= $total_harga?></h5>
+                </div>
+                <div class="total text-center">
             <?php echo form_close()?>
-            <a href="<?= base_url('admin/hapus_total_keranjang') ?>" class="btn btn-warning"><i data-feather="trash"></i></a>
+            
           </div>
-          </div>
-          
-          <div class="col-md-4 col-xs-4 d-flex align-items-center justify-content-center text-center border border-warning mt-2">
-            <br>
-            <fieldset>
-              <h2>Total Pesanan</h2>
-            <h2>Total jumlah barang : <?= $jumlah_item?></h2>
-            <?= form_open('admin/tambah_pesanan')?>
+
+              </div>
+              <div class="col-lg-6 px-5 py-4">
+
+                <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Pembayaran</h3>
+                <?= form_open('admin/tambah_pesanan')?>
+            <div class="form-floating mb-3">
+            <input type="text" name="nama_pel" id="nama_pel" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan nama anda" title="Masukkan nama pelanggan">
             <label for="nama_pel">Nama Pelanggan</label>
-            <input type="text" name="nama_pel" id="nama_pel" class="bg-secondary bg-opacity-10 form-control" required>
-            <label for="tanggal">Tanggal</label>
-            <input type="datetime" name="tanggal" id="tanggal" class="bg-secondary bg-opacity-10 form-control" value="<?= date('d-m-y H:i')?>">
-            <label for="no_hp">No HP</label>
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">+62</span>
-              <input type="text" name="no_hp" id="No_hp" class="bg-secondary bg-opacity-10 form-control">
-            </div>
-            <button type="submit"  class="btn btn-primary btn-lg mt-3">Buat Pesanan</button>
-            <?= form_close()?>
-            </fieldset>
           </div>
-          
+<div class="form-floating mb-3">
+<input type="datetime" name="tanggal" id="tanggal" class="bg-secondary bg-opacity-10 form-control" value="<?= date('d-m-y H:i')?>"  title="Tanggal pemesanan" disabled>
+  <label for="tanggal">Tanggal</label>
+</div>
+
+<div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">+62</span>
+              <div class="form-floating">
+              <input type="text" name="no_hp" id="no_hp" class="bg-secondary bg-opacity-10 form-control" placeholder="sdah" title="Masukkan No HP atau No WA">
+              <label for="no_hp">No HP/WA</label>
+            </div>
+</div>
+<?= form_close()?>
+<?= form_open('admin/tambah_pesanan')?>
+                  
+           <div class="justify-content-center text-center">
+                  <button type="button" class="btn btn-primary btn-block btn-lg mb-3">Buat Pesanan</button>
+                  <button type="button" class="btn btn-lg  btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Tambahkan ke pesanan yang sudah ada
+            </button>
+            </div>
+                  
+
+                  <?= form_close()?>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php } ?>
+</section>
+<button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
+      
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -115,7 +151,7 @@
               </div>
             </div>
           </div>
-          <?php }?>
+          
       </div>
 
       <hr>

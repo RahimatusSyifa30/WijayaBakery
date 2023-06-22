@@ -143,6 +143,21 @@ class AdminPesananController extends BaseController
         session()->setFlashdata('notif','Pesanan atas nama '.$nama.' berhasil dihapus');
         return redirect('admin');
     }
+    public function delete_banyak_pesanan(){
+        $pes = new PesananModel();
+        $detail_pes = new DetailPesananModel();
+        $ids = $this->request->getPost('id_pesanan');
+        if(!empty($ids)){
+            foreach($ids as $id):
+                $detail_pes->delete_detail_pesananByIdPesanan($id);
+                $pes->delete_pesanan($id);
+            endforeach;
+            return redirect('admin');
+        }else{
+            session()->setFlashdata('error','Pilih pesanan yang ingin dihapus');
+            return redirect('admin');
+        }
+    }
     public function pesanan_diproses($id){
         $kontak = new KontakModel();
         $pesan = new PesananModel();
