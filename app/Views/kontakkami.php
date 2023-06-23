@@ -22,57 +22,65 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="<?= base_url('css/basic.css')?>">
-    <link rel="stylesheet" href="<?= base_url('css/tentangkami.css')?>" />
+    <link rel="stylesheet" href="<?= base_url('css/kontakkami.css')?>">
 </head>
 <body>
     <!-- Header Start -->
     <?php include("layout/header.php") ?>
     <!-- Header End -->
+      <h1 id="bakery" class="text-center stroke">Tentang Wijaya<span class="text-warning">Bakery.</span></h1>
+      <hr>
+    <section>
+      <div class="container">
+        <div class="contactInfo">
+          <div>
+            <h2 id="bakery" class="text-center stroke">Informasi Kontak</h2>
+            <br>
+            <ul class="info">
+              <li>
+                <span><img src="image/logo/lokasi.png"></span>
+                <span id="bakery" class="text stroke">Jl. Raya Pakuniran, RT.16/RW.04,<br>Bucor Kulon.</span>
+              </li>
+              <li>
+                <span> <img src="image/logo/wa.png"></span>
+                <span id="bakery" class="text stroke">081318140558</span>
+              </li>
+              <li>
+                <span> <img src="image/logo/email.png"></span>
+                <span id="bakery" class="text stroke">sifaspt317@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+          </div>
+        <div class="contactForm">
+          <h2 id="bakery" class="text stroke">Kirim Pesan</h2>
+          <div class="formBox">
+            <div class="inputBox w50">
+              <input type="text" name="" required>
+              <span>Nama Depan</span>
+            </div>
+            <div class="inputBox w50">
+              <input type="text" required>
+              <span>Nama Belakang</span>
+            </div>
+            <div class="inputBox w50">
+              <input type="text" required>
+              <span>Nomor Telepon</span>
+            </div>
+            <div class="inputBox w100">
+              <textarea required></textarea>
+              <span>Tulis Pesan Anda...</span>
+            </div>
+            <div class="inputBox w100">
+              <input type="submit" value="Kirim">
+            </div>
+          </div>
+        </div>
 
-    <section id="about">
-      <div class="about-1">
-      <h1 id="bakery" class="text-center stroke">Kontak Wijaya<span class="text-warning">Bakery.</span></h1>
-        <img
-                src="image/logo/logo.png"
-                class="rounded mx-auto d-block"
-                alt="..."
-              />
-        <hr>
-      </div><br><br>
-      <fieldset style="margin-left: 8%; margin-right: 8%;">
-            <legend style="background-color: rgb(255, 97, 179);">Kirim Sebuah Pesan Kepada Kami</legend><br>
-            <form action="<?= base_url('kirim_pesan')?>" method="post" style="margin-left: 10%;">
-                <table>
-                <tr>
-                        <td>Nama </td>
-                        <td>:</td>
-                        <td><input type="text" name="nama" placeholder="masukan nama Anda"></td>
-                    </tr>
-                    <tr>
-                        <td>No Telepon</td>
-                        <td>:</td>
-                        <td><input type="text" name="no_telp_costumer" placeholder="masukan nomor telepon Anda"></td>
-                    </tr>
-                    <tr>
-                        <td>Subjek</td>
-                        <td>:</td>
-                        <td><input type="text" name="subjek_costumer" placeholder="masukan judul/tema dari pertanyaan/pesan Anda"></td>
-                    </tr>
-                    <tr>
-                        <td>Pesan</td>
-                        <td>:</td>
-                        <td><input type="textarea" name="pesan" placeholder="masukan nama kota"></td>
-                    </tr>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td><input type="submit" name="tambahK" value="Tambah"> <input type="reset" name="resetK" value="Reset"></td>
-                    </tr>
-                </table>
-            </form>         
-       </fieldset><br>
-    </section>
+      </div>
+
     <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
+    </section>
 
     <!-- Footer Start -->
     <?php include("layout/footer.php") ?>
