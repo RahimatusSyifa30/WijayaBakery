@@ -1,86 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Keuangan - Wijaya Bakery</title>
-    <link rel="shortcut icon" href="<?= base_url('image/logo/logo.png')?>" />
-    <!-- Bootstrap Start -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Bootstrap End -->
-    <link rel="stylesheet" href="<?= base_url('css/basic.css')?>">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Keuangan - Wijaya Bakery</title>
+  <link rel="shortcut icon" href="<?= base_url('image/logo/logo.png') ?>" />
+  <!-- Bootstrap Start -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <!-- Bootstrap End -->
+  <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('css/pesanan.css') ?>">
 </head>
+
 <body>
- <!-- Header Start -->
- <?php
+  <!-- Header Start -->
+  <?php
+  $rootPath = ROOTPATH;
+  $filePath = $rootPath . 'app\Views';
+  include($filePath . '\layout\admin_header.php') ?>
+  <!-- Header End -->
+  <main>
+    <?php include($filePath . '\layout\alert.php') ?>
+    <div class="container mt-md-4 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
+      <h1 class="bakery stroke">Laporan Keuangan</h1>
 
-$rootPath = ROOTPATH;
-$filePath = $rootPath . 'app\Views';
-include($filePath . '\layout\admin_header.php') ?>
-<!-- Header End -->
-<?php include($filePath.'\layout\alert.php') ?>
-    <div class="row p-md-4 p-sm-1">
-        <div class="col-12 bg-secondary bg-opacity-10 text-center border border-2">
-            <h1>Laporan Keuangan</h1>
-            <div class="row">
-              <div class="col-md-6">
-              <form action="<?= base_url('admin/filter_laporan'); ?>" method="post">
-                <div class="d-flex flex-nowrap m-2">
-                  <label for="start">Tanggal Awal:</label>
-                  <input type="date" name="start" id="start" class="form-control me-3">
-                  <label for="floatingInput">Tanggal Akhir:</label>
-                  <input type="date" name="end" id="floatingInput" class="form-control">
-                  <button type="submit" class="btn btn-primary">Filter</button>
-                </div> 
-            </form>
-              </div>
-            <div class="col-12">
-              <table class="table table-warning">
-              <tr>
-                <th>Nama Pelanggan</th>
-                <th>Tanggal Laporan</th>
-                <th>Modal</th>
-                <th>Keuntungan Kotor</th>
-                <th>Keuntungan Bersih</th>
-              </tr>
-            <?php 
-            foreach($laporan as $lapor){?>
-              <tr>
-
-                <td><?= $lapor['nama_pelanggan']?></td>
-                <td><?= $lapor['tanggal_laporan']?></td>
-                <td><?= $lapor['modal']?></td>
-                <td><?= $lapor['keuntungan_kotor']?></td>
-                <td><?= $lapor['keuntungan_bersih']?></td>
-              </tr>
-              <?php }?>
-            </table>
-          
-            </div>
+      <?php if (empty($laporan)) { ?>
+        <div class="container-fluid mt-4">
+          <div class="row ">
+            <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center bg-light p-4 rounded-4">
+              <h2 class="bakery">Tidak ada Laporan.😁</h2>
             </div>
           </div>
-        
+        </div>
+      <?php } else { ?>
+        <div class="row g-3 mb-3 mt-3 justify-content-center">
+          <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-md-6 justify-content-between">
+            <div class="col-auto">
+              <label for="start">Periode :</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" name="start" id="start" class="form-control">
+            </div>
+            <div class="col-auto">
+              <label for="floatingInput"> - </label>
+            </div>
+            <div class="col-auto">
+              <input type="date" name="end" id="floatingInput" class="form-control">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn bg-btnhover">Filter</button>
+            </div>
+            <div class="col-auto">
+              <a href="<?= base_url("admin/reset_tanggal_laporan") ?>" type="submit" class="btn bg-btnhover">Reset</a>
+            </div>
+          </form>
+        </div>
+        <div class="row justify-content-center">
+          <div class="mb-2 col-md-6 col-xs-12 ">
+            <div class="position-relative">
+              <form action="" method="post">
+                <div class="input-group mb-3">
+                  <input type="text" name="cari" id="cariBelum" class="form-control mb-3 bg-white " placeholder="Cari pelanggan...">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn bg-btnhover" id="button-addon2">Cari</button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
+        </div>
+        <div class="">
+          <table class="table table-responsive table-borderless rounded-2 table-warning table-hover" id="pesanan_belum" aria-disabled="">
+            <thead>
+              <tr class="bg-light">
+                <th scope="col" width="20%">Nama Pelanggan</th>
+                <th scope="col" width="20%">Tanggal</th>
+                <th scope="col" width="20%">Modal</th>
+                <th scope="col" width="20%">Keuntungan Kotor</th>
+                <th scope="col" width="20%">Keuntungan Bersih</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $counter = 0;
+              foreach ($laporan as $pesan) : ?>
+                <tr>
+                  <td><?= $pesan['nama_pelanggan'] ?></td>
+                  <td><?= $pesan['tanggal_laporan'] ?></td>
+                  <td><?= $pesan['modal'] ?></td>
+                  <td><?= $pesan['keuntungan_kotor'] ?></td>
+                  <td><?= $pesan['keuntungan_bersih'] ?></td>
+                </tr>
+              <?php $counter++;
+              endforeach ?>
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="fw-bolder"><?= $modal ?></td>
+                <td class="fw-bolder"><?= $untung_kotor ?></td>
+                <td class="fw-bolder"><?= $unber ?></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="pagination justify-content-end">
+          <?= $pager->links('laporan', 'pagination') ?>
+        </div>
+      <?php } ?>
     </div>
-    <!-- Footer Start -->
-    <?php include($filePath.'\layout\footer.php') ?>
-      <!-- Footer End -->
-      <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script>
-      feather.replace();
-      </script>
-    <script src="<?= base_url('assets/js/script.js')?>"></script>
+  </main>
+  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
+  <!-- Footer Start -->
+  <?php include($filePath . '\layout\footer.php') ?>
+  <!-- Footer End -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    feather.replace();
+  </script>
+  <script src="<?= base_url('assets/js/script.js') ?>"></script>
 </body>
+
 </html>

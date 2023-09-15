@@ -26,10 +26,15 @@ class KelompokProduk extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id_kel');
-
+        
         // Membuat tabel news
         $this->forge->createTable('kelompok_produk', TRUE);
-        
+        $file = APPPATH . 'Database/Migrations/kelompok_produk.sql'; // Gantilah dengan path lengkap ke file SQL Anda
+        $sql = file_get_contents($file);
+
+        if ($sql !== false) {
+            $this->db->query($sql);
+        }
         //faker
         // $faker = \Faker\Factory::create();
         // $data = [];

@@ -44,9 +44,15 @@ class Produk extends Migration
         $this->forge->addKey('id_produk', TRUE);
         $this->forge->addForeignKey('jenis_produk','kelompok_produk','id_kel','CASCADE','CASCADE');
 
+        
         // Membuat tabel news
         $this->forge->createTable('produk', TRUE);
+        $file = APPPATH . 'Database/Migrations/produk.sql'; // Gantilah dengan path lengkap ke file SQL Anda
+        $sql = file_get_contents($file);
 
+        if ($sql !== false) {
+            $this->db->query($sql);
+        }
         //faker
         // $faker = \Faker\Factory::create();
         // $data = [];

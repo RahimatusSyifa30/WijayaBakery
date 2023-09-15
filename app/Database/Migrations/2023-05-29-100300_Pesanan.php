@@ -6,11 +6,11 @@ use CodeIgniter\Database\Migration;
 
 class Pesanan extends Migration
 {
-    
-    public function up()
-    {
-        
-        $this->forge->addField([
+
+	public function up()
+	{
+
+		$this->forge->addField([
 			'id_pesanan'          => [
 				'type'           => 'INT',
 				'constraint'     => 5,
@@ -22,16 +22,16 @@ class Pesanan extends Migration
 			],
 			'nama_pelanggan'      => [
 				'type'           => 'VARCHAR',
-                'constraint'     => 50,
+				'constraint'     => 50,
 			],
 			'no_hp_pelanggan' => [
 				'type'           => 'VARCHAR',
-                'constraint'     => 15,
+				'constraint'     => 15,
 			],
 			'status'      => [
 				'type'           => 'VARCHAR',
-                'constraint'     => 10,
-                'default' => 'Belum',
+				'constraint'     => 10,
+				'default' => 'Belum',
 			],
 			'total_modal'      => [
 				'type'           => 'BIGINT',
@@ -40,28 +40,26 @@ class Pesanan extends Migration
 				'type'           => 'BIGINT',
 			],
 		]);
-        $this->forge->addKey('id_pesanan', TRUE);
+		$this->forge->addKey('id_pesanan', TRUE);
 		// Membuat tabel news
 		$this->forge->createTable('pesanan', TRUE);
 		// //faker
-        // $faker = \Faker\Factory::create();
-        // $data = [];
-        // for ($i = 1; $i <= 10; $i++) {
-        //     $data[] = [
-        //         'nama_pelanggan' =>$faker->name(),
-        //         'no_hp_pelanggan' =>$faker->phoneNumber(),
-        //         'total_modal'      =>$faker->randomNumber(5,true),
-        //         'total_harga'      =>$faker->randomNumber(5,true)
+		// $faker = \Faker\Factory::create();
+		// $data = [];
+		// for ($i = 1; $i <= 100; $i++) {
+		// 	$data[] = [
+		// 		'nama_pelanggan' => $faker->name(),
+		// 		'no_hp_pelanggan' => $faker->phoneNumber(),
+		// 		'total_modal'      => $faker->randomNumber(5, true),
+		// 		'total_harga'      => $faker->randomNumber(5, true),
+		// 		'status'      => "Selesai"
+		// 	];
+		// }
+		// $this->db->table('pesanan')->insertBatch($data);
+	}
 
-        //     ];
-        // }
-
-        // $this->db->table('pesanan')->insertBatch($data);
-    }
-
-    public function down()
-    {
-        $this->forge->dropTable('pesanan');
-
-    }
+	public function down()
+	{
+		$this->forge->dropTable('pesanan');
+	}
 }

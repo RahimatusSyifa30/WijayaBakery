@@ -43,6 +43,10 @@
 .bakery {
   color: var(--coklat);
 }
+.tes {
+  display: none;
+}
+
 .bi {
   font-size: 3rem;
   background: white;
@@ -193,6 +197,9 @@ footer {
 @media (max-width: 450px) {
   html {
     font-size: 50%;
+  }
+  .tes {
+    display: block;
   }
   body {
     min-height: 91vh;

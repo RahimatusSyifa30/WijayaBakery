@@ -1,65 +1,91 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\PesananModel;
+
 use App\Models\DetailPesananModel;
 use App\Models\KeranjangModel;
+use App\Models\PesananModel;
 
 class AdminRiwayatController extends BaseController
 {
-    public function index(){
+    public function index()
+    {
         helper('form');
-        $keran=new KeranjangModel();
-        $data['jumlah_item'] = $keran->getTotalBarang();
-        $pes= new PesananModel();
+        $keran = new KeranjangModel();
+        $pes = new PesananModel();
         $detail_pes = new DetailPesananModel();
-        $data['pesanan_selesai']=$pes->view_selesai();
-        $counter=0;
-        foreach($data['pesanan_selesai'] as $tes){
+
+        $cari = $this->request->getPost('cari');
+        if ($cari) {
+            $model = $pes->search($cari);
+        } else {
+            $model = $pes;
+        }
+        $data = [
+            'jumlah_item' => $keran->getTotalBarang(),
+            'pesanan_selesai' => $model->where('status', 'Selesai')->paginate(10, 'pesanan'),
+            'pager' => $pes->pager,
+        ];
+        $counter = 0;
+        foreach ($data['pesanan_selesai'] as $tes) {
             $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
             $counter++;
         }
-        if(session()->get('isLoggedIn')){     
-            return view('admin/admin_riwayat_trs',$data);
-        }else{
-            session()->setFlashdata('error',"Login admin terlebih dahulu");
+        if (session()->get('isLoggedIn')) {
+            return view('admin/admin_riwayat_trs', $data);
+        } else {
+            session()->setFlashdata('error', "Login admin terlebih dahulu");
             return redirect('admin/login');
         }
-        
     }
-    public function filter_riwayat(){
-        setlocale(LC_TIME,'IND');
+    public function filter_riwayat()
+    {
+        setlocale(LC_TIME, 'IND');
         helper('form');
-            $keran=new KeranjangModel();
-            $data['jumlah_item'] = $keran->getTotalBarang();
-            $pes= new PesananModel();
-            $detail_pes = new DetailPesananModel();
-            $start=$this->request->getGet('start');
-            $end=$this->request->getGet('end');
-            if($start > $end){
-                session()->setFlashdata('error',"Tanggal awal tidak boleh melebihi tanggal akhir");
-                $data['pesanan_selesai']=$pes->view_selesai();
-                $counter=0;
-                foreach($data['pesanan_selesai'] as $tes){
-                    $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
-                    $counter++;
-                }
-                session()->setFlashdata('error',"Tanggal awal dan akhir tidak boleh kosong");
-            }else if ($start!=null && $end!=null) {
-                    
-                $data['pesanan_selesai']=$pes->filter_pesanan($start,$end);
-                $counter=0;
-                foreach($data['pesanan_selesai'] as $tes){
-                    $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
-                    $counter++;
-                }     
-                $awal = strftime('%d %B %Y', strtotime($start));
-                $akhir = strftime('%d %B %Y', strtotime($end));
-                session()->setFlashdata('notif',"Menampilkan tanggal dari ".$awal." sampai ".$akhir);
-            }else{
-                session()->setFlashdata('error',"Tanggal tidak boleh kosong");
-                return redirect()->back();
-        } 
-        return view('admin/admin_riwayat_trs',$data);
+        $keran = new KeranjangModel();
+        $data['jumlah_item'] = $keran->getTotalBarang();
+        $pes = new PesananModel();
+        $detail_pes = new DetailPesananModel();
+        $start = $this->request->getGet('start');
+        $end = $this->request->getGet('end');
+        if ($start > $end) {
+            session()->setFlashdata('error', "Tanggal awal tidak boleh melebihi tanggal akhir");
+            return redirect()->back();
+        } else if ($start != null && $end != null) {
+            $cari = $this->request->getPost('cari');
+            if ($cari) {
+                $model = $pes->search($cari);
+            } else {
+                $model = $pes;
+            }
+            $tes = "tanggal BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $model->select('*')->where($tes)->paginate(10, 'pesanan');
+            $data = [
+                'pager' => $model->pager,
+                'pesanan_selesai' => $pes->filter_pesanan($start, $end, $cari),
+            ];
+            $counter = 0;
+            foreach ($data['pesanan_selesai'] as $tes) {
+                $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
+                $counter++;
+            }
+            $awal = strftime('%d %B %Y', strtotime($start));
+            $akhir = strftime('%d %B %Y', strtotime($end));
+            session()->setFlashdata('notif', "Menampilkan tanggal dari " . $awal . " sampai " . $akhir);
+        } else {
+            session()->setFlashdata('error', "Tanggal tidak boleh kosong");
+            return redirect()->back();
+        }
+        return view('admin/admin_riwayat_trs', $data);
+    }
+    public function reset_tanggal()
+    {
+        if (session()->get('isLoggedIn')) {
+            session()->setFlashdata('notif', "Berhasil mereset tanggal");
+            return redirect('admin/riwayat');
+        } else {
+            session()->setFlashdata('error', "Login admin terlebih dahulu");
+            return redirect('admin/login');
+        }
     }
 }

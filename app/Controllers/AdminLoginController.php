@@ -10,7 +10,7 @@ class AdminLoginController extends BaseController
     public function index()
     {
          // Jika sudah login, redirect ke halaman admin
-         if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedIn')) {
             return redirect('admin');
         }
 
@@ -36,14 +36,19 @@ class AdminLoginController extends BaseController
             } else {
                 $model = new AdminModel();
                 $admin = $model->getAdminByUsername($this->request->getPost('username'));
-                if($admin['password']==$this->request->getPost('password')){
-                    session()->set('isLoggedIn', true);
-                    session()->set('adminId', $admin['id_admin']);
-                    session()->set('adminUsername', $admin['username']);
-
-                    return redirect('admin');
-                } else {
-                    $data['error'] = 'Username atau password salah';
+                if($admin!=null){
+                    if($admin['password']==$this->request->getPost('password')){
+                        session()->set('isLoggedIn', true);
+                        session()->set('adminId', $admin['id_admin']);
+                        session()->set('adminUsername', $admin['username']);
+                        return redirect('admin');
+                    } else {
+                        session()->setFlashdata('error',"Password salah");
+                        return redirect('admin/login');
+                    }
+                }else{
+                    session()->setFlashdata('error',"Username dan Password salah");
+                    return redirect('admin/login');
                 }
             }
         }

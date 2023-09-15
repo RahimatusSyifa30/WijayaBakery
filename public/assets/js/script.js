@@ -4,16 +4,6 @@ window.onscroll = function () {
   scrollFunctiontoTop();
 };
 //////
-// Function Header Sticky
-let header = document.getElementById("header");
-let sticky = header.offsetTop;
-function stickyheader() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
 // Btn Scroll to top
 let mybutton = document.getElementById("btntotop");
 function scrollFunctiontoTop() {
