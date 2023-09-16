@@ -1,16 +1,15 @@
 // Scroll Window
 window.onscroll = function () {
-  stickyheader();
   scrollFunctiontoTop();
 };
 //////
 // Btn Scroll to top
-let mybutton = document.getElementById("btntotop");
+let mybuttonn = document.getElementById("btntotop");
 function scrollFunctiontoTop() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
+    mybuttonn.style.display = "block";
   } else {
-    mybutton.style.display = "none";
+    mybuttonn.style.display = "none";
   }
 }
 
@@ -19,3 +18,25 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+iziinfo = (message) => {
+  iziToast.info({
+    title: message,
+    position: "topRight", // Atur posisi iziToast sesuai keinginan Anda
+  });
+};
+izisuccess = (message) => {
+  document.addEventListener("DOMContentLoaded", function () {
+    iziToast.success({
+      title: message,
+      position: "topRight", // Atur posisi iziToast sesuai keinginan Anda
+    });
+  });
+};
+iziwarning = (message) => {
+  document.addEventListener("DOMContentLoaded", function () {
+    iziToast.warning({
+      title: message,
+      position: "topRight", // Atur posisi iziToast sesuai keinginan Anda
+    });
+  });
+};

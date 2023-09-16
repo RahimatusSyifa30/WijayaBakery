@@ -19,7 +19,20 @@ class ProdukController extends BaseController
         $data['produk'] = $produk->viewAll();
         $keran = new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
-        // return $this->respond($data);
         echo view('produk', $data);
+    }
+    public function detail_produk($nama)
+    {
+        helper('form');
+        $tes = str_replace("-", " ", $nama);
+        $produk = new ProdukModel();
+        $jenis_produk = new KelProdukModel();
+        $keran = new KeranjangModel();
+        $data = [
+            'kel_produk' => $jenis_produk->findAll(),
+            'pro' => $produk->getProdukByName($tes),
+            'jumlah_item' => $keran->getTotalBarang()
+        ];
+        echo view('detail_produk', $data);
     }
 }

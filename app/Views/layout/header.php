@@ -38,9 +38,9 @@
             <li class="nav-item">
               <a href="<?= base_url('kontak_kami') ?>" class="nav-link btn btnhover fs-5" title="Kontak Kami">Kontak Kami</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="<?= base_url('admin/login') ?>" target="_blank" class="nav-link btn btnhover fs-5" title="Login Admin">Login Admin</a>
-            </li>
+            </li> -->
 
             <li class="nav-item mt-lg-2 mt-sm-5">
               <a href="<?= base_url('keranjang'); ?>" class="btn btnhover fs-5 featherr position-relative" title="Keranjang " id="keranjang">

@@ -3,18 +3,18 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
-$routes = Services::routes();
+// $routes = Services::routes();
 
 /*
  * --------------------------------------------------------------------
  * Router Setup
  * --------------------------------------------------------------------
  */
-$routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
-$routes->set404Override();
+// $routes->setDefaultNamespace('App\Controllers');
+// $routes->setDefaultController('Home');
+// $routes->setDefaultMethod('index');
+// $routes->setTranslateURIDashes(false);
+// $routes->set404Override();
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -31,7 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'IndexController::index');
 $routes->get('produk', 'ProdukController::produk');
-$routes->get('detail_produk/(:segment)', 'AdminProdukController::detail_produk/$1');
+$routes->get('detail_produk/(:segment)', 'ProdukController::detail_produk/$1');
 $routes->get('tentang_kami', 'TentangController::tentang');
 $routes->get('kontak_kami', 'KontakController::index');
 $routes->add('kirim_pesan', 'KontakController::kirim_pesan');
@@ -47,6 +47,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('/', 'AdminPesananController::index');
     $routes->add('login', 'AdminLoginController::index');
     $routes->get('logout', 'AdminLoginController::logout');
+
     $routes->add('tambah_pesanan', 'AdminPesananController::insert_pesanan');
     $routes->add('ubah_pesanan/(:segment)', 'AdminPesananController::update_pesanan/$1');
     $routes->get('pesanan_diproses/(:segment)', 'AdminPesananController::pesanan_diproses/$1');
@@ -73,7 +74,9 @@ $routes->group('admin', function ($routes) {
     $routes->add('hapus_total_keranjang', 'AdminKeranjangController::hapus_isi_keranjang');
 
     $routes->add('produk', 'AdminProdukController::index');
+
     $routes->add('tambah_produk', 'AdminProdukController::insert_produk');
+    $routes->get('detail_produk/(:segment)', 'AdminProdukController::detail_produk/$1');
     $routes->add('ubah_produk/(:segment)', 'AdminProdukController::update_produk/$1');
     $routes->add('delete_produk/(:segment)/', 'AdminProdukController::delete_produk/$1');
     $routes->add('tambah_kel_produk', 'AdminProdukController::insert_kel_produk');
@@ -96,6 +99,6 @@ $routes->group('admin', function ($routes) {
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
-}
+// if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+//     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+// }

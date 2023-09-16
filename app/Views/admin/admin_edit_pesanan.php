@@ -27,7 +27,7 @@
   <main>
     <?php include($filePath . '\layout\alert.php') ?>
 
-    <div class="container mt-5 p-4 text-center bg-warning bg-opacity-25 rounded-4">
+    <div class="container mt-md-5 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
       <h1 class="bakery stroke">Edit Pesanan</h1>
       <!-- //////////////////////// -->
       <div class="">
@@ -106,7 +106,6 @@
 
 
   </main>
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
 
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>

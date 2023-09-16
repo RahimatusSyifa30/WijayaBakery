@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <meta http-equiv="refresh" content="60">
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +15,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/index.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('css/card-produk.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/produk.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
+
 </head>
 
 <body>
@@ -28,7 +32,8 @@
 
   <!--  -->
   <main>
-    <?php include($filePath . '\layout\alert.php') ?>
+    <?php include($filePath . '\layout\alert.php')
+    ?>
     <div class="con">
       <div class="title">
         <h1 class="font-lg text-center bakery stroke-wt">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
@@ -43,6 +48,9 @@
             <h1 class="stroke">Jenis Produk</h1>
             <hr>
             <br>
+            <div>
+              <button class="btn mt-2 bg-btnhover-reverse  filter-btn  mb-3 border-0" id="basic-addon2" data-kategori="all" onclick="iziinfo('Menampilkan Semua Jenis Produk'); ">Reset Filter</button>
+            </div>
           </div>
           <div class="col-xs-10 col-md-10">
             <div class="swiper mySwiper p-4 justify-content-center">
@@ -50,14 +58,14 @@
                 <?php foreach ($kel_produk as $jen_pro) : ?>
                   <div class="swiper-slide">
                     <div class="card card-jenis-pro border-warning">
-                      <button class="filter-btn btn" data-kategori="<?= str_replace(" ", "", $jen_pro['id_kel']) ?>" onclick="alert('Jenis Produk Terpilih')" style="z-index: 50;">
+                      <button class="filter-btn btn" data-kategori="<?= str_replace(" ", "", $jen_pro['id_kel']) ?>" onclick="iziinfo('Menampilkan filter Produk  <?= $jen_pro['nama_kel'] ?> ')" style="z-index: 50;">
                         <img src="<?= base_url('image/bg/jenis_produk/') ?><?= $jen_pro["gambar_kel"] ?>" class="card-img-top" alt="..." />
                         <div class="card-body ">
                           <h2 class="card-title"><?= $jen_pro["nama_kel"] ?></h2>
                         </div>
-                        <button class="bg-btnhover-reverse btn round">
-                          Lihat Produk
-                        </button>
+                      </button>
+                      <button class="bg-btnhover-reverse btn round card-footer filter-btn " data-kategori="<?= str_replace(" ", "", $jen_pro['id_kel']) ?>" onclick="iziinfo('Menampilkan filter Produk  <?= $jen_pro['nama_kel'] ?> ')">
+                        Lihat Produk
                       </button>
                     </div>
                   </div>
@@ -90,7 +98,7 @@
         <div class="mt-4 d-flex flex-fill flex-wrap justify-content-center rounded-2" id="SelProduk">
           <?php foreach ($produk as $pro) : ?>
             <!-- <button> -->
-            <div class="produk " data-kategori="<?= str_replace(" ", "", $pro['jenis_produk']) ?>" data-stok=<?= $pro['stok_produk'] ?>>
+            <div class="produk p-3" data-kategori="<?= str_replace(" ", "", $pro['jenis_produk']) ?>" data-stok=<?= $pro['stok_produk'] ?>>
               <?php
               echo form_open('tambah_keranjang');
               echo form_hidden('id', $pro['id_produk']);
@@ -102,7 +110,7 @@
               ?>
               <div class="card card-pro border-warning">
                 <a href="<?= base_url('detail_produk/' . str_replace(" ", "-", $pro['nama_produk'])) ?>">
-                  <img src="<?= base_url('image/roti/') ?><?= $pro["gambar_produk"] ?>" class="card-img-top" alt="..." />
+                  <img src="<?= base_url('image/roti/') ?><?= $pro["gambar_produk"] ?>" class="card-img-top" alt="<?= $pro['nama_produk'] ?>" />
                 </a>
                 <div class="card-body text-center">
                   <h2 class="card-title title-height"><?= $pro["nama_produk"] ?></h2>
@@ -123,78 +131,12 @@
           endforeach ?>
           <!-- </button> -->
         </div>
-
       </div>
     </section>
-    <!-- ModalTambahJenisProduk -->
-    <div class="modal fade" id="ModalTambahJenisProduk" tabindex="-1" aria-labelledby="tambahjenis" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="tambahjenis">Tambah Jenis Produk</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body">
-            <form id="formTambahJenis" method="post" enctype="multipart/form-data">
-              <label for="nama_kel_pro">Nama Jenis Produk</label>
-              <input type="text" name="nama_kel_pro" id="nama_kel_pro" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Nama Produk" required>
-              <label for="gambar_pro">Gambar Produk</label>
-              <input type="file" name="gambar_kel_pro" id="gambar_pro" class="bg-secondary bg-opacity-10 form-control" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Selesai</button>
-          </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Modal Notif Ketika button dipencet -->
-    <div class="modal fade" id="ModalNotif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal Konfirmasi Delete Produk-->
-    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Yakin untuk menghapus ini?
-          </div>
-          <div class="modal-footer">
-            <form id="formDelete" method="post">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kembali</button>
-              <button type="submit" class="btn btn-danger">Hapus</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--  -->
-    <!-- Seluruh Produk  Start  -->
   </main>
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>
   <!-- Footer End -->
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
   <!-- Script Swiper -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
@@ -232,6 +174,8 @@
   <script src="<?= base_url('assets/js/onkeyup.js') ?>"></script>
   <script src="<?= base_url('assets/js/script.js') ?>" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
+
 </body>
 
 </html>

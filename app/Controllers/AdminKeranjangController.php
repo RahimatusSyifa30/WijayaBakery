@@ -40,7 +40,7 @@ class AdminKeranjangController extends BaseController
                     'qty' => $isi['qty'] + 1
                 ];
                 $keran->update_keranjang($array1);
-                session()->setFlashdata('notif', 'Produk ' . $nama_prod . ' berhasil dimasukkan ke keranjang');
+                session()->setFlashdata('notif', 'Produk <strong>' . $nama_prod . '</strong> berhasil dimasukkan ke keranjang');
                 return redirect('admin/produk');
             }
         }
@@ -56,7 +56,7 @@ class AdminKeranjangController extends BaseController
             )
         ];
         $keran->insert_keranjang($array);
-        session()->setFlashdata('notif', 'Produk ' . $nama_prod . ' berhasil dimasukkan ke keranjang');
+        session()->setFlashdata('notif', 'Produk <strong>' . $nama_prod . ' </strong> berhasil dimasukkan ke keranjang');
         return redirect('admin/produk');
     }
     public function update_keranjang()

@@ -1,7 +1,7 @@
 body {
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
   margin: 0;
   padding: 0;
   display: flex;
@@ -10,7 +10,7 @@ body {
   /* min-height: 110vh; */
   z-index: -1;
   width: 100%;
-  height: 110vh;
+  height: 120vh;
   background-image: url("../image/bg/bg-tes.png");
   background-size: cover;
   background-repeat: no-repeat;

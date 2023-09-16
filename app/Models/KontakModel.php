@@ -12,12 +12,12 @@ class KontakModel extends Model
         $this->kode_no_hp;
     }
     private $kode_no_hp = '62';
-    private $no_hp_owner = '6281359316368';
+    private $no_hp_owner = '6282236047539';
     public function pertanyaan_WA($nama, $pesan)
     {
 
         $formatted_message = urlencode(
-            "Hai, *Wijaya Bakery*.\nSaya *" . $nama . "*.\nSaya Ingin Bertanya." . $pesan . " "
+            "Hai, *Wijaya Bakery*.\nSaya *" . $nama . "*.\nSaya Ingin Bertanya.\n\n" . $pesan . " "
         );
         $url = "https://wa.me/" . $this->no_hp_owner . "?text=$formatted_message";
         return $url;

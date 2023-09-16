@@ -29,6 +29,14 @@
   background-color: rgb(195, 111, 26);
   color: white;
 }
+.bg-btnhover-reverse:hover {
+  background-color: rgb(195, 111, 26);
+  color: white;
+}
+.bg-btnhover-reverse {
+  background-color: var(--kuning);
+  color: var(--coklat);
+}
 #alert {
   top: 0;
   left: 0;
@@ -113,13 +121,6 @@ body {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
 }
-/* Header */
-
-#header {
-  z-index: 999;
-  background-color: white;
-}
-
 .content {
   margin-top: 100px;
 }
@@ -163,33 +164,57 @@ footer {
   width: 200px;
 }
 #btntotop {
-  width: 30px;
-  height: 30px;
   display: none;
   position: fixed;
   bottom: 20px;
   right: 30px;
   z-index: 99;
 }
+
 @media (max-width: 1024px) {
   html {
     font-size: 80%;
   }
-  #keranjang {
+
+  .tes {
     display: none;
+  }
+  body {
+    min-height: 73.2vh;
+  }
+
+  .featherr {
+    font-size: 2rem;
+  }
+  .feather {
+    width: 20px;
+    height: 20px;
+  }
+  #footer #nav-logo img {
+    width: 150px;
   }
 }
 @media (max-width: 768px) {
   html {
     font-size: 60%;
   }
-
-  .feather {
-    width: 20px;
-    height: 20px;
+  #keranjang {
+    display: none;
   }
-  /* Footer */
+  .tes {
+    display: block;
+  }
+  body {
+    min-height: 84.5vh;
+  }
 
+  .featherr {
+    font-size: 2rem;
+  }
+  .feather {
+    width: 10px;
+    height: 10px;
+  }
   #footer #nav-logo img {
     width: 100px;
   }
@@ -198,13 +223,25 @@ footer {
   html {
     font-size: 50%;
   }
+  #keranjang {
+    display: none;
+  }
   .tes {
     display: block;
   }
   body {
-    min-height: 91vh;
+    min-height: 86.2vh;
+  }
+
+  .featherr {
+    font-size: 2rem;
+  }
+  .feather {
+    width: 10px;
+    height: 10px;
   }
   #footer #nav-logo img {
+    margin-top: 20px;
     width: 75px;
   }
 }

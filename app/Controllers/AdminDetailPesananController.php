@@ -54,7 +54,7 @@ class AdminDetailPesananController extends BaseController
             }
         }
         $keran->delete_semua_keranjang();
-        session()->setFlashdata('notif', 'Data pelanggan atas nama ' . $nama_pel . ' berhasil diubah');
+        session()->setFlashdata('notif', 'Data pelanggan atas nama <strong>' . $nama_pel . '</strong> berhasil diubah');
         return redirect('admin');
     }
     public function delete_detail_pesanan($id)
@@ -80,7 +80,7 @@ class AdminDetailPesananController extends BaseController
         ];
         $pes->update_pesanan($id_pesan, $array);
         $detail_pes->delete_detail_pesananByIdDetail($id);
-        session()->setFlashdata('notif', 'Produk ' . $nama . ' berhasil dihapus dari pesanan');
+        session()->setFlashdata('notif', 'Produk <strong>' . $nama . '</strong> berhasil dihapus dari pesanan');
         return redirect()->back();
     }
 }

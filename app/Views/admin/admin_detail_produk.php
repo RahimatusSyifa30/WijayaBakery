@@ -22,7 +22,7 @@
     <?php
     $rootPath = ROOTPATH;
     $filePath = $rootPath . 'app\Views';
-    include($filePath . '\layout\header.php') ?>
+    include($filePath . '\layout\admin_header.php') ?>
     <!-- Header End -->
     <main>
         <?php
@@ -32,7 +32,7 @@
             <div class="container p-4 mt-md-4 mt-sm-0 bg-warning bg-opacity-25 rounded-4">
                 <div class="row justify-content-center">
                     <div class="col-md-5 col-xs-12 text-center">
-                        <img src="<?= base_url('image/roti/' . $pro[0]['gambar_produk']) ?>" class="img " alt="..." />
+                        <img src="<?= base_url('image/roti/' . $pro[0]['gambar_produk']) ?>" class="img" alt="..." />
 
                     </div>
                     <div class="col-md-6 col-xs-12  align-self-">

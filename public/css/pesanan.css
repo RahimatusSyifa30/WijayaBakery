@@ -9,7 +9,9 @@
   z-index: 9999;
   box-shadow: 0 14px 35px rgba(224, 131, 39, 0.25),
     0 10px 10px rgba(224, 131, 39, 0.22);
+  width: 60%;
 }
+
 .form-control {
   border: none;
   padding-left: 32px;
@@ -18,4 +20,9 @@
 .form-control:focus {
   border: none;
   box-shadow: none;
+}
+@media (max-width: 768px) {
+  .detail-belum {
+    top: 20%;
+  }
 }

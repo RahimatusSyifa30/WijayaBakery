@@ -41,7 +41,7 @@
             <p>NB : Disarankan seperti gambar Palm Roll Ukuran 720x1280 pixel!</p>
             <input type="text" name="gambar" class="visually-hidden" value="<?= $kel_produk1['gambar_kel'] ?>">
             <div class="text-center pt-3">
-              <img style="width:200px" id="gambar_pro" src="<?= base_url('image/bg/jenis_produk/') ?><?= $kel_produk1['gambar_kel'] ?>" alt="">
+              <img id="gambar_pro" src="<?= base_url('image/bg/jenis_produk/') ?><?= $kel_produk1['gambar_kel'] ?>" alt="">
             </div>
           </div>
         </div>
@@ -52,7 +52,6 @@
       </div>
     </form>
   </main>
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
 
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>

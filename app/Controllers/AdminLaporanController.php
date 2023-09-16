@@ -70,7 +70,7 @@ class AdminLaporanController extends BaseController
             $data['untung_kotor'] = "Rp " . $untung_kotor[0]->unkot;
             $untung_ber = $model->sum_untung_bersih_laporan_filter($start, $end, $cari);
             $data['unber'] = "Rp " . $untung_ber[0]->unbers;
-            session()->setFlashdata('notif', "Menampilkan tanggal dari " . $awal . " sampai " . $akhir);
+            session()->setFlashdata('notif', "Menampilkan tanggal dari <strong>" . $awal . "</strong> sampai <strong>" . $akhir . "</strong>");
         } else {
             session()->setFlashdata('error', "Tanggal tidak boleh kosong");
             return redirect()->back();

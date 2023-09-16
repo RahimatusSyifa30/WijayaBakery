@@ -43,9 +43,9 @@ class AdminRiwayatController extends BaseController
         setlocale(LC_TIME, 'IND');
         helper('form');
         $keran = new KeranjangModel();
-        $data['jumlah_item'] = $keran->getTotalBarang();
         $pes = new PesananModel();
         $detail_pes = new DetailPesananModel();
+        // $data['jumlah_item'] = $keran->getTotalBarang();
         $start = $this->request->getGet('start');
         $end = $this->request->getGet('end');
         if ($start > $end) {
@@ -61,6 +61,7 @@ class AdminRiwayatController extends BaseController
             $tes = "tanggal BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
             $model->select('*')->where($tes)->paginate(10, 'pesanan');
             $data = [
+                'jumlah_item' => $keran->getTotalBarang(),
                 'pager' => $model->pager,
                 'pesanan_selesai' => $pes->filter_pesanan($start, $end, $cari),
             ];
@@ -71,12 +72,12 @@ class AdminRiwayatController extends BaseController
             }
             $awal = strftime('%d %B %Y', strtotime($start));
             $akhir = strftime('%d %B %Y', strtotime($end));
-            session()->setFlashdata('notif', "Menampilkan tanggal dari " . $awal . " sampai " . $akhir);
+            session()->setFlashdata('notif', "Menampilkan tanggal dari <strong>" . $awal . "</strong> sampai <strong>" . $akhir . "</strong>");
         } else {
             session()->setFlashdata('error', "Tanggal tidak boleh kosong");
             return redirect()->back();
         }
-        return view('admin/admin_riwayat_trs', $data);
+        echo view('admin/admin_riwayat_trs', $data);
     }
     public function reset_tanggal()
     {

@@ -105,7 +105,7 @@ class AdminPesananController extends BaseController
             $url = $kontak->notif_dari_customer_WA($nama_pel, $tanggal);
 
             $keran->delete_semua_keranjang();
-            session()->setFlashdata('notif', 'Hai, ' . $nama_pel . '!!! Pesanan berhasil dibuat. Silahkan menuju ke Wijaya Bakery untuk konfirmasi.');
+            session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan berhasil dibuat. Silahkan menuju ke Wijaya Bakery untuk konfirmasi.');
             return redirect('admin')->to($url);
         }
     }
@@ -145,7 +145,7 @@ class AdminPesananController extends BaseController
             ];
             $pes->update_pesanan($id, $array);
 
-            session()->setFlashdata('notif', 'Data pelanggan atas nama ' . $nama_pel . ' berhasil diubah');
+            session()->setFlashdata('notif', 'Data pelanggan atas nama <strong>' . $nama_pel . '</strong> berhasil diubah');
             return redirect('admin');
         }
 
@@ -159,7 +159,7 @@ class AdminPesananController extends BaseController
         $nama = $data['nama_pelanggan'];
         $detail_pes->delete_detail_pesananByIdPesanan($id);
         $pes->delete_pesanan($id);
-        session()->setFlashdata('notif', 'Pesanan atas nama ' . $nama . ' berhasil dihapus');
+        session()->setFlashdata('notif', 'Pesanan atas nama <strong>' . $nama . '</strong> berhasil dihapus');
         return redirect('admin');
     }
     public function delete_banyak_pesanan()
@@ -188,7 +188,7 @@ class AdminPesananController extends BaseController
         $tanggal = $data['tanggal'];
         $pesan->pesanan_diproses($id);
         $url = $kontak->pesanan_diproses_WA($no_pel, $nama_pel, $tanggal);
-        session()->setFlashdata('notif', 'Hai, ' . $nama_pel . '!!! Pesanan sedang diproses.');
+        session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan sedang diproses.');
         return redirect('admin')->to($url);
     }
     public function pesanan_selesai($id)
@@ -214,7 +214,7 @@ class AdminPesananController extends BaseController
             'keuntungan_bersih' => $untung_bersih,
         ];
         $laporan->insert_laporan($array);
-        session()->setFlashdata('notif', 'Hai, ' . $nama_pel . '!!! Pesanan sudah selesai. Selamat Menikmati');
+        session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan sudah selesai. Selamat Menikmati');
         return redirect('admin')->to($url);
     }
 }

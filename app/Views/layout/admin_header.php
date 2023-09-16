@@ -15,8 +15,8 @@
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <a href="<?= base_url('admin/keranjang'); ?>" class="btn fs-5 featherr position-relative" title="Keranjang">
-            <i data-feather="shopping-cart"></i>
+          <a href="<?= base_url('admin/keranjang'); ?>" class="btn fs-5 position-relative" title="Keranjang">
+            <i class="" data-feather="shopping-cart"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               <?= $jumlah_item ?>
             </span>
@@ -43,13 +43,12 @@
             <li class="nav-item text-center">
               <form action="<?= base_url('admin/logout') ?>" method="get">
                 <button type="submit" class="btn btn-danger btn-lg">Log Out</button>
-                <!-- <a href="<?= base_url('') ?>" class="nav-link bg-danger btn btnhover fs-5" title="Keluar">Keluar</a> -->
               </form>
             </li>
 
             <li class="nav-item mt-lg-2 mt-sm-5">
               <a href="<?= base_url('admin/keranjang'); ?>" class="btn btnhover fs-5 featherr position-relative" title="Keranjang " id="keranjang">
-                <i data-feather="shopping-cart"></i>
+                <i class="" data-feather="shopping-cart"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   <?= $jumlah_item ?>
                 </span>

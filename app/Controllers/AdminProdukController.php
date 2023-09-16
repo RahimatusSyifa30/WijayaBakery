@@ -57,7 +57,7 @@ class AdminProdukController extends BaseController
                 'gambar_produk' => $fileName
             ];
             $produk->insert_Produk($array);
-            session()->setFlashdata('notif', 'Produk ' . $nama_pro . ' Berhasil Ditambah');
+            session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Ditambah');
             return redirect('admin/produk');
         }
         if (session()->get('isLoggedIn')) {
@@ -100,7 +100,7 @@ class AdminProdukController extends BaseController
                     'gambar_produk' => $fileName
                 ];
                 $produk->update_Produk($id, $array);
-                session()->setFlashdata('notif', 'Produk ' . $nama_pro . ' Berhasil Diubah');
+                session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
                 return redirect('admin/produk');
             } else {
                 $array = [
@@ -112,12 +112,10 @@ class AdminProdukController extends BaseController
                     'informasi_produk' => $this->request->getPost('info_pro'),
                 ];
                 $produk->update_Produk($id, $array);
-                session()->setFlashdata('notif', 'Produk ' . $nama_pro . ' Berhasil Diubah');
+                session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
                 return redirect('admin/produk');
             }
         }
-
-
         echo view('admin/admin_edit_produk', $data);
     }
     public function detail_produk($nama)
@@ -132,7 +130,7 @@ class AdminProdukController extends BaseController
             'pro' => $produk->getProdukByName($tes),
             'jumlah_item' => $keran->getTotalBarang()
         ];
-        echo view('detail_produk', $data);
+        echo view('admin/admin_detail_produk', $data);
     }
     public function delete_produk($id)
     {
@@ -142,7 +140,7 @@ class AdminProdukController extends BaseController
         $gam = $data['gambar_produk'];
         unlink('image/roti/' . $gam);
         $produk->delete_Produk($id);
-        session()->setFlashdata('notif', 'Produk ' . $nama . ' Berhasil Dihapus');
+        session()->setFlashdata('notif', 'Produk <strong>' . $nama . '</strong> Berhasil Dihapus');
         return redirect('admin/produk');
     }
 
@@ -165,7 +163,7 @@ class AdminProdukController extends BaseController
                 'gambar_kel' => $fileName
             ];
             $kel_pro->insert_KelProduk($array);
-            session()->setFlashdata('notif', 'Kelompok Produk ' . $nama_kel . ' Berhasil Ditambah');
+            session()->setFlashdata('notif', 'Kelompok Produk <strong>' . $nama_kel . '</strong> Berhasil Ditambah');
             return redirect('admin/produk');
         }
         echo view('admin/produk');
@@ -201,10 +199,9 @@ class AdminProdukController extends BaseController
                 ];
                 $kel_pro->update_KelProduk($id, $array);
             }
-            session()->setFlashdata('notif', 'Kelompok Produk ' . $nama_kel . ' Berhasil Diedit');
+            session()->setFlashdata('notif', 'Kelompok Produk <strong>' . $nama_kel . '</strong> Berhasil Diedit');
             return redirect('admin/produk');
         }
-
         echo view('admin/admin_edit_kel_produk', $data);
     }
     public function delete_kel_produk($id)
@@ -215,7 +212,7 @@ class AdminProdukController extends BaseController
         $gam = $data['gambar_kel'];
         unlink('image/bg/jenis_produk/' . $gam);
         $kel_pro->delete_KelProduk($id);
-        session()->setFlashdata('notif', 'Kelompok Produk ' . $nama . ' Berhasil Dihapus');
+        session()->setFlashdata('notif', 'Kelompok Produk <strong>' . $nama . '</strong> Berhasil Dihapus');
         return redirect('admin/produk');
     }
 }

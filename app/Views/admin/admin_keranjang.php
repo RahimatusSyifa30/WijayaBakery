@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/cart.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <?php include($filePath . '\layout\alert.php') ?>
     <section class="">
       <?php if (empty($jumlah_item)) { ?>
-        <div class="container-fluid mt-4">
+        <div class="container-fluid con">
           <div class="row">
             <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
               <img src="<?= base_url('image/logo/logo_cart_empty.png') ?>" alt="" class="img-fluid mb-4 rounded-2 cart-empty" id="logo_cart">
@@ -47,7 +49,7 @@
               <div class="card shopping-cart" style="border-radius: 15px;">
                 <div class="card-body text-black">
                   <div class="row">
-                    <div class="col-lg-6 px-5 py-4">
+                    <div class="col-lg-6 col-md-8 px-5 py-4 m-auto">
                       <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke">Produk Anda</h3>
                       <?php
                       $i = 0;
@@ -123,7 +125,6 @@
         </div>
       <?php } ?>
     </section>
-    <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

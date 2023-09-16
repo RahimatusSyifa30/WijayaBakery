@@ -1,3 +1,5 @@
+<button onclick="topFunction()" id="btntotop" class="btn bg-btnhover-reverse" title="Go to top"><i data-feather="chevron-up"></i></button>
+
 <footer>
   <div class="pt-2 mt-4 justify-content-between" id="footer">
     <!-- Logo Footer Start -->

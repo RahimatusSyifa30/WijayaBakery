@@ -23,7 +23,7 @@ detail = ($id) => {
 };
 /////
 detail_sel = ($id) => {
-  const con = document.querySelector(".sel");
+  const con = document.querySelector(".detail-proses");
   const dataTable = document.getElementById("detail_sel" + $id);
   const closeButtons = document.querySelectorAll(".btn-close");
   // Toggle tampilan tabel

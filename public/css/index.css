@@ -39,34 +39,16 @@ section {
   border-radius: 0.5rem;
   box-shadow: 1px 1px 3px rgba(247, 200, 61, 0.6);
 }
-
+#gambar_pro {
+  width: 200px;
+}
 @media (max-width: 768px) {
-  /* Content */
-  /* Profil WIjaya Bakery */
-  #slidetoko #carousel {
-    width: 100%;
-    height: auto;
-  }
-  #slidetoko #carousel img {
-    height: 100%;
-    object-fit: fill;
-  }
-  .bg-slide {
-    max-width: 100%;
-    z-index: -2;
-    position: absolute;
-  }
-  /* Best Seller */
-  .swiper-slide .card {
-    width: 100%;
+  #gambar_pro {
+    width: 150px;
   }
 }
 @media (max-width: 450px) {
-  #slidetoko #carousel {
-    width: 100%;
-    height: auto;
-  }
-  .swiper-slide .card {
-    width: 100%;
+  #gambar_pro {
+    width: 100px;
   }
 }

@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/index.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/produk.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('assets/izitoast/css/iziToast.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('assets/izitoast/css/iziToast.min.css') ?>" />
-
+  <link rel="stylesheet" href="<?= base_url('css/card-produk-admin.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
 </head>
 
 <body>
@@ -49,9 +48,7 @@
             <div>
               <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn bg-btnhover-reverse " onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
             </div>
-            <div>
-              <button class="btn mt-2 bg-btnhover-reverse  filter-btn  mb-3 border-0" id="basic-addon2" data-kategori="all" onclick="alert('Menampilkan Semua Jenis Produk'); ">Reset Filter</button>
-            </div>
+
           </div>
           <div class="col-xs-10 col-md-10">
             <div class="swiper mySwiper p-4 justify-content-center">
@@ -59,22 +56,22 @@
                 <?php foreach ($kel_produk as $jen_pro) : ?>
                   <div class="swiper-slide">
                     <div class="card card-jenis-pro border-warning">
-                      <button class="filter-btn btn" data-kategori="<?= str_replace(" ", "", $jen_pro['id_kel']) ?>" onclick="alert('Jenis Produk Terpilih')" style="z-index: 50;">
+                      <button class="filter-btn btn" data-kategori="<?= str_replace(" ", "", $jen_pro['id_kel']) ?>" onclick="iziinfo('Menampilkan filter Produk  <?= $jen_pro['nama_kel'] ?> ')" style="z-index: 50;">
 
                         <img src="<?= base_url('image/bg/jenis_produk/') ?><?= $jen_pro["gambar_kel"] ?>" class="card-img-top" alt="..." />
 
-                        <div class="card-body ">
-                          <h2 class="card-title"><?= $jen_pro["nama_kel"] ?></h2>
-                          <div class="btn-group position-relative d-flex" role="group" style="z-index: 100;">
-                            <a href="<?= base_url('admin/ubah_kel_produk/' . $jen_pro['id_kel']) ?>" class="btn bg-btnhover-reverse"><i data-feather="edit" class="small-w"></i> Edit</a>
-                            <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action','<?= base_url('admin/delete_kel_produk/' . $jen_pro['id_kel']) ?>');" data-bs-toggle="modal" data-bs-target="#modalDelete" class="btn btn-danger">
-                              <i data-feather="trash-2" class="small-w"></i> Hapus
-                            </a>
-                          </div>
+                      </button>
+                      <div class="card-body text-center">
+                        <h2 class="card-title"><?= $jen_pro["nama_kel"] ?></h2>
+                        <div class="btn-group position-relative d-flex" role="group" style="z-index: 100;">
+                          <a href="<?= base_url('admin/ubah_kel_produk/' . $jen_pro['id_kel']) ?>" class="btn bg-btnhover-reverse"><i data-feather="edit" class="small-w"></i> Edit</a>
+                          <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action','<?= base_url('admin/delete_kel_produk/' . $jen_pro['id_kel']) ?>');" data-bs-toggle="modal" data-bs-target="#modalDelete" class="btn btn-danger">
+                            <i data-feather="trash-2" class="small-w"></i> Hapus
+                          </a>
                         </div>
-                        <button class="bg-btnhover-reverse btn round">
-                          Lihat Produk
-                        </button>
+                      </div>
+                      <button class="bg-btnhover-reverse btn round filter-btn" data-kategori="<?= str_replace(" ", "", $jen_pro['id_kel']) ?>" onclick="iziinfo('Menampilkan filter Produk  <?= $jen_pro['nama_kel'] ?> ')">
+                        Lihat Produk
                       </button>
                     </div>
                   </div>
@@ -108,7 +105,7 @@
         <div class="mt-4 d-flex flex-fill flex-wrap justify-content-center rounded-2" id="SelProduk">
           <?php foreach ($produk as $pro) : ?>
             <!-- <button> -->
-            <div class="produk " data-kategori="<?= str_replace(" ", "", $pro['jenis_produk']) ?>" data-stok=<?= $pro['stok_produk'] ?>>
+            <div class="produk p-3" data-kategori="<?= str_replace(" ", "", $pro['jenis_produk']) ?>" data-stok=<?= $pro['stok_produk'] ?>>
               <?php
               echo form_open('admin/tambah_keranjang');
               echo form_hidden('id', $pro['id_produk']);
@@ -119,7 +116,7 @@
               echo form_hidden('gambar', $pro['gambar_produk']);
               ?>
               <div class="card card-pro border-warning">
-                <a href="<?= base_url('detail_produk/' . str_replace(" ", "-", $pro['nama_produk'])) ?>">
+                <a href="<?= base_url('admin/detail_produk/' . str_replace(" ", "-", $pro['nama_produk'])) ?>">
                   <img src="<?= base_url('image/roti/') ?><?= $pro["gambar_produk"] ?>" class="card-img-top" alt="..." />
                 </a>
                 <div class="card-body text-center">
@@ -130,8 +127,6 @@
                     <h4>|</h4>
                     <h4 class="">Rp. <?= $pro["harga_produk"] ?></h4>
                   </div>
-                  <!-- <h4 class="text-dark">Rp. <?= $pro["harga_produk"] ?></h4> -->
-                  <!-- <h4 class="text-dark">Stok : <?= $pro["stok_produk"] ?></h4> -->
                   <div class="btn-group align-self-end mt-2">
                     <a href="<?= base_url('admin/ubah_produk/' . $pro["id_produk"]) ?>" class="btn bg-btnhover-reverse">
                       <i data-feather="edit" class="small-w"></i> Edit
@@ -169,11 +164,11 @@
               <label for="nama_kel_pro">Nama Jenis Produk</label>
               <input type="text" name="nama_kel_pro" id="nama_kel_pro" class="bg-secondary bg-opacity-10 form-control" placeholder="Masukkan Nama Produk" required>
               <label for="gambar_pro">Gambar Produk</label>
-              <input type="file" name="gambar_kel_pro" id="gambar_pro" class="bg-secondary bg-opacity-10 form-control" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk" required>
+              <input type="file" name="gambar_kel_pro" id="gambar_pro" class="bg-secondary bg-opacity-10 form-control" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk" required style="width: 100%;">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Selesai</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+            <button type="submit" class="btn bg-btnhover">Selesai</button>
           </div>
           </form>
         </div>
@@ -210,7 +205,7 @@
           </div>
           <div class="modal-footer">
             <form id="formDelete" method="post">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kembali</button>
+              <button type="button" class="btn bg-btnhover" data-bs-dismiss="modal">Kembali</button>
               <button type="submit" class="btn btn-danger">Hapus</button>
             </form>
           </div>
@@ -223,7 +218,6 @@
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>
   <!-- Footer End -->
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
   <!-- Script Swiper -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
@@ -261,8 +255,8 @@
   <script src="<?= base_url('assets/js/onkeyup.js') ?>"></script>
   <script src="<?= base_url('assets/js/script.js') ?>" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-  <script src="<?= base_url('assets/izitoast/js/iziToast.js') ?>" type="text/javascript"></script>
-  <script src="<?= base_url('assets/izitoast/js/iziToast.min.js') ?>" type="text/javascript"></script>
+  <!-- <script src="<?= base_url('assets/izi/js/iziToast.js') ?>" type="text/javascript"></script> -->
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
 
 </body>
 

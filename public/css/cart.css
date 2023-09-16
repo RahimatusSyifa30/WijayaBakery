@@ -1,14 +1,21 @@
 #logo_cart {
   width: 150px;
 }
+.con {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0%, 50%);
+}
 .foto-roti {
   width: 100px;
+  border-radius: 0.5rem;
 }
-@media (min-width: 1025px) {
+/* @media (min-width: 1025px) {
   .h-custom {
     height: 100vh !important;
   }
-}
+} */
 
 .number-input input[type="number"] {
   -webkit-appearance: textfield;
@@ -126,4 +133,28 @@
 .shopping-cart .def-number-input.number-input button.plus:before,
 .shopping-cart .def-number-input.number-input button.plus:after {
   background-color: var(--coklat);
+}
+@media (max-width: 1024px) {
+  .foto-roti {
+    width: 100px;
+  }
+  #logo_cart {
+    width: 150px;
+  }
+}
+@media (max-width: 768px) {
+  .foto-roti {
+    width: 75px;
+  }
+  #logo_cart {
+    width: 75px;
+  }
+}
+@media (max-width: 450px) {
+  .foto-roti {
+    width: 50px;
+  }
+  #logo_cart {
+    width: 50px;
+  }
 }

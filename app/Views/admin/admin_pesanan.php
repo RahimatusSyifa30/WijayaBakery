@@ -13,6 +13,8 @@
   <!-- Bootstrap End -->
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>">
   <link rel="stylesheet" href="<?= base_url('css/pesanan.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
+
 </head>
 
 <body>
@@ -26,7 +28,7 @@
     <?php include($filePath . '\layout\alert.php') ?>
     <!-- Pesanan Masuk -->
     <div class="container mt-md-3 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
-      <h1 class="bakery stroke">Pesanan Masuk</h1>
+      <h1 class="bakery stroke p-2">Pesanan Masuk</h1>
       <?php if (empty($pesanan_belum)) { ?>
         <div class="container-fluid mt-4">
           <div class="row ">
@@ -47,13 +49,13 @@
               <tr class="bg-light border-bottom border-warning">
                 <td scope="col" width="3%"><input class="form-check-input" type="checkbox" id="select-all-belum"></td>
                 <th scope="col" width="15%">Nama Pelanggan</th>
-                <th scope="col" width="15%">Tanggal</th>
+                <th scope="col" width="20%">Tanggal</th>
                 <th scope="col" width="20%">No HP</th>
-                <th scope="col" width="10%">Status</th>
-                <th scope="col" width="5%"></th>
+                <th scope="col" width="5%">Status</th>
 
                 <th scope="col" class="text-end" width="15%"><span>Total Harga</span></th>
                 <th scope="col" width="10%"></th>
+                <th scope="col" width="5%"></th>
                 <th scope="col" width="5%"></th>
               </tr>
             </thead>
@@ -63,13 +65,13 @@
               foreach ($pesanan_belum as $pesan) : ?>
                 <tr>
                   <td scope="row"><input class="form-check-input order-checkbox-belum" type="checkbox" name="id_pesanan[]" value="<?= $pesan['id_pesanan'] ?>"></td>
-                  <td><?= $pesan['nama_pelanggan'] ?></td>
+                  <td class="fw-bolder"><?= $pesan['nama_pelanggan'] ?></td>
                   <td><?= $pesan['tanggal'] ?></td>
                   <td><a href="https://wa.me/62<?= $pesan['no_hp_pelanggan'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan['no_hp_pelanggan'] ?></a></td>
                   <td><span class="fw-bolder"><?= $pesan['status'] ?></span></td>
-                  <td><a href="<?= base_url('admin/ubah_pesanan/' . $pesan['id_pesanan']) ?>"><i data-feather="edit" class="featherr"></i></a></td>
                   <td class="text-end"><span class="fw-bolder">Rp <?= $pesan['total_harga'] ?></span></td>
                   <td><button type="button" class="btn bg-btnhover trigger" onclick="detail(<?= $counter ?>)" title="Tampilkan Detail Pesanan">Detail</button></td>
+                  <td><a href="<?= base_url('admin/ubah_pesanan/' . $pesan['id_pesanan']) ?>"><i data-feather="edit" class="featherr"></i></a></td>
                   <td><a href="<?= base_url('admin/pesanan_diproses/' . $pesan['id_pesanan']) ?>"><i data-feather="check-circle" class="featherr"></i></a></td>
                 </tr>
               <?php $counter++;
@@ -127,7 +129,7 @@
 
   <!-- Pesanan Diproses -->
   <div class="container mt-5 p-4 text-center bg-warning bg-opacity-25 rounded-4">
-    <h1 class="bakery stroke">Pesanan Diproses</h1>
+    <h1 class="bakery stroke p-2">Pesanan Diproses</h1>
     <?php if (empty($pesanan_diproses)) { ?>
       <div class="container-fluid mt-4">
         <div class="row ">
@@ -162,7 +164,7 @@
             foreach ($pesanan_diproses as $pesan_sel) : ?>
               <tr>
                 <td scope="row"><input class="form-check-input order-checkbox-sel" type="checkbox" name="id_pesanan[]" value="<?= $pesan_sel['id_pesanan'] ?>"></td>
-                <td><?= $pesan_sel['nama_pelanggan'] ?></td>
+                <td class="fw-bolder"><?= $pesan_sel['nama_pelanggan'] ?></td>
                 <td><?= $pesan_sel['tanggal'] ?></td>
                 <td><a href="https://wa.me/62<?= $pesan_sel['no_hp_pelanggan'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan_sel['no_hp_pelanggan'] ?></a></td>
                 <td><span class="fw-bolder"><?= $pesan_sel['status'] ?></span></td>
@@ -223,7 +225,6 @@
 </div>
 <!-- Detail Pesanan End -->
   </main>
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>
   <!-- Footer End -->
@@ -234,6 +235,7 @@
   <script src="<?= base_url('assets/js/script.js') ?>"></script>
   <script src="<?= base_url('assets/js/onkeyup.js') ?>"></script>
   <script src="<?= base_url('assets/js/pesanan.js') ?>"></script>
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
 </body>
 
 </html>

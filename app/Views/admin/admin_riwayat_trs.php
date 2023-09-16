@@ -13,6 +13,8 @@
   <!-- Bootstrap End -->
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>">
   <link rel="stylesheet" href="<?= base_url('css/pesanan.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,15 +30,38 @@
       <h1 class="bakery stroke">Riwayat Transaksi</h1>
       <?php if (empty($pesanan_selesai)) { ?>
         <div class="container-fluid mt-4">
+          <div class="row g-3 mb-3 mt-3 justify-content-center">
+            <form action="<?= base_url('admin/filter_riwayat'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
+              <div>
+                <label for="start">Periode :</label>
+              </div>
+              <div>
+                <input type="date" name="start" id="start" class="form-control">
+              </div>
+              <div>
+                <label for="floatingInput">-</label>
+              </div>
+              <div>
+                <input type="date" name="end" id="floatingInput" class="form-control">
+              </div>
+              <div>
+                <button type="submit" class="btn bg-btnhover">Filter</button>
+              </div>
+              <div>
+                <a href="<?= base_url('admin/reset_tanggal_riwayat') ?>" class="btn bg-btnhover">Reset</a>
+              </div>
+            </form>
+          </div>
           <div class="row ">
             <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center bg-light p-4 rounded-4">
-              <h2 class="bakery">Belum ada pesanan.😁</h2>
+              <h2 class="bakery">Tidak ada pesanan.😁</h2>
+
             </div>
           </div>
         </div>
       <?php } else { ?>
         <div class="row g-3 mb-3 mt-3 justify-content-center">
-          <form action="<?= base_url('admin/filter_riwayat'); ?>" method="get" class="d-flex flex-row col-md-6 justify-content-between">
+          <form action="<?= base_url('admin/filter_riwayat'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
             <div>
               <label for="start">Periode :</label>
             </div>
@@ -58,13 +83,15 @@
           </form>
         </div>
         <div class="row justify-content-center">
-          <form action="" method=" post" class="col-md-6 col-xs-12">
-            <div class=" input-group mt-2">
-              <input type="text" name="cari" id="cari" class="form-control mb-3 bg-white " placeholder="Cari pelanggan...">
-              <div class="input-group-append">
-                <button type="submit" class="btn bg-btnhover" id="button-addon2">Cari</button>
+          <div class="col-md-12 col-xs-12">
+            <form action="" method="post">
+              <div class=" input-group mt-2 mb-3">
+                <input type="text" name="cari" id="carites" class="form-control mb-3 bg-white " placeholder="Cari pelanggan...">
+                <div class="input-group-append">
+                  <button type="submit" class="btn bg-btnhover" id="button-addon2">Cari</button>
+                </div>
               </div>
-            </div>
+          </div>
           </form>
         </div>
         <div class="">
@@ -84,7 +111,7 @@
               $counter = 0;
               foreach ($pesanan_selesai as $pesan) : ?>
                 <tr>
-                  <td><?= $pesan['nama_pelanggan'] ?></td>
+                  <td class="fw-bolder"><?= $pesan['nama_pelanggan'] ?></td>
                   <td><?= $pesan['tanggal'] ?></td>
                   <td><a href="https://wa.me/62<?= $pesan['no_hp_pelanggan'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan['no_hp_pelanggan'] ?></a></td>
                   <td><span class="fw-bolder"><?= $pesan['status'] ?></span></td>
@@ -143,7 +170,6 @@
     </div>
     <!-- Detail Pesanan End -->
   </main>
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>
   <!-- Footer End -->

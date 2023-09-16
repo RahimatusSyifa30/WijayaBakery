@@ -34,17 +34,31 @@
   margin: auto;
   border: none;
 }
-
-/* Setting card untuk semuanya */
-.card-pro {
-  width: 100%;
-  margin: 5px;
-  text-align: center;
+.card-jenis-pro {
+  /* width: 100%; */
+  /* min-height: 580px; */
+  /* text-align: center; */
   box-sizing: border-box;
   border-radius: 20px;
   /* padding-top: 1px; */
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background: rgb(247, 247, 246);
+}
+.card-jenis-pro:hover {
+  transition: 0.4s;
+  box-shadow: 0 3px 6px rgba(183, 38, 38, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translate(0px, 08px);
+}
+.card-jenis-pro .card-img-top {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+  text-align: center;
+}
+/* Setting card untuk semuanya */
+.produk {
+  width: calc(100% / 4);
 }
 .card-pro:hover {
   transition: 0.4s;
@@ -58,17 +72,19 @@
   object-fit: cover;
   text-align: center;
 }
+.title-height {
+  height: 75px;
+}
 /*  */
 /* Setting flex semua produk */
-.produk {
-  width: calc(100% / 4);
-}
+
 /* STOK ABIS */
 .stok-abis {
   opacity: 0.7;
   position: relative;
 }
 .stok-abis::after {
+  text-align: center;
   content: "Stok Habis";
   position: absolute;
   top: 50%;
@@ -96,8 +112,69 @@
 .buttonCon .filter-btn {
   width: 100%;
 }
-@media (max-width: 400px) {
+
+@media (max-width: 1024px) {
   .produk {
-    width: calc(100%);
+    width: calc(100% / 4);
+  }
+  .font-lg {
+    font-size: 50px;
+  }
+  .card-jenis-pro .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .card-pro .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .title-height {
+    height: 65px;
+  }
+}
+@media (max-width: 768px) {
+  .produk {
+    width: calc(100% / 4);
+  }
+  .font-lg {
+    font-size: 50px;
+  }
+  .card-jenis-pro .card-img-top {
+    height: 150px;
+    object-fit: cover;
+  }
+  .card-pro .card-img-top {
+    height: 150px;
+    object-fit: cover;
+  }
+  .stok-abis::after {
+    padding: 6px 12px;
+    font-size: 15px;
+  }
+  .title-height {
+    height: 50px;
+  }
+}
+@media (max-width: 450px) {
+  .produk {
+    width: calc(100% / 2);
+  }
+  .font-lg {
+    font-size: 50px;
+  }
+  .card-jenis-pro .card-img-top {
+    height: 150px;
+    object-fit: cover;
+  }
+  .card-pro .card-img-top {
+    height: 150px;
+    object-fit: cover;
+  }
+  .title-height {
+    height: 30px;
+  }
+  .stok-abis::after {
+    padding: 4px 8px;
+    font-size: 10px;
   }
 }

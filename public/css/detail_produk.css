@@ -1,0 +1,11 @@
+.con {
+  width: 1200px;
+  margin: auto;
+}
+hr {
+  border-width: 3px;
+}
+.img {
+  width: 300px;
+  border-radius: 2rem;
+}

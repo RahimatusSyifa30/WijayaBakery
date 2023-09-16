@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/cart.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,8 +30,8 @@
     <?php include($filePath . '\layout\alert.php') ?>
     <section class="">
       <?php if (empty($jumlah_item)) { ?>
-        <div class="container-fluid mt-4">
-          <div class="row">
+        <div class="container-fluid  con">
+          <div class="row ">
             <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
               <img src="<?= base_url('image/logo/logo_cart_empty.png') ?>" alt="" class="img-fluid mb-4" id="logo_cart">
               <h2 class="bakery">Keranjang belanja anda kosong.</h2>
@@ -41,19 +43,19 @@
           </div>
         </div>
       <?php } else { ?>
-        <div class="container h-100 py-5">
+        <div class="container h-100 py-md-4 py-sm-0">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
               <div class="card shopping-cart" style="border-radius: 15px;">
                 <div class="card-body text-black">
-                  <div class="row">
-                    <div class="col-lg-6 px-5 py-4">
+                  <div class="row ">
+                    <div class="col-lg-6 col-md-8 px-5 py-4 m-auto">
                       <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke">Produk Anda</h3>
                       <?php
-                      $i = 1;
+                      $i = 0;
                       foreach ($isi_ker as $keranjang) : ?>
                         <div class="d-flex align-items-center mb-5">
-                          <div class="flex-shrink-0">
+                          <div class="flex-shrink-0 me-3">
                             <img src="<?= base_url('image/roti/') . $keranjang['options']['gambar'] ?>" class="img-fluid foto-roti" alt="Generic placeholder image">
                           </div>
                           <div class="flex-grow-1 ms-3">
@@ -63,25 +65,27 @@
                             <div class="d-flex align-items-center">
                               <p class="fw-bold mb-0 me-5 pe-3">Rp <?= $keranjang['price'] ?></p>
                               <div class="def-number-input number-input safari_only">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus bakery"></button>
-                                <input class="quantity fw-bold text-black" min="0" max=<?= $keranjang['options']['stok'] ?> name="qty<?= $i++ ?>" value="<?= $keranjang['qty'] ?>" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus  bakery"></button>
+                                <input class="quantity fw-bold text-black" min="0" name="qty<?= $i ?>" value="<?= $keranjang['qty'] ?>" type="number">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus bakery"></button>
                               </div>
                             </div>
                           </div>
                           <div>
-                            <a href="<?= base_url('hapus_keranjang/' . $keranjang['rowid']) ?>"><i data-feather="x" class="stroke-hover"></i></a>
+                            <a href="<?= base_url('hapus_keranjang/' . $keranjang['rowid']) ?>" title="Hapus semua isi keranjang"><i data-feather="x" class="stroke-hover"></i></a>
                           </div>
                         </div>
+                        <div class="d-flex justify-content-between px-x mb-2">
+                          <h5 class="fw-bold mb-0">Sub Total :</h5>
+                          <h5 class="fw-bold">Rp <?= $keranjang['subtotal'] ?></h5>
+                        </div>
                         <hr class="mb-4 text-warning" style="height: 2px; opacity: 1;">
-                      <?php endforeach ?>
-                      <div class="d-flex justify-content-between px-x mb-2">
-                        <p class="fw-bold">Rp <?= $keranjang['subtotal'] ?></p>
-                        <a href="<?= base_url('hapus_total_keranjang') ?>" class="btn bg-btnhover"><i data-feather="trash"></i></a>
-                      </div>
-                      <div class="d-flex justify-content-between p-2 mb-2 bg-warning bakery">
-                        <h5 class="fw-bold mb-0">Total:</h5>
+                      <?php $i++;
+                      endforeach ?>
+                      <div class="d-flex justify-content-between p-2 mb-2 bg-warning-subtle bakery rounded-2 align-items-center">
+                        <h5 class="fw-bold mb-0">Total :</h5>
                         <h5 class="fw-bold mb-0">Rp <?= $total_harga ?></h5>
+                        <a href="<?= base_url('hapus_total_keranjang') ?>" class="btn bg-btnhover-reverse"><i data-feather="trash"></i></a>
                       </div>
                       <div class="total text-center">
                         <?= form_close() ?>
@@ -119,7 +123,6 @@
       <?php } ?>
     </section>
   </main>
-  <button onclick="topFunction()" id="btntotop" title="Go to top" class=""><i data-feather="chevron-up"></i></button>
 
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>

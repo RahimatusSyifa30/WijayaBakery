@@ -13,6 +13,8 @@
   <!-- Bootstrap End -->
   <link rel="stylesheet" href="<?= base_url('css/basic.css') ?>">
   <link rel="stylesheet" href="<?= base_url('css/pesanan.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/izi/css/iziToast.min.css') ?>" />
+  <script src="<?= base_url('assets/izi/js/iziToast.min.js') ?>" type="text/javascript"></script>
 </head>
 
 <body>
@@ -29,15 +31,38 @@
 
       <?php if (empty($laporan)) { ?>
         <div class="container-fluid mt-4">
+          <div class="row g-3 mb-3 mt-3 justify-content-center">
+            <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
+              <div class="col-auto">
+                <label for="start">Periode :</label>
+              </div>
+              <div class="col-auto">
+                <input type="date" name="start" id="start" class="form-control">
+              </div>
+              <div class="col-auto">
+                <label for="floatingInput"> - </label>
+              </div>
+              <div class="col-auto">
+                <input type="date" name="end" id="floatingInput" class="form-control">
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn bg-btnhover">Filter</button>
+              </div>
+              <div class="col-auto">
+                <a href="<?= base_url("admin/reset_tanggal_laporan") ?>" type="submit" class="btn bg-btnhover">Reset</a>
+              </div>
+            </form>
+          </div>
           <div class="row ">
             <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center bg-light p-4 rounded-4">
+
               <h2 class="bakery">Tidak ada Laporan.😁</h2>
             </div>
           </div>
         </div>
       <?php } else { ?>
         <div class="row g-3 mb-3 mt-3 justify-content-center">
-          <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-md-6 justify-content-between">
+          <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
             <div class="col-auto">
               <label for="start">Periode :</label>
             </div>
@@ -59,10 +84,10 @@
           </form>
         </div>
         <div class="row justify-content-center">
-          <div class="mb-2 col-md-6 col-xs-12 ">
+          <div class="mb-2 col-md-12 col-xs-12 ">
             <div class="position-relative">
               <form action="" method="post">
-                <div class="input-group mb-3">
+                <div class="input-group mt-2 mb-3">
                   <input type="text" name="cari" id="cariBelum" class="form-control mb-3 bg-white " placeholder="Cari pelanggan...">
                   <div class="input-group-append">
                     <button type="submit" class="btn bg-btnhover" id="button-addon2">Cari</button>
@@ -88,7 +113,7 @@
               $counter = 0;
               foreach ($laporan as $pesan) : ?>
                 <tr>
-                  <td><?= $pesan['nama_pelanggan'] ?></td>
+                  <td class="fw-bolder"><?= $pesan['nama_pelanggan'] ?></td>
                   <td><?= $pesan['tanggal_laporan'] ?></td>
                   <td><?= $pesan['modal'] ?></td>
                   <td><?= $pesan['keuntungan_kotor'] ?></td>
@@ -115,7 +140,6 @@
       <?php } ?>
     </div>
   </main>
-  <button onclick="topFunction()" id="btntotop" title="Go to top"><i data-feather="chevron-up"></i></button>
   <!-- Footer Start -->
   <?php include($filePath . '\layout\footer.php') ?>
   <!-- Footer End -->
