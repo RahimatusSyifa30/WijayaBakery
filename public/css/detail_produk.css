@@ -9,3 +9,16 @@ hr {
   width: 300px;
   border-radius: 2rem;
 }
+@media (max-width: 768px) {
+  .img {
+    width: 200px;
+  }
+}
+@media (max-width: 450px) {
+  .con {
+    font-size: 80%;
+  }
+  .img {
+    width: 150px;
+  }
+}

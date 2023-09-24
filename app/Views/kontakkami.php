@@ -28,7 +28,7 @@
     <div class="container con ">
       <div class="contactInfo col-12">
         <div class="row top">
-          <div class="col-12 ">
+          <div class="col-12">
             <h2 id="" class="title-kon stroke ">Informasi Kontak</h2>
           </div>
           <div class="col-12 mt-4">
