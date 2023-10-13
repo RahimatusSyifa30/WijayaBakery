@@ -40,3 +40,27 @@ iziwarning = (message) => {
     });
   });
 };
+
+//tooltip
+const tooltipTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="tooltip"]'
+);
+const tooltipList = [...tooltipTriggerList].map(
+  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+);
+
+//Profil Akun
+profil = () => {
+  const con = document.querySelector(".conta");
+  const closeButtons = document.getElementById("btn-close");
+  // Toggle tampilan tabel
+  if (con.style.display == "none") {
+    con.style.display = "block";
+  } else {
+    con.style.display = "none";
+  }
+  closeButtons.addEventListener("click", function () {
+    // Mendapatkan elemen card terdekat
+    con.style.display = "none"; // Menyembunyikan card
+  });
+};

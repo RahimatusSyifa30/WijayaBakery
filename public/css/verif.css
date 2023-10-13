@@ -1,0 +1,23 @@
+.btn-gede {
+  width: 300px;
+  height: 150px;
+  font-size: 24px;
+  text-align: center;
+  line-height: 150px;
+}
+@media (max-width: 768px) {
+  .btn-gede {
+    width: 200px;
+    height: 75px;
+    font-size: 16px;
+    line-height: 75px;
+  }
+}
+@media (max-width: 768px) {
+  .btn-gede {
+    width: 150px;
+    height: 75px;
+    font-size: 14px;
+    line-height: 75px;
+  }
+}

@@ -11,11 +11,11 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `jenis_produk`, `stok_produk`,
 (9, 'Roti Kasur Jumbo', '1', 0, 5500, 11000, NULL, 'roti_kasur_jumbo.jpeg'),
 (10, 'Roti Mboi', '1', 0, 2500, 5000, NULL, 'roti_mboi.jpeg'),
 (11, 'Roti Pandan', '1', 0, 2500, 5000, NULL, 'roti_pandan.jpeg'),
-(12, 'Roti Sosis', '1', 0, 2500, 5000, NULL, 'roti_sosis.jpeg'),
-(13, 'Roti Tawar Premium', '1', 0,6000 , 12000, NULL, 'roti_tawar.jpg'),
-(14, 'Roti Tawar Super', '1', 0, 6000, 12000, NULL, 'roti_tawar1.jpg'),
-(15, 'Roti Tawar Super Jumbo', '1', 0, 7500, 15000, NULL, 'roti_tawar2.jpg'),
-(16, 'Donat Mini Mix 3', '4', 0, 2500, 5000, NULL, 'donat.jpg'),
-(17, 'Donat Jumbo', '4', 0, 2500, 5000, NULL, 'donat1.jpg'),
-(18, 'Brownis Coklat', '3', 0, 17500, 35000, NULL, 'brownis.jpg');
+(12, 'Roti Sosis', '1', 0, 2500, 5000, NULL, 'roti_sosis.jpeg');
+-- (13, 'Roti Tawar Premium', '1', 0,6000 , 12000, NULL, 'roti_tawar.jpg'),
+-- (14, 'Roti Tawar Super', '1', 0, 6000, 12000, NULL, 'roti_tawar1.jpg'),
+-- (15, 'Roti Tawar Super Jumbo', '1', 0, 7500, 15000, NULL, 'roti_tawar2.jpg'),
+-- (16, 'Donat Mini Mix 3', '4', 0, 2500, 5000, NULL, 'donat.jpg'),
+-- (17, 'Donat Jumbo', '4', 0, 2500, 5000, NULL, 'donat1.jpg'),
+-- (18, 'Brownis Coklat', '3', 0, 17500, 35000, NULL, 'brownis.jpg');
 -- (19, 'Brownis Keju', '1', 0, 17500, 35000, NULL, 'roti_sosis.jpeg');

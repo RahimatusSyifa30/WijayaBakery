@@ -10,19 +10,19 @@ class PesananModel extends Model
     protected $primaryKey = 'id_pesanan';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['id_pesanan', 'tanggal', 'nama_pelanggan', 'no_hp_pelanggan', 'total_modal', 'total_harga'];
+    protected $allowedFields = ['id_pesanan', 'id_user', 'tanggal', 'tanggal_pengambilan', 'nama_pelanggan', 'no_hp_pelanggan', 'total_modal', 'total_harga'];
 
     public function view_belum()
     {
-        return $this->where('status', 'Belum')->findAll();
+        return $this->join('user', 'pesanan.id_user=user.id_user')->where('status', 'Belum')->findAll();
     }
     public function view_diproses()
     {
-        return $this->where('status', 'Diproses')->findAll();
+        return $this->join('user', 'pesanan.id_user=user.id_user')->where('status', 'Diproses')->findAll();
     }
     public function view_selesai()
     {
-        return $this->where('status', 'Selesai')->findAll();
+        return $this->join('user', 'pesanan.id_user=user.id_user')->where('status', 'Selesai')->findAll();
     }
     public function view_all()
     {
@@ -46,14 +46,14 @@ class PesananModel extends Model
     }
     public function getPesananById($id)
     {
-        return $this->find($id);
+        return $this->join('user', 'pesanan.id_user=user.id_user')->where('id_pesanan', $id)->first();
     }
-    public function getPesananJoinDetail($nama, $tanggal)
+    public function getPesananJoinDetail($id, $tanggal)
     {
         $db = db_connect();
         $sql = 'SELECT kuantitas,nama_produk
         FROM detail_pesanan JOIN produk ON produk.id_produk = detail_pesanan.id_produk JOIN pesanan
-        ON detail_pesanan.id_pesanan = pesanan.id_pesanan WHERE nama_pelanggan="' . $nama . '" && tanggal = "' . $tanggal . '"';
+        ON detail_pesanan.id_pesanan = pesanan.id_pesanan WHERE detail_pesanan.id_user="' . $id . '" && tanggal = "' . $tanggal . '"';
         $data = $db->query($sql);
         $data = $data->getResultArray();
         return $data;

@@ -35,7 +35,7 @@
           <div class="row">
             <div class="col-md-6 col-xs-12">
               <div class="form-floating mb-3 ">
-                <input type="text" name="nama_pel" id="nama_pel" class="form-control bakery" placeholder="Masukkan nama pelanggan" title="Masukkan nama pelanggan" value="<?= $pesanan['nama_pelanggan'] ?>" required>
+                <input type="text" name="nama_pel" id="nama_pel" class="form-control bakery" placeholder="Masukkan nama pelanggan" title="Masukkan nama pelanggan" value="<?= $pesanan['nama_user'] ?>" required>
                 <label for="nama_pel">Nama Pelanggan</label>
               </div>
             </div>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-6 col-xs-12">
               <div class="form-floating mb-3 ">
-                <input type="text" name="no_hp" id="no_hp" class="form-control bakery" placeholder="Masukkan no hp" title="Masukkan nama pelanggan" value="<?= $pesanan['no_hp_pelanggan'] ?>" required>
+                <input type="text" name="no_hp" id="no_hp" class="form-control bakery" placeholder="Masukkan no hp" title="Masukkan nama pelanggan" value="<?= $pesanan['no_hp_user'] ?>" required>
                 <label for="no_hp">No HP</label>
               </div>
             </div>

@@ -21,6 +21,21 @@
     opacity: 1;
   }
 }
+.foto-prof {
+  width: 75px;
+  border-radius: 30px;
+}
+#btn-close {
+  right: 0;
+}
+.hr-title {
+  width: 200px;
+  height: 3px;
+  background-color: var(--coklat);
+  /* background-color: rgb(249, 179, 87); */
+  margin: 0 auto;
+  border: none;
+}
 .bg-btnhover:hover {
   background-color: var(--kuning);
   color: var(--coklat);
@@ -30,6 +45,7 @@
   color: white;
 }
 .bg-btnhover-reverse:hover {
+  stroke: white;
   background-color: rgb(195, 111, 26);
   color: white;
 }
@@ -82,6 +98,9 @@ body {
   font-family: Ubuntu, Poppins, "Times New Roman", Times, serif;
   /* background-color: rgba(255, 253, 243, 255); */
 }
+main {
+  color: var(--coklat);
+}
 .btnhover {
   text-shadow: 1px 1px 3px rgba(247, 200, 61, 0.6);
   color: var(--coklat);
@@ -101,9 +120,9 @@ body {
     opacity: 0.5;
   }
 }
-* {
+/* * {
   color: var(--coklat);
-}
+} */
 .featherr {
   stroke: var(--coklat);
 }
@@ -124,18 +143,13 @@ body {
 .content {
   margin-top: 100px;
 }
-.sticky {
+.conta {
+  width: 300px;
+  height: 1000px;
+  right: 30px;
   position: fixed;
-  top: 0;
-  width: 100%;
-  transition: 0.05ms;
-}
-.sticky + .content {
-  padding-top: 102px;
-}
-
-#hamburger-menu {
-  display: none;
+  margin-top: -10px;
+  z-index: 9999;
 }
 /* Footer */
 body::after {

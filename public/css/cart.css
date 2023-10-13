@@ -11,11 +11,10 @@
   width: 100px;
   border-radius: 0.5rem;
 }
-/* @media (min-width: 1025px) {
-  .h-custom {
-    height: 100vh !important;
-  }
-} */
+#disa{
+pointer-events: none;
+opacity: 0.7;
+}
 
 .number-input input[type="number"] {
   -webkit-appearance: textfield;

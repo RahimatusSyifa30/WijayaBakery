@@ -8,40 +8,45 @@ class DetailPesanan extends Migration
 {
     public function up()
     {
-        
-            $this->forge->addField([
-                'id_detail'          => [
-                    'type'           => 'INT',
-                    'constraint'     => 5,
-                    // 'unsigned'       => true,
-                    'auto_increment' => true
-                ],
-                'id_pesanan'       => [
-                    'type'           => 'INT',
-                    // 'unsigned'       => true,
-                ],
-                'id_produk'      => [
-                    'type'           => 'INT',
-                    // 'unsigned'       => true,
-                ],
-                'kuantitas' => [
-                    'type'           => 'VARCHAR',
-                    'constraint'     => 15,
-                ],
-                'sub_modal'      => [
-                    'type'           => 'BIGINT',
-                ],
-                'sub_total'      => [
-                    'type'           => 'BIGINT',
-                ],
-            ]);
-            $this->forge->addKey('id_detail', TRUE);
-            $this->forge->addForeignKey('id_pesanan','pesanan','id_pesanan','CASCADE','CASCADE');
-            $this->forge->addForeignKey('id_produk','produk','id_produk','CASCADE','CASCADE');
-    
-            // Membuat tabel news
-            $this->forge->createTable('detail_pesanan', TRUE);
-            //faker
+
+        $this->forge->addField([
+            'id_detail'          => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                // 'unsigned'       => true,
+                'auto_increment' => true
+            ],
+            'id_pesanan'       => [
+                'type'           => 'INT',
+                // 'unsigned'       => true,
+            ],
+            'id_produk'      => [
+                'type'           => 'INT',
+                // 'unsigned'       => true,
+            ],
+            'id_user'      => [
+                'type'           => 'INT',
+                // 'unsigned'       => true,
+            ],
+
+            'kuantitas' => [
+                'type'           => 'INT',
+            ],
+            'sub_modal'      => [
+                'type'           => 'BIGINT',
+            ],
+            'sub_total'      => [
+                'type'           => 'BIGINT',
+            ],
+        ]);
+        $this->forge->addKey('id_detail', TRUE);
+        $this->forge->addForeignKey('id_pesanan', 'pesanan', 'id_pesanan', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_produk', 'produk', 'id_produk', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_user', 'user', 'id_user', 'CASCADE', 'CASCADE');
+
+        // Membuat tabel news
+        $this->forge->createTable('detail_pesanan', TRUE);
+        //faker
         //     $faker = \Faker\Factory::create();
         //     $data = [];
         //     for ($i = 1; $i <= 10; $i++) {
@@ -60,6 +65,5 @@ class DetailPesanan extends Migration
     public function down()
     {
         $this->forge->dropTable('detail_pesanan');
-
     }
 }

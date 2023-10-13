@@ -35,7 +35,7 @@
             </div>
             <div class="form-floating mb-3">
               <select id="jenis_pro" class="form-select" name="jenis_pro" placeholder="Pilih Jenis Produk">
-                <option selected disabled class=""><?= $produk[0]->nama_kel ?></option>
+                <option selected class="" value="<?= $produk[0]->jenis_produk ?>"><?= $produk[0]->nama_kel ?></option>
                 <?php foreach ($kel_produk as $kel_pro) : ?>
                   <option value="<?= $kel_pro['id_kel'] ?>"><?= $kel_pro['nama_kel'] ?></option>
                 <?php endforeach ?>
@@ -55,7 +55,7 @@
               <label for="harga_pro">Harga Produk</label>
             </div>
             <div class="form-floating mb-3">
-              <textarea name="info_pro" id="info_pro" cols="30" rows="5" class="bg-light form-control" placeholder="Masukkan Informasi Produk"><?= $produk[0]->informasi_produk ?></textarea>
+              <textarea name="info_pro" id="info_pro" cols="50" rows="50" class="bg-light form-control" placeholder="Masukkan Informasi Produk"><?= $produk[0]->informasi_produk ?></textarea>
               <label for="">Informasi Produk</label>
             </div>
           </div>
@@ -66,8 +66,8 @@
             <br>
             <div class="text-center">
               <img style="width:150px" src="<?= base_url('image/roti/') ?><?= $produk[0]->gambar_produk ?>" alt="">
+              <input type="file" src="<?= base_url('image/roti/') ?><?= $produk[0]->gambar_produk ?>" name="gambar_pro" id="gambar_pro" class="bg-light form-control mt-2 m-auto" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk">
             </div>
-            <input type="file" src="<?= base_url('image/roti/') ?><?= $produk[0]->gambar_produk ?>" name="gambar_pro" id="gambar_pro" class="bg-light form-control mt-2" accept=".jpeg,.jpg,.png,image" placeholder="Masukkan Gambar Produk">
           </div>
         </div>
       </div>

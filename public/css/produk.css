@@ -12,7 +12,10 @@
   background-size: cover;
 }
 .font-lg {
-  font-size: 72px;
+  font-size: 60px;
+}
+#add1:disabled {
+  opacity: 1;
 }
 .title hr {
   width: 100px;
@@ -137,7 +140,7 @@
     width: calc(100% / 4);
   }
   .font-lg {
-    font-size: 50px;
+    font-size: 40px;
   }
   .card-jenis-pro .card-img-top {
     height: 150px;
@@ -160,7 +163,7 @@
     width: calc(100% / 2);
   }
   .font-lg {
-    font-size: 50px;
+    font-size: 30px;
   }
   .card-jenis-pro .card-img-top {
     height: 150px;

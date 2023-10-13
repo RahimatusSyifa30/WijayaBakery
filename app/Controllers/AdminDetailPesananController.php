@@ -66,7 +66,7 @@ class AdminDetailPesananController extends BaseController
         $detail_pes = new DetailPesananModel();
         $id_prod = $detail_pes->getIdProdukByIdDetail($id);
         $data = $produk->getProdukById($id_prod[0]->id_produk);
-        $nama = $data['nama_produk'];
+        $nama = $data[0]->nama_produk;
 
         $id_pesan = $this->request->getPost('id_pesan');
         $submod = $detail_pes->getSubModalByIdDetail($id);

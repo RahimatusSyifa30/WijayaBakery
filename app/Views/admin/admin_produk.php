@@ -31,9 +31,11 @@
   <!--  -->
   <main>
     <?php include($filePath . '\layout\alert.php') ?>
-    <div class="con">
-      <div class="title">
-        <h1 class="font-lg text-center bakery stroke-wt">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+    <div class="mt-5">
+      <div class="p-4">
+        <h1 class="font-lg text-center bakery stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+        <hr class="hr-title">
+
       </div>
     </div>
 
@@ -48,7 +50,9 @@
             <div>
               <button href="#ModalTambahJenisProduk" data-bs-toggle="modal" data-bs-target="#ModalTambahJenisProduk" class="btn bg-btnhover-reverse " onclick="$('#ModalTambahJenisProduk #formTambahJenis').attr('action','<?= base_url('admin/tambah_kel_produk') ?>')">Tambah Jenis Produk +</button>
             </div>
-
+            <div>
+              <button class="btn mt-2 bg-btnhover-reverse  filter-btn  mb-3 border-0" id="basic-addon2" data-kategori="all" onclick="iziinfo('Menampilkan Semua Jenis Produk'); ">Reset Filter</button>
+            </div>
           </div>
           <div class="col-xs-10 col-md-10">
             <div class="swiper mySwiper p-4 justify-content-center">
@@ -99,11 +103,13 @@
           <br>
           <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk..." aria-label="Cari produk..." aria-describedby="basic-addon2">
           <a href="<?= base_url('admin/tambah_produk') ?>" class="btn btn-lg bg-btnhover-reverse">Tambah Produk +</a>
+        
         </div>
 
         <!--  BUAT SELURUH PRODUK-->
         <div class="mt-4 d-flex flex-fill flex-wrap justify-content-center rounded-2" id="SelProduk">
-          <?php foreach ($produk as $pro) : ?>
+          <?php $a = 0;
+          foreach ($produk as $pro) : ?>
             <!-- <button> -->
             <div class="produk p-3" data-kategori="<?= str_replace(" ", "", $pro['jenis_produk']) ?>" data-stok=<?= $pro['stok_produk'] ?>>
               <?php
@@ -137,13 +143,14 @@
                   </div>
                 </div>
                 <!-- card footer -->
-                <button class="btn bg-btnhover-reverse round position-relative" type="submit">
+                <button id="add<?= $a ?>" class="btn bg-btnhover-reverse round position-relative" type="submit">
                   <i data-feather="shopping-cart" class="small-w"></i> Tambah ke Keranjang
                 </button>
                 <!-- -->
               </div>
             </div>
           <?php echo form_close();
+            $a++;
           endforeach ?>
           <!-- </button> -->
         </div>

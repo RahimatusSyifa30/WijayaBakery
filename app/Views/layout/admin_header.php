@@ -40,11 +40,10 @@
             <li class="nav-item">
               <a href="<?= base_url('admin/laporan') ?>" class="nav-link btn btnhover fs-5" title="Laporan Keuangan">Laporan Keuangan</a>
             </li>
-            <li class="nav-item text-center">
-              <form action="<?= base_url('admin/logout') ?>" method="get">
-                <button type="submit" class="btn btn-danger btn-lg">Log Out</button>
-              </form>
+            <li class="nav-item">
+              <a href="<?= base_url('admin/view_verif') ?>" class="nav-link btn btnhover fs-5" title="Daftar User">Daftar User</a>
             </li>
+
 
             <li class="nav-item mt-lg-2 mt-sm-5">
               <a href="<?= base_url('admin/keranjang'); ?>" class="btn btnhover fs-5 featherr position-relative" title="Keranjang " id="keranjang">
@@ -54,9 +53,13 @@
                 </span>
               </a>
             </li>
+            <li class="nav-item ms-2">
+              <button class="nav-link btn btnhover fs-5" id="showw" onclick="profil()" title="Login"><i data-feather="user"></i></button>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
 </header>
+<?php include('profil_akun.php') ?>

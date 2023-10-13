@@ -19,7 +19,7 @@ class AdminKeranjangController extends BaseController
             'isi_ker' => $keran->viewAll(),
             'total_harga' => $keran->totalHarga()
         ];
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             echo view('admin/admin_keranjang', $data);
         } else {
             session()->setFlashdata('error', "Login admin terlebih dahulu");
@@ -70,6 +70,7 @@ class AdminKeranjangController extends BaseController
                 'qty'     => $this->request->getPost('qty' . $i++),
             ];
             $keran->update_keranjang($array);
+        // $i++;
         endforeach;
         session()->setFlashdata('notif', 'Berhasil mengubah produk dalam keranjang');
         return redirect('admin/keranjang');
@@ -78,7 +79,7 @@ class AdminKeranjangController extends BaseController
     {
         $keran = new AdminKeranjangModel();
         $keran->delete_keranjang($id);
-        session()->setFlashdata('notif', 'Berhasil menghapus salah satu produk dalam keranjang');
+        session()->setFlashdata('notif', 'Berhasil menghapus produk tersebut dalam keranjang');
         return redirect('admin/keranjang');
     }
     public function hapus_isi_keranjang()

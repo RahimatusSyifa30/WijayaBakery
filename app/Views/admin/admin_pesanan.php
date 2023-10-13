@@ -40,11 +40,11 @@
       <?php } else { ?>
         <div class="mb-2  justify-content-between align-items-center">
           <div class="position-relative">
-            <input type="text" name="cari_pesan_belum" id="cariBelum" onkeyup="pesanBelum()" class="form-control mb-3 bg-white " placeholder="Cari pelanggan...">
+            <input type="text" name="cari_pesan_belum" id="cariBelum" onkeyup="pesanBelum()" class="form-control mb-3 bg-white " placeholder="Cari user...">
           </div>
         </div>
         <div class="">
-          <table class="table table-responsive table-borderless rounded-2 table-warning table-hover" id="pesanan_belum" aria-disabled="">
+          <table class="table table-responsive table-borderless rounded-2 table-warning table-hover bakery" id="pesanan_belum" aria-disabled="">
             <thead>
               <tr class="bg-light border-bottom border-warning">
                 <td scope="col" width="3%"><input class="form-check-input" type="checkbox" id="select-all-belum"></td>
@@ -56,7 +56,6 @@
                 <th scope="col" class="text-end" width="15%"><span>Total Harga</span></th>
                 <th scope="col" width="10%"></th>
                 <th scope="col" width="5%"></th>
-                <th scope="col" width="5%"></th>
               </tr>
             </thead>
             <tbody>
@@ -65,13 +64,12 @@
               foreach ($pesanan_belum as $pesan) : ?>
                 <tr>
                   <td scope="row"><input class="form-check-input order-checkbox-belum" type="checkbox" name="id_pesanan[]" value="<?= $pesan['id_pesanan'] ?>"></td>
-                  <td class="fw-bolder"><?= $pesan['nama_pelanggan'] ?></td>
+                  <td class="fw-bolder"><?= $pesan['nama_user'] ?></td>
                   <td><?= $pesan['tanggal'] ?></td>
-                  <td><a href="https://wa.me/62<?= $pesan['no_hp_pelanggan'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan['no_hp_pelanggan'] ?></a></td>
+                  <td><a href="https://wa.me/62<?= $pesan['no_hp_user'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan['no_hp_user'] ?></a></td>
                   <td><span class="fw-bolder"><?= $pesan['status'] ?></span></td>
                   <td class="text-end"><span class="fw-bolder">Rp <?= $pesan['total_harga'] ?></span></td>
                   <td><button type="button" class="btn bg-btnhover trigger" onclick="detail(<?= $counter ?>)" title="Tampilkan Detail Pesanan">Detail</button></td>
-                  <td><a href="<?= base_url('admin/ubah_pesanan/' . $pesan['id_pesanan']) ?>"><i data-feather="edit" class="featherr"></i></a></td>
                   <td><a href="<?= base_url('admin/pesanan_diproses/' . $pesan['id_pesanan']) ?>"><i data-feather="check-circle" class="featherr"></i></a></td>
                 </tr>
               <?php $counter++;
@@ -87,17 +85,17 @@
     </div>
   <?php } ?>
   <!-- Detail Pesanan Start -->
-  <div class="container con detail-belum p-2" style="display: none;">
+  <div class="container con detail-belum p-2 border-3" style="display: none;">
     <?php $yipi = 0;
     foreach ($pesanan_belum as $pesan) : ?>
       <div class="card card-shadow mt-3" style="display: none;" id="detail<?= $yipi ?>">
         <div class="card-body">
           <div class="top d-flex justify-content-between">
             <h5 class=""></h5>
-            <h5 class="card-title"><?= $pesan['nama_pelanggan'] ?></h5>
+            <h5 class="card-title"><?= $pesan['nama_user'] ?></h5>
             <button type="button" class="btn-close justify-content-end" aria-label="Close"></button>
           </div>
-          <table class="table">
+          <table class="table bakery">
             <tr>
               <th>Jumlah barang</th>
               <th>Nama Produk</th>
@@ -105,22 +103,30 @@
               <th>Sub Modal</th> -->
               <th>Harga Produk</th>
               <th>Sub Total</th>
+              <th width="5%"></th>
+
             </tr>
             <?php
             foreach ($join_pro[$yipi] as $detail) { ?>
               <tr>
-
-                <td><?= $detail['kuantitas'] ?></td>
-                <td><?= $detail['nama_produk'] ?></td>
-                <!-- <td><?= $detail['modal_produk'] ?></td>
+                <form action="<?= base_url('admin/hapus_detail_pesanan/' . $detail['id_detail']) ?>" method="post">
+                  <input type="hidden" name="id_pesan" value="<?= $detail['id_pesanan'] ?>">
+                  <td><?= $detail['kuantitas'] ?></td>
+                  <td><?= $detail['nama_produk'] ?></td>
+                  <!-- <td><?= $detail['modal_produk'] ?></td>
                 <td><?= $detail['sub_modal'] ?></td> -->
-                <td>Rp <?= $detail['harga_produk'] ?></td>
-                <td>Rp <?= $detail['sub_total'] ?></td>
-
+                  <td>Rp <?= $detail['harga_produk'] ?></td>
+                  <td>Rp <?= $detail['sub_total'] ?></td>
+                  <td><button type="submit" class="btn btnhover"><i data-feather="trash"></i></button></td>
+                </form>
               </tr>
             <?php  }
             $yipi++; ?>
+
           </table>
+          <div class="text-end">
+            <a href="<?= base_url('admin/produk') ?>" class="btn bg-btnhover " id="tambah-pesanan"><i data-feather="plus-square"></i> Tambah Pesanan</a>
+          </div>
         </div>
       </div>
     <?php endforeach ?>
@@ -141,18 +147,19 @@
     <?php } else { ?>
       <div class="mb-2  justify-content-between align-items-center">
         <div class="position-relative">
-          <input type="text" name="cari_pesan_sel" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-white " placeholder="Cari pelanggan...">
+          <input type="text" name="cari_pesan_sel" id="cariSudah" onkeyup="pesanSudah()" class="form-control mb-3 bg-white " placeholder="Cari user...">
         </div>
       </div>
       <div class="table-responsive">
-        <table class="table table-responsive table-borderless rounded-2 table-warning table-hover" id="pesanan_sel" aria-disabled="">
+        <table class="table table-responsive table-borderless rounded-2 table-warning table-hover bakery" id="pesanan_sel" aria-disabled="">
           <thead>
             <tr class="bg-light border-bottom border-warning">
-              <td scope="col" width="5%"><input class="form-check-input" type="checkbox" id="select-all-sel"></td>
-              <th scope="col" width="20%">Nama Pelanggan</th>
-              <th scope="col" width="15%">Tanggal</th>
+              <td scope="col" width="3%"><input class="form-check-input" type="checkbox" id="select-all-sel"></td>
+              <th scope="col" width="15%">Nama Pelanggan</th>
+              <th scope="col" width="20%">Tanggal</th>
               <th scope="col" width="20%">No HP</th>
-              <th scope="col" width="10%">Status</th>
+              <th scope="col" width="5%">Status</th>
+
               <th scope="col" class="text-end" width="15%"><span>Total Harga</span></th>
               <th scope="col" width="10%"></th>
               <th scope="col" width="5%"></th>
@@ -164,9 +171,9 @@
             foreach ($pesanan_diproses as $pesan_sel) : ?>
               <tr>
                 <td scope="row"><input class="form-check-input order-checkbox-sel" type="checkbox" name="id_pesanan[]" value="<?= $pesan_sel['id_pesanan'] ?>"></td>
-                <td class="fw-bolder"><?= $pesan_sel['nama_pelanggan'] ?></td>
+                <td class="fw-bolder"><?= $pesan_sel['nama_user'] ?></td>
                 <td><?= $pesan_sel['tanggal'] ?></td>
-                <td><a href="https://wa.me/62<?= $pesan_sel['no_hp_pelanggan'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan_sel['no_hp_pelanggan'] ?></a></td>
+                <td><a href="https://wa.me/62<?= $pesan_sel['no_hp_user'] ?>" class="btn bg-btnhover" target="_blank"><?= $pesan_sel['no_hp_user'] ?></a></td>
                 <td><span class="fw-bolder"><?= $pesan_sel['status'] ?></span></td>
                 <td class="text-end"><span class="fw-bolder">Rp <?= $pesan_sel['total_harga'] ?></span></td>
                 <td><button type="button" class="btn bg-btnhover trigger" onclick="detail_sel(<?= $yyy ?>)" title="Tampilkan Detail Pesanan">Detail</button></td>
@@ -192,10 +199,10 @@
       <div class="card-body">
         <div class="top d-flex justify-content-between">
           <h5 class=""></h5>
-          <h5 class="card-title"><?= $pesan_sel['nama_pelanggan'] ?></h5>
+          <h5 class="card-title"><?= $pesan_sel['nama_user'] ?></h5>
           <button type="button" class="btn-close justify-content-end" aria-label="Close"></button>
         </div>
-        <table class="table">
+        <table class="table bakery">
           <tr class="border-bottom">
             <th>Jumlah barang</th>
             <th>Nama Produk</th>

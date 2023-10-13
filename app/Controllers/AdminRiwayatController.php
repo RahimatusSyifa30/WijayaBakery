@@ -23,7 +23,7 @@ class AdminRiwayatController extends BaseController
         }
         $data = [
             'jumlah_item' => $keran->getTotalBarang(),
-            'pesanan_selesai' => $model->where('status', 'Selesai')->paginate(10, 'pesanan'),
+            'pesanan_selesai' => $model->join('user', 'user.id_user=pesanan.id_user')->where('status', 'Selesai')->orderBy('tanggal', 'DESC')->paginate(10, 'pesanan'),
             'pager' => $pes->pager,
         ];
         $counter = 0;
@@ -31,7 +31,7 @@ class AdminRiwayatController extends BaseController
             $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
             $counter++;
         }
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             return view('admin/admin_riwayat_trs', $data);
         } else {
             session()->setFlashdata('error', "Login admin terlebih dahulu");
@@ -58,7 +58,7 @@ class AdminRiwayatController extends BaseController
             } else {
                 $model = $pes;
             }
-            $tes = "tanggal BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $tes = "tanggal BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59' ORDER BY tanggal DESC";
             $model->select('*')->where($tes)->paginate(10, 'pesanan');
             $data = [
                 'jumlah_item' => $keran->getTotalBarang(),
@@ -81,7 +81,7 @@ class AdminRiwayatController extends BaseController
     }
     public function reset_tanggal()
     {
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             session()->setFlashdata('notif', "Berhasil mereset tanggal");
             return redirect('admin/riwayat');
         } else {

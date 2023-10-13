@@ -62,39 +62,43 @@
                             <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
                             <h5 class="bakery"><?= $keranjang['name'] ?></h5>
                             <?= form_open('admin/ubah_keranjang') ?>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center bakery">
                               <p class="fw-bold mb-0 me-5 pe-3">Rp <?= $keranjang['price'] ?></p>
                               <div class="def-number-input number-input safari_only">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus  bakery"></button>
-                                <input class="quantity fw-bold text-black" min="0" name="qty<?= $i ?>" value="<?= $keranjang['qty'] ?>" type="number">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus bakery"></button>
+                                <button onclick="this.parentNode.querySelector('.quantity').stepDown()" class="minus  bakery"></button>
+                                <input class="quantity fw-bold text-black" min="1" max="<?= $keranjang['options']['stok'] ?>" name="qty<?= $i++ ?>" value="<?= $keranjang['qty'] ?>" type="number" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Maksimal stok sampai <?= $keranjang['options']['stok'] ?>">
+                                <button onclick="this.parentNode.querySelector('.quantity').stepUp()" class="plus bakery"></button>
                               </div>
                             </div>
                           </div>
                           <div>
-                            <a href="<?= base_url('admin/hapus_keranjang/' . $keranjang['rowid']) ?>" title="Hapus semua isi keranjang"><i data-feather="x" class="stroke-hover"></i></a>
+                            <a href="<?= base_url('admin/hapus_keranjang/' . $keranjang['rowid']) ?>" title="Hapus isi keranjang"><i data-feather="x" class=" bakery"></i></a>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-between px-x mb-2">
+                        <div class="d-flex justify-content-between px-x mb-2 bakery">
                           <h5 class="fw-bold mb-0">Sub Total :</h5>
                           <h5 class="fw-bold">Rp <?= $keranjang['subtotal'] ?></h5>
                         </div>
                         <hr class="mb-4 text-warning" style="height: 2px; opacity: 1;">
-                      <?php $i++;
+                      <?php
                       endforeach ?>
                       <div class="d-flex justify-content-between p-2 mb-2 bg-warning-subtle bakery rounded-2 align-items-center">
                         <h5 class="fw-bold mb-0">Total :</h5>
                         <h5 class="fw-bold mb-0">Rp <?= $total_harga ?></h5>
-                        <a href="<?= base_url('admin/hapus_total_keranjang') ?>" class="btn bg-btnhover-reverse"><i data-feather="trash"></i></a>
+                        <div>
+
+                          <!-- <a href="<?= base_url('admin/ubah_keranjang') ?>" class="btn bg-btnhover-reverse" title="Simpan keranjang"><i data-feather="save"></i></a> -->
+                          <a href="<?= base_url('admin/hapus_total_keranjang') ?>" class="btn bg-btnhover-reverse" title="Hapus semua isi keranjang"><i data-feather="trash"></i></a>
+                        </div>
                       </div>
                       <div class="total text-center">
                         <?= form_close() ?>
                       </div>
                     </div>
                     <div class="col-lg-6 px-5 py-4 bakery">
-                      <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke">Pembayaran</h3>
+                      <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke">Jenis Pesanan</h3>
                       <?= form_open('admin/tambah_pesanan') ?>
-                      <div class="form-floating mb-3 ">
+                      <!-- <div class="form-floating mb-3 ">
                         <input type="text" name="nama_pel" id="nama_pel" class="form-control bakery" placeholder="Masukkan nama anda" title="Masukkan nama pelanggan" required>
                         <label for="nama_pel">Nama Pelanggan</label>
                       </div>
@@ -108,10 +112,18 @@
                           <input type="text" name="no_hp" id="no_hp" class="form-control bakery" placeholder="sdah" title="Masukkan No HP atau No WA" required>
                           <label for="no_hp">No HP/WA</label>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="justify-content-center text-center">
-                        <button type="submit" class="btn btn-lg bg-btnhover btn-block mb-3">Buat Pesanan</button>
-                        <button type="button" class="btn btn-lg bg-btnhover mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="d-flex mb-3 justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="KTP anda belum terverifikasi">
+                        <?php if(session()->get('verif')=="Belum"){?>
+                            <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3" disabled>Checkout <i class="bi-cart-check-fill"></i></button>
+                            <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse" id="disa">Buat Pesanan <i class="bi-printer-fill"></i></a>
+                            <?php }else if(session()->get('verif')=="Diterima"){?>
+                            <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3">Checkout <i class="bi-cart-check-fill"></i></button>
+                            <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse">Buat Pesanan <i class="bi-printer-fill"></i></a>
+                          <?php }?>
+                        </div>
+                        <button type="button" class="btn btn-lg bg-btnhover-reverse mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           Tambahkan ke pesanan yang sudah ada
                         </button>
                       </div>
@@ -137,9 +149,7 @@
           <div class="modal-body">
             <form action="<?= base_url('admin/tambah_detail_pesanan') ?>" method="post">
               <select name="data" id="data" class="form-control">
-                <?php foreach ($pesanan as $pesan) : ?>
-                  <option value="<?= $pesan['nama_pelanggan'] ?>|<?= $pesan['tanggal'] ?>"><?= $pesan['nama_pelanggan'] ?></option>
-                <?php endforeach ?>
+
               </select>
           </div>
           <div class="modal-footer">

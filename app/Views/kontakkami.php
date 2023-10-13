@@ -32,10 +32,10 @@
             <h2 id="" class="title-kon stroke ">Informasi Kontak</h2>
           </div>
           <div class="col-12 mt-4">
-            <a href="https://goo.gl/maps/gm4tphk6zCobfKBJ6" target="_blank" class="btn bakery ttt text-wrap stroke d-flex bg-btnhover-reverse"> <span><img src="image/logo/lokasi.png"></span>Jl. Raya Pakuniran, RT.16/RW.04, Bucor Kulon.</a>
+            <a href="https://goo.gl/maps/gm4tphk6zCobfKBJ6" target="_blank" class="btn bakery ttt text-wrap stroke d-flex "> <span><img src="image/logo/lokasi.png"></span>Jl. Raya Pakuniran, RT.16/RW.04, Bucor Kulon.</a>
           </div>
           <div class="col-12 mt-2">
-            <a href="https://wa.me/6282236047539" target="_blank" class="btn ttt bakery text stroke bg-btnhover-reverse"><span> <img src="image/logo/wa.png"></span> 082236047539</a>
+            <a href="https://wa.me/6282236047539" target="_blank" class="btn ttt bakery text stroke bg-btnhover-"><span> <img src="image/logo/wa.png"></span> 082236047539</a>
           </div>
         </div>
       </div>

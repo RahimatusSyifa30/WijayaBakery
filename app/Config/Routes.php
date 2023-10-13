@@ -35,6 +35,17 @@ $routes->get('detail_produk/(:segment)', 'ProdukController::detail_produk/$1');
 $routes->get('tentang_kami', 'TentangController::tentang');
 $routes->get('kontak_kami', 'KontakController::index');
 $routes->add('kirim_pesan', 'KontakController::kirim_pesan');
+$routes->add('buat_pesanan', 'KontakController::kirim_pesan');
+$routes->add('login', 'LoginController::index');
+$routes->get('logout', 'LoginController::logout');
+$routes->add('registrasi', 'RegisController::index');
+$routes->add('tambah_user', 'RegisController::tambah_user');
+
+$routes->add('akun_detail', 'UserController::akun_detail');
+$routes->add('update_akun', 'UserController::update_akun');
+$routes->get('hapus_akun', 'UserController::delete_akun');
+$routes->add('pesanan_saya', 'UserController::pesanan_saya');
+$routes->add('riwayat_transaksi', 'UserController::riwayat');
 
 //Keranjang Cus
 $routes->add('keranjang', 'KeranjangController::index');
@@ -45,8 +56,11 @@ $routes->add('hapus_total_keranjang', 'KeranjangController::hapus_isi_keranjang'
 
 $routes->group('admin', function ($routes) {
     $routes->get('/', 'AdminPesananController::index');
-    $routes->add('login', 'AdminLoginController::index');
-    $routes->get('logout', 'AdminLoginController::logout');
+    $routes->add('login', 'LoginController::index');
+    $routes->get('logout', 'LoginController::logout');
+    $routes->get('view_verif', 'AdminVerifController::index');
+    $routes->add('view_belum', 'AdminVerifController::view_belum');
+    $routes->add('view_sudah', 'AdminVerifController::view_sudah');
 
     $routes->add('tambah_pesanan', 'AdminPesananController::insert_pesanan');
     $routes->add('ubah_pesanan/(:segment)', 'AdminPesananController::update_pesanan/$1');

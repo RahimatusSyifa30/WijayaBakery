@@ -23,15 +23,15 @@ class AdminLaporanController extends BaseController
         $untung_ber = $lapor->sum_untung_bersih_laporan_all();
         $data = [
             'jumlah_item' => $keran->getTotalBarang(),
-            'laporan' => $model->join('pesanan', 'laporan.id_pesanan=pesanan.id_pesanan')
-                ->select('*')
+            'laporan' => $model->join('pesanan', 'laporan.id_pesanan=pesanan.id_pesanan')->join('user', 'user.id_user=pesanan.id_user')
+                ->select('*')->orderBy('tanggal', 'DESC')
                 ->paginate(10, 'laporan'),
             'pager' => $lapor->pager,
             'modal' => "Rp " . $modal[0]->modal,
             'untung_kotor' => "Rp " . $untung_kotor[0]->unkot,
             'unber' => "Rp " . $untung_ber[0]->unbers
         ];
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             return view('admin/admin_laporan', $data);
         } else {
             session()->setFlashdata('error', "Login admin terlebih dahulu");
@@ -58,7 +58,7 @@ class AdminLaporanController extends BaseController
             } else {
                 $model = $lapor;
             }
-            $tes = "tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $tes = "tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59' ORDER BY tanggal DESC";
             $data['laporan'] = $lapor->filter_laporan($start, $end, $cari);
             $model->join('pesanan', 'laporan.id_pesanan=pesanan.id_pesanan')->select('*')->where($tes)->paginate(10, 'laporan');
             $awal = strftime('%d %B %Y', strtotime($start));
@@ -79,7 +79,7 @@ class AdminLaporanController extends BaseController
     }
     public function reset_tanggal()
     {
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             session()->setFlashdata('notif', "Berhasil mereset tanggal");
             return redirect('admin/laporan');
         } else {

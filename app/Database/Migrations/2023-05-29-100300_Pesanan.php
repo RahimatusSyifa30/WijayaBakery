@@ -20,13 +20,12 @@ class Pesanan extends Migration
 			'tanggal'       => [
 				'type'           => 'TIMESTAMP',
 			],
-			'nama_pelanggan'      => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 50,
+			'tanggal_pengambilan'       => [
+				'type'           => 'DATE',
 			],
-			'no_hp_pelanggan' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 15,
+			'id_user'      => [
+				'type'           => 'INT',
+				// 'unsigned'       => true,
 			],
 			'status'      => [
 				'type'           => 'VARCHAR',
@@ -41,21 +40,22 @@ class Pesanan extends Migration
 			],
 		]);
 		$this->forge->addKey('id_pesanan', TRUE);
+		$this->forge->addForeignKey('id_user', 'user', 'id_user', 'CASCADE', 'CASCADE');
 		// Membuat tabel news
 		$this->forge->createTable('pesanan', TRUE);
 		// //faker
-		$faker = \Faker\Factory::create();
-		$data = [];
-		for ($i = 1; $i <= 100; $i++) {
-			$data[] = [
-				'nama_pelanggan' => $faker->name(),
-				'no_hp_pelanggan' => $faker->phoneNumber(),
-				'total_modal'      => $faker->randomNumber(5, true),
-				'total_harga'      => $faker->randomNumber(5, true),
-				'status'      => "Selesai"
-			];
-		}
-		$this->db->table('pesanan')->insertBatch($data);
+		// $faker = \Faker\Factory::create();
+		// $data = [];
+		// for ($i = 1; $i <= 100; $i++) {
+		// 	$data[] = [
+		// 		'nama_pelanggan' => $faker->name(),
+		// 		'no_hp_pelanggan' => $faker->phoneNumber(),
+		// 		'total_modal'      => $faker->randomNumber(5, true),
+		// 		'total_harga'      => $faker->randomNumber(5, true),
+		// 		'status'      => "Selesai"
+		// 	];
+		// }
+		// $this->db->table('pesanan')->insertBatch($data);
 	}
 
 	public function down()

@@ -28,31 +28,31 @@
     <?php include($filePath . '\layout\alert.php') ?>
     <div class="container mt-md-4 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
       <h1 class="bakery stroke">Laporan Keuangan</h1>
-
+      <div class="row g-3 mb-3 mt-3 justify-content-center">
+        <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
+          <div class="col-auto">
+            <label for="start">Periode :</label>
+          </div>
+          <div class="col-auto">
+            <input type="date" name="start" id="start" class="form-control">
+          </div>
+          <div class="col-auto">
+            <label for="floatingInput"> - </label>
+          </div>
+          <div class="col-auto">
+            <input type="date" name="end" id="floatingInput" class="form-control">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn bg-btnhover">Filter</button>
+          </div>
+          <div class="col-auto">
+            <a href="<?= base_url("admin/reset_tanggal_laporan") ?>" type="submit" class="btn bg-btnhover">Reset</a>
+          </div>
+        </form>
+      </div>
       <?php if (empty($laporan)) { ?>
         <div class="container-fluid mt-4">
-          <div class="row g-3 mb-3 mt-3 justify-content-center">
-            <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
-              <div class="col-auto">
-                <label for="start">Periode :</label>
-              </div>
-              <div class="col-auto">
-                <input type="date" name="start" id="start" class="form-control">
-              </div>
-              <div class="col-auto">
-                <label for="floatingInput"> - </label>
-              </div>
-              <div class="col-auto">
-                <input type="date" name="end" id="floatingInput" class="form-control">
-              </div>
-              <div class="col-auto">
-                <button type="submit" class="btn bg-btnhover">Filter</button>
-              </div>
-              <div class="col-auto">
-                <a href="<?= base_url("admin/reset_tanggal_laporan") ?>" type="submit" class="btn bg-btnhover">Reset</a>
-              </div>
-            </form>
-          </div>
+
           <div class="row ">
             <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center bg-light p-4 rounded-4">
 
@@ -61,28 +61,6 @@
           </div>
         </div>
       <?php } else { ?>
-        <div class="row g-3 mb-3 mt-3 justify-content-center">
-          <form action="<?= base_url('admin/filter_laporan'); ?>" method="get" class="d-flex flex-row col-xs-12 col-sm-7 col-lg-7 col-xl-6 justify-content-between">
-            <div class="col-auto">
-              <label for="start">Periode :</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" name="start" id="start" class="form-control">
-            </div>
-            <div class="col-auto">
-              <label for="floatingInput"> - </label>
-            </div>
-            <div class="col-auto">
-              <input type="date" name="end" id="floatingInput" class="form-control">
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn bg-btnhover">Filter</button>
-            </div>
-            <div class="col-auto">
-              <a href="<?= base_url("admin/reset_tanggal_laporan") ?>" type="submit" class="btn bg-btnhover">Reset</a>
-            </div>
-          </form>
-        </div>
         <div class="row justify-content-center">
           <div class="mb-2 col-md-12 col-xs-12 ">
             <div class="position-relative">
@@ -98,7 +76,7 @@
           </div>
         </div>
         <div class="">
-          <table class="table table-responsive table-borderless rounded-2 table-warning table-hover" id="pesanan_belum" aria-disabled="">
+          <table class="table table-responsive table-borderless rounded-2 table-warning table-hover bakery" id="pesanan_belum" aria-disabled="">
             <thead>
               <tr class="bg-light">
                 <th scope="col" width="20%">Nama Pelanggan</th>
@@ -113,7 +91,7 @@
               $counter = 0;
               foreach ($laporan as $pesan) : ?>
                 <tr>
-                  <td class="fw-bolder"><?= $pesan['nama_pelanggan'] ?></td>
+                  <td class="fw-bolder"><?= $pesan['nama_user'] ?></td>
                   <td><?= $pesan['tanggal_laporan'] ?></td>
                   <td><?= $pesan['modal'] ?></td>
                   <td><?= $pesan['keuntungan_kotor'] ?></td>

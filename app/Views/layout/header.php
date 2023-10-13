@@ -38,11 +38,8 @@
             <li class="nav-item">
               <a href="<?= base_url('kontak_kami') ?>" class="nav-link btn btnhover fs-5" title="Kontak Kami">Kontak Kami</a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="<?= base_url('admin/login') ?>" target="_blank" class="nav-link btn btnhover fs-5" title="Login Admin">Login Admin</a>
-            </li> -->
 
-            <li class="nav-item mt-lg-2 mt-sm-5">
+            <li class="nav-item mt-lg-2 mt-sm-5 ms-1">
               <a href="<?= base_url('keranjang'); ?>" class="btn btnhover fs-5 featherr position-relative" title="Keranjang " id="keranjang">
                 <i data-feather="shopping-cart"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -50,9 +47,13 @@
                 </span>
               </a>
             </li>
+            <li class="nav-item ms-2">
+              <button class="nav-link btn btnhover fs-5" id="showw" onclick="profil()" title="Login"><i data-feather="user"></i></button>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
 </header>
+<?php include('profil_akun.php') ?>

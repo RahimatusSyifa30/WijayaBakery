@@ -20,7 +20,7 @@ class AdminProdukController extends BaseController
             'produk' => $pro->viewAll(),
             'jumlah_item' => $keran->getTotalBarang(),
         ];
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             return view("admin/admin_produk", $data);
         } else {
             session()->setFlashdata('error', "Login admin terlebih dahulu");
@@ -60,7 +60,7 @@ class AdminProdukController extends BaseController
             session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Ditambah');
             return redirect('admin/produk');
         }
-        if (session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedInAdmin')) {
             echo view('admin/admin_insert_produk', $data);
         } else {
             session()->setFlashdata('error', "Login admin terlebih dahulu");
@@ -85,35 +85,70 @@ class AdminProdukController extends BaseController
         $nama_pro = $this->request->getPost('nama_pro');
         if ($isDataValid) {
             $dataBerkas = $this->request->getFile('gambar_pro');
-            if ($dataBerkas != "") {
-                $gam = $this->request->getPost('gambar');
-                // unlink('image/roti/' . $gam);
-                $fileName = $dataBerkas->getRandomName();
-                $dataBerkas->move('image/roti/', $fileName);
-                $array = [
-                    'nama_produk' => $nama_pro,
-                    'jenis_produk' => $this->request->getPost('jenis_pro'),
-                    'stok_produk' => $this->request->getPost('stok_pro'),
-                    'modal_produk' => $this->request->getPost('modal_pro'),
-                    'harga_produk' => $this->request->getPost('harga_pro'),
-                    'informasi_produk' => $this->request->getPost('info_pro'),
-                    'gambar_produk' => $fileName
-                ];
-                $produk->update_Produk($id, $array);
-                session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
-                return redirect('admin/produk');
+            $jenis = $this->request->getPost('jenis_pro');
+            $data = $produk->getProdukById($id);
+            if ($jenis != $data[0]->jenis_produk) {
+                if ($dataBerkas != "") {
+                    $gam = $this->request->getPost('gambar');
+                    unlink('image/roti/' . $gam);
+                    $fileName = $dataBerkas->getRandomName();
+                    $dataBerkas->move('image/roti/', $fileName);
+                    $array = [
+                        'nama_produk' => $nama_pro,
+                        'jenis_produk' => $this->request->getPost('jenis_pro'),
+                        'stok_produk' => $this->request->getPost('stok_pro'),
+                        'modal_produk' => $this->request->getPost('modal_pro'),
+                        'harga_produk' => $this->request->getPost('harga_pro'),
+                        'informasi_produk' => $this->request->getPost('info_pro'),
+                        'gambar_produk' => $fileName
+                    ];
+                    $produk->update_Produk($id, $array);
+                    session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
+                    return redirect('admin/produk');
+                } else {
+                    $array = [
+                        'nama_produk' => $nama_pro,
+                        'jenis_produk' => $this->request->getPost('jenis_pro'),
+                        'stok_produk' => $this->request->getPost('stok_pro'),
+                        'modal_produk' => $this->request->getPost('modal_pro'),
+                        'harga_produk' => $this->request->getPost('harga_pro'),
+                        'informasi_produk' => $this->request->getPost('info_pro'),
+                    ];
+                    $produk->update_Produk($id, $array);
+                    session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
+                    return redirect('admin/produk');
+                }
             } else {
-                $array = [
-                    'nama_produk' => $nama_pro,
-                    'jenis_produk' => $this->request->getPost('jenis_pro'),
-                    'stok_produk' => $this->request->getPost('stok_pro'),
-                    'modal_produk' => $this->request->getPost('modal_pro'),
-                    'harga_produk' => $this->request->getPost('harga_pro'),
-                    'informasi_produk' => $this->request->getPost('info_pro'),
-                ];
-                $produk->update_Produk($id, $array);
-                session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
-                return redirect('admin/produk');
+                if ($dataBerkas != "") {
+                    $gam = $this->request->getPost('gambar');
+                    unlink('image/roti/' . $gam);
+                    $fileName = $dataBerkas->getRandomName();
+                    $dataBerkas->move('image/roti/', $fileName);
+                    $array = [
+                        'nama_produk' => $nama_pro,
+                        // 'jenis_produk' => $this->request->getPost('jenis_pro'),
+                        'stok_produk' => $this->request->getPost('stok_pro'),
+                        'modal_produk' => $this->request->getPost('modal_pro'),
+                        'harga_produk' => $this->request->getPost('harga_pro'),
+                        'informasi_produk' => $this->request->getPost('info_pro'),
+                        'gambar_produk' => $fileName
+                    ];
+                    $produk->update_Produk($id, $array);
+                    session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
+                    return redirect('admin/produk');
+                } else {
+                    $array = [
+                        'nama_produk' => $nama_pro,
+                        // 'jenis_produk' => $this->request->getPost('jenis_pro'),
+                        'stok_produk' => $this->request->getPost('stok_pro'),
+                        'modal_produk' => $this->request->getPost('modal_pro'),
+                        'harga_produk' => $this->request->getPost('harga_pro'),
+                        'informasi_produk' => $this->request->getPost('info_pro'),
+                    ];
+                    $produk->update_Produk($id, $array);
+                    session()->setFlashdata('notif', 'Produk <strong>' . $nama_pro . '</strong> Berhasil Diubah');
+                    return redirect('admin/produk');
+                }
             }
         }
         echo view('admin/admin_edit_produk', $data);

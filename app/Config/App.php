@@ -260,7 +260,7 @@ class App extends BaseConfig
      *
      * @deprecated use Config\Cookie::$domain property instead.
      */
-    public string $cookieDomain = '';
+    public string $cookieDomain = 'http://localhost:8080';
 
     /**
      * --------------------------------------------------------------------------
