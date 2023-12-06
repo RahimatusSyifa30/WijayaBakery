@@ -85,7 +85,7 @@
     </div>
   <?php } ?>
   <!-- Detail Pesanan Start -->
-  <div class="container con detail-belum p-2 border-3" style="display: none;">
+  <div class="container con detail-belum p-2" style="display: none;">
     <?php $yipi = 0;
     foreach ($pesanan_belum as $pesan) : ?>
       <div class="card card-shadow mt-3" style="display: none;" id="detail<?= $yipi ?>">

@@ -15,10 +15,19 @@ class AdminProdukController extends BaseController
         $kel_pro = new KelProdukModel();
         $pro = new ProdukModel();
         $keran = new KeranjangModel();
+        $cari = $this->request->getPost('cari');
+        if ($cari) {
+            $model = $pro->search($cari);
+            session()->setFlashdata('notif','Mencari produk '.$cari);
+        } else {
+            $model = $pro;
+        }
         $data = [
             'kel_produk' => $kel_pro->viewAll(),
-            'produk' => $pro->viewAll(),
+            'produk' => $model->orderBy('stok_produk', 'DESC')->paginate(8, 'produk'),
             'jumlah_item' => $keran->getTotalBarang(),
+            'pager' => $pro->pager,
+
         ];
         if (session()->get('isLoggedInAdmin')) {
             return view("admin/admin_produk", $data);
@@ -90,7 +99,7 @@ class AdminProdukController extends BaseController
             if ($jenis != $data[0]->jenis_produk) {
                 if ($dataBerkas != "") {
                     $gam = $this->request->getPost('gambar');
-                    unlink('image/roti/' . $gam);
+                    // unlink('image/roti/' . $gam);
                     $fileName = $dataBerkas->getRandomName();
                     $dataBerkas->move('image/roti/', $fileName);
                     $array = [

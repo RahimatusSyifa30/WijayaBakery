@@ -14,14 +14,16 @@
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <a href="<?= base_url('keranjang'); ?>" class="btn fs-5 featherr position-relative" title="Keranjang">
-            <i data-feather="shopping-cart"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              <?= $jumlah_item ?>
-            </span>
-
-          </a>
-          <h3 class="offcanvas-title stroke coklat" id="offcanvasNavbarLabel">Menu Wijaya<span class="text-warning">Bakery.</span></h3>
+          <div class="d-flex">
+            <a href="<?= base_url('keranjang'); ?>" class="btn fs-5 featherr  position-relative" title="Keranjang">
+              <i data-feather="shopping-cart"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?= $jumlah_item ?>
+              </span>
+            </a>
+            <button class="ms-3 nav-link btn btnhover fs-5" id="showw" onclick="profil()" title="Akun"><i data-feather="user"></i></button>
+          </div>
+          <h3 class="offcanvas-title stroke coklat position-absolute" id="offcanvasNavbarLabel" style="left:50% ;transform: translateX(-50%); ">Menu Wijaya<span class="text-warning">Bakery.</span></h3>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -40,7 +42,7 @@
             </li>
 
             <li class="nav-item mt-lg-2 mt-sm-5 ms-1">
-              <a href="<?= base_url('keranjang'); ?>" class="btn btnhover fs-5 featherr position-relative" title="Keranjang " id="keranjang">
+              <a href="<?= base_url('keranjang'); ?>" class="btn btnhover fs-5 featherr position-relative dis-none" title="Keranjang ">
                 <i data-feather="shopping-cart"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   <?= $jumlah_item ?>
@@ -48,7 +50,7 @@
               </a>
             </li>
             <li class="nav-item ms-2">
-              <button class="nav-link btn btnhover fs-5" id="showw" onclick="profil()" title="Login"><i data-feather="user"></i></button>
+              <button class="nav-link btn btnhover fs-5 dis-none" id="showw" onclick="profil()" title="Login"><i data-feather="user"></i></button>
             </li>
           </ul>
         </div>

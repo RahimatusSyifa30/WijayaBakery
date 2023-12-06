@@ -15,7 +15,6 @@ class AdminPesananController extends BaseController
     public function index()
     {
         helper('form');
-        helper('cookie');
         $keran = new KeranjangModel();
         $pes = new PesananModel();
         $detail_pes = new DetailPesananModel();
@@ -60,6 +59,7 @@ class AdminPesananController extends BaseController
         $array1 = [
             'id_user' => session()->get('UserID'),
             'tanggal' => date('Y-m-d H:i:sa', $t),
+            'tanggal_pengambilan' => date('Y-m-d H:i:sa', $t),
             'total_harga' => $keran->totalHarga(),
         ];
         $pes->insert_pesanan($array1);
@@ -82,8 +82,6 @@ class AdminPesananController extends BaseController
             $array_stok = [
                 'stok_produk' => $stok_baru
             ];
-
-
             $produk->update_Produk($id, $array_stok);
         }
 
@@ -97,13 +95,94 @@ class AdminPesananController extends BaseController
 
         $data_notif = $pes->getPesananById($pes->getInsertID());
         $userid = session()->get('UserID');
+        $admin = $user->getUserByID(1);
+        $no_admin = $admin['no_hp_user'];
         $tes = $user->getUserNameByID($userid);
         $nama_pel = $tes['nama_user'];
         $tanggal = $data_notif['tanggal'];
-        $url = $kontak->notif_dari_customer_WA($userid, $tanggal);
+        $url = $kontak->notif_dari_customer_WA($userid, $nama_pel, $tanggal, $no_admin);
 
         $keran->delete_semua_keranjang();
-        session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan berhasil dibuat. Silahkan menuju ke Wijaya Bakery untuk konfirmasi.');
+        session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan berhasil dibuat. Silahkan tunggu beberapa sesaat untuk dikonfirmasi oleh kami.');
+        return redirect('admin')->to($url);
+        // }
+    }
+    public function view_buat_pesanan()
+    {
+
+        helper('form');
+        $keran = new KeranjangModel();
+        $data = [
+
+            'isi_ker' => $keran->viewAll(),
+            'jumlah_item' => $keran->getTotalBarang(),
+            'total_harga' => $keran->totalHarga()
+
+        ];
+        echo view('buat_pesanan', $data);
+    }
+    public function tambahkan_pesanan()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $t = time();
+        $produk = new ProdukModel();
+        $user = new UserModel();
+        $pes = new PesananModel();
+        $detail_pes = new DetailPesananModel();
+        $keran = new KeranjangModel();
+        $isi_ker = $keran->viewAll();
+        $kontak = new KontakModel();
+        $data = [
+            'jumlah_item' => $keran->getTotalBarang()
+        ];
+        $deadline = $this->request->getPost('deadline');
+        if ($deadline >= date('Y-m-d', $t)) {
+            $array1 = [
+                'id_user' => session()->get('UserID'),
+                'tanggal' => date('Y-m-d H:i:sa', $t),
+                'tanggal_pengambilan' => $deadline,
+                'total_harga' => $keran->totalHarga(),
+            ];
+            $pes->insert_pesanan($array1);
+        } else {
+            session()->setFlashdata('error', 'Tanggal harus lebih dari hari ini');
+            return redirect('buat_pesanan');
+        }
+        foreach ($isi_ker as $detail) {
+            $data = $produk->getProdukByName($detail['name']);
+            $id = $data[0]['id_produk'];
+            $id_pes = $pes->getInsertID();
+            $array = [
+                'id_user' => session()->get('UserID'),
+                'id_pesanan' => $id_pes,
+                'id_produk' => $id,
+                'kuantitas' => $detail['qty'],
+                'sub_modal' => $detail['qty'] * $detail['options']['modal'],
+                'sub_total' => $detail['subtotal'],
+            ];
+
+            $detail_pes->insert_detail_pesanan($array);
+        }
+
+        $to_modal = $detail_pes->getTotalModal($id_pes);
+        $array_modal = [
+
+            'total_modal' => $to_modal[0]->totalmodal,
+        ];
+        $produk->updateStok_jikakurangdarinol();
+        $pes->update_pesanan($id_pes, $array_modal);
+
+        $data_notif = $pes->getPesananById($pes->getInsertID());
+        $userid = session()->get('UserID');
+        $admin = $user->getUserByID(1);
+        $no_admin = $admin['no_hp_user'];
+        $tes = $user->getUserNameByID($userid);
+        $nama_pel = $tes['nama_user'];
+        $tanggal = $data_notif['tanggal'];
+        $url = $kontak->notif_dari_customer_WA($userid, $nama_pel, $tanggal, $no_admin);
+
+        $keran->delete_semua_keranjang();
+        session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan berhasil dibuat. Silahkan tunggu beberapa sesaat untuk dikonfirmasi oleh kami.');
         return redirect('admin')->to($url);
         // }
     }
@@ -158,22 +237,29 @@ class AdminPesananController extends BaseController
     {
         $kontak = new KontakModel();
         $pesan = new PesananModel();
+        $user = new UserModel();
         $data = $pesan->getPesananById($id);
-        $nama_pel = $data['nama_user'];
-        $no_pel = $data['no_hp_user'];
+        $userid = $data['id_user'];
         $tanggal = $data['tanggal'];
+
+        $tes = $user->getUserByID($userid);
+        $nama_pel = $tes['nama_user'];
+        $no_pel = $tes['no_hp_user'];
         $pesan->pesanan_diproses($id);
 
-        $url = $kontak->pesanan_diproses_WA($no_pel, $nama_pel, $tanggal);
+        $url = $kontak->pesanan_diproses_WA($userid, $no_pel, $nama_pel, $tanggal);
         session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan sedang diproses.');
         return redirect('admin')->to($url);
     }
     public function pesanan_selesai($id)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $d = time();
         $kontak = new KontakModel();
         $laporan = new LaporanModel();
         $pesan = new PesananModel();
+        $user = new UserModel();
+
         $data = $pesan->getPesananById($id);
         $nama_pel = $data['nama_user'];
         $no_pel = $data['no_hp_user'];
@@ -190,8 +276,14 @@ class AdminPesananController extends BaseController
             'keuntungan_bersih' => $untung_bersih,
         ];
         $laporan->insert_laporan($array);
+        $userid = $data['id_user'];
+        $tanggal = $data['tanggal'];
 
-        $url = $kontak->pesanan_selesai_WA($no_pel, $nama_pel, $tanggal);
+        $tes = $user->getUserByID($userid);
+        $nama_pel = $tes['nama_user'];
+        $no_pel = $tes['no_hp_user'];
+        $pesan->pesanan_diproses($id);
+        $url = $kontak->pesanan_selesai_WA($userid, $no_pel, $nama_pel, $tanggal);
         session()->setFlashdata('notif', 'Hai, <strong>' . $nama_pel . '</strong>!!! Pesanan sudah selesai. Selamat Menikmati');
         return redirect('admin')->to($url);
     }

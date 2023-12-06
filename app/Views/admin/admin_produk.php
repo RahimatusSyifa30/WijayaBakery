@@ -27,13 +27,13 @@
   include($filePath . '\layout\admin_header.php') ?>
   <!-- Header End -->
 
-
+  <img class="bg-slide m-0" src="<?= base_url('image/bg/body-head.png') ?>" alt="">
   <!--  -->
   <main>
     <?php include($filePath . '\layout\alert.php') ?>
-    <div class="mt-5">
+    <div class="mtt">
       <div class="p-4">
-        <h1 class="font-lg text-center bakery stroke">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
+        <h1 class="font-lg text-center bakery stroke font-lg">Produk Wijaya<span class="text-warning">Bakery.</span></h1>
         <hr class="hr-title">
 
       </div>
@@ -101,9 +101,20 @@
         <div class="text-center">
           <hr>
           <br>
-          <input type="text" name="cari_produk" id="cari" onkeyup="myFunction()" class="form-control mb-3 bg-secondary bg-opacity-10" placeholder="Cari produk..." aria-label="Cari produk..." aria-describedby="basic-addon2">
+          <form action="" method="post">
+            <div class=" input-group mt-2 mb-3">
+              <input type="text" name="cari" id="carites" class="form-control mb-3 bg-white " placeholder="Cari produk...">
+              <div class="input-group-append">
+                <button type="submit" class="btn bg-btnhover" id="button-addon2">Cari</button>
+              </div>
+              <div class="input-group-append-2 ms-2">
+                <a href="<?= base_url('admin/produk') ?>" class="btn bg-btnhover">Reset</a>
+              </div>
+
+            </div>
+          </form>
           <a href="<?= base_url('admin/tambah_produk') ?>" class="btn btn-lg bg-btnhover-reverse">Tambah Produk +</a>
-        
+
         </div>
 
         <!--  BUAT SELURUH PRODUK-->
@@ -153,6 +164,9 @@
             $a++;
           endforeach ?>
           <!-- </button> -->
+        </div>
+        <div class="pagination justify-content-end mt-md-5 mt-sm-2">
+          <?= $pager->links('produk', 'pagination') ?>
         </div>
 
       </div>

@@ -1,24 +1,3 @@
-///////
-//Search Filter Produk
-function myFunction() {
-  // Declare variables
-  var input, filter, row, li, a, i, txtValue;
-  input = document.getElementById("cari");
-  filter = input.value.toUpperCase();
-  row = document.getElementById("SelProduk");
-  li = row.getElementsByClassName("produk");
-
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByClassName("card-title")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
 function cariProdukModal() {
   // Declare variables
   var input, filter, row, li, a, i, txtValue;

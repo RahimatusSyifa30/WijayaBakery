@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\KeranjangModel;
 use App\Models\UserModel;
+use App\Models\PesananModel;
+use App\Models\DetailPesananModel;
 
 class UserController extends BaseController
 {
@@ -109,46 +111,31 @@ class UserController extends BaseController
     }
     public function pesanan_saya()
     {
+
         $keran = new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
-        $user = new UserModel();
-        $data['user'] = $user->getPesananByIDUser(session()->get('UserID'));
-        // session()->setFlashdata('notif', 'Berhasil menghapus akun');
+        $pes = new PesananModel();
+        $detail_pes = new DetailPesananModel();
+        $data['pes'] = $pes->getAllPesananByIdUser(session()->get('UserID'));
+        $counter = 0;
+        foreach ($data['pes'] as $tes) {
+            $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
+            $counter++;
+        }
         return view('pesanan_saya', $data);
     }
     public function riwayat()
     {
-        $input = $this->request->getPost('captcha-input');
-        $result = $this->request->getPost('captcha-result');
-        if ($input = $result) {
-            $user = new UserModel();
-            $dataBerkas = $this->request->getFile('ktp');
-            $fileName = $dataBerkas->getRandomName();
-            $dataBerkas->move('image/ktp/', $fileName);
-            $no_hp = $this->request->getPost('no_hp');
-            $validation =  \Config\Services::validation();
-            $validation->setRules([
-                'no_hp' => 'required|is_unique[user.no_hp_user]',
-            ]);
-            $isDataValid = $validation->withRequest($this->request)->run();
-            if ($isDataValid) {
-                $array = [
-                    'nama_user' => $this->request->getPost('nama_user'),
-                    'no_hp_user' => $no_hp,
-                    'password' => $this->request->getPost('password'),
-                    'alamat' => $this->request->getPost('alamat'),
-                    'ktp' => $fileName
-                ];
-                $user->insert_User($array);
-                session()->setFlashdata('notif', 'Berhasil membuat akun, silahkan <strong>Login</strong>.');
-                return redirect('login');
-            } else {
-                session()->setFlashdata('error', '<strong>No HP</strong> sudah terdaftar.');
-                return redirect('registrasi');
-            }
-        } else {
-            session()->setFlashdata('error', 'Jawaban <strong>Captcha</strong> salah.');
-            return redirect('registrasi');
+        $keran = new KeranjangModel();
+        $data['jumlah_item'] = $keran->getTotalBarang();
+        $pes = new PesananModel();
+        $detail_pes = new DetailPesananModel();
+        $data['pes'] = $pes->getAllPesananSelesaiByIdUser(session()->get('UserID'));
+        $counter = 0;
+        foreach ($data['pes'] as $tes) {
+            $data['join_pro'][$counter] = $detail_pes->getJoinProdukById($tes['id_pesanan']);
+            $counter++;
         }
+        return view('riwayat_trs', $data);
     }
 }

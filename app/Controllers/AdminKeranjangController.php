@@ -73,7 +73,7 @@ class AdminKeranjangController extends BaseController
         // $i++;
         endforeach;
         session()->setFlashdata('notif', 'Berhasil mengubah produk dalam keranjang');
-        return redirect('admin/keranjang');
+        return redirect()->back();
     }
     public function hapus_keranjang($id)
     {

@@ -27,7 +27,7 @@
     <main>
         <?php include($filePath . '\layout\alert.php') ?>
         <div class="container mt-md-4 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
-            <h1 class="bakery stroke">Daftar User</h1>
+            <h1 class="bakery stroke">Daftar User <?= session()->get('title') ?></h1>
             <div class="row justify-content-center">
                 <div class="mb-2 col-md-12 col-xs-12 ">
                     <div class="position-relative">
@@ -72,8 +72,8 @@
                                     <td class="fw-bolder"><?= $pesan['nama_user'] ?></td>
                                     <td><?= $pesan['alamat'] ?></td>
                                     <td class="fw-bolder"><?= $pesan['verifikasi'] ?></td>
-                                    <td class="fw-bolder"><i data-feather="x" class="featherr"></td>
-                                    <td class="fw-bolder"><i data-feather="check-circle" class="featherr"></td>
+                                    <td><a href="<?= base_url('admin/verif_dihapus/' . $pesan['id_user']) ?>"><i data-feather="x" class="featherr"></i></a></td>
+                                    <td><a href="<?= base_url('admin/verif_diterima/' . $pesan['id_user']) ?>"><i data-feather="check-circle" class="featherr"></i></a></td>
                                 </tr>
                             <?php $counter++;
                             endforeach ?>

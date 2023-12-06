@@ -38,6 +38,15 @@ class UserModel extends Model
     {
         return $this->delete($id);
     }
+
+    public function verif_diterima($id)
+    {
+        $db = db_connect();
+        $db->query('UPDATE user SET verifikasi="Diterima" WHERE id_user=' . $id);    }
+    public function verif_dihapus($id)
+    {
+        $db = db_connect();
+        $db->query('UPDATE user SET verifikasi="Belum" WHERE id_user=' . $id);    }
     public function search($cari)
     {
         return $this->table('user')->like('no_hp_user', $cari);

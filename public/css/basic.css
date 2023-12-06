@@ -70,7 +70,17 @@
 .tes {
   display: none;
 }
-
+.bg-slide {
+  max-width: 100%;
+  z-index: -2;
+  position: absolute;
+}
+.mtt {
+  margin-top: 60px;
+}
+.font-lg {
+  font-size: 60px;
+}
 .bi {
   font-size: 3rem;
   background: white;
@@ -189,7 +199,16 @@ footer {
   html {
     font-size: 80%;
   }
-
+  .conta {
+    width: 200px;
+    height: 1000px;
+  }
+  .mtt {
+    margin-top: 50px;
+  }
+  .font-lg {
+    font-size: 50px;
+  }
   .tes {
     display: none;
   }
@@ -212,7 +231,18 @@ footer {
   html {
     font-size: 60%;
   }
-  #keranjang {
+  .conta {
+    width: 200px;
+    height: 1000px;
+    margin-right: 115px;
+  }
+  .mtt {
+    margin-top: 40px;
+  }
+  .font-lg {
+    font-size: 40px;
+  }
+  .dis-none {
     display: none;
   }
   .tes {
@@ -237,7 +267,21 @@ footer {
   html {
     font-size: 50%;
   }
-  #keranjang {
+  .foto-prof {
+    width: 50px;
+  }
+  .mtt {
+    margin-top: 20px;
+  }
+  .font-lg {
+    font-size: 20px;
+  }
+  .conta {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .dis-none {
     display: none;
   }
   .tes {

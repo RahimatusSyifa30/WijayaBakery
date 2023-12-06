@@ -27,7 +27,7 @@ class LaporanModel extends Model
     {
         if ($nama) {
             $db = db_connect();
-            $sql = "SELECT * FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_pelanggan='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $sql = "SELECT * FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_user='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
             $data = $db->query($sql);
             $data = $data->getResultArray();
             return $data;
@@ -43,7 +43,7 @@ class LaporanModel extends Model
     {
         if ($nama) {
             $db = db_connect();
-            $sql = "SELECT sum(modal) as modal FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_pelanggan='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $sql = "SELECT sum(modal) as modal FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_user='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
             $data = $db->query($sql);
             $data = $data->getResult();
             return $data;
@@ -59,7 +59,7 @@ class LaporanModel extends Model
     {
         if ($nama) {
             $db = db_connect();
-            $sql = "SELECT sum(keuntungan_kotor) as unkot FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_pelanggan='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $sql = "SELECT sum(keuntungan_kotor) as unkot FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_user='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
             $data = $db->query($sql);
             $data = $data->getResult();
             return $data;
@@ -75,7 +75,7 @@ class LaporanModel extends Model
     {
         if ($nama) {
             $db = db_connect();
-            $sql = "SELECT sum(keuntungan_bersih) as unbers FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_pelanggan='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
+            $sql = "SELECT sum(keuntungan_bersih) as unbers FROM laporan JOIN pesanan ON laporan.id_pesanan=pesanan.id_pesanan WHERE nama_user='" . $nama . "' AND tanggal_laporan BETWEEN '" . $start . " 00:00:00' AND '" . $end . " 23:59:59'";
             $data = $db->query($sql);
             $data = $data->getResult();
             return $data;
@@ -113,6 +113,6 @@ class LaporanModel extends Model
     }
     public function search($cari)
     {
-        return $this->table('laporan')->like('nama_pelanggan', $cari);
+        return $this->table('laporan')->like('nama_user', $cari);
     }
 }

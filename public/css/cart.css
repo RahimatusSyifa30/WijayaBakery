@@ -100,7 +100,7 @@ opacity: 0.7;
 }
 
 .shopping-cart .def-number-input.number-input input[type="number"] {
-  max-width: 2.5rem;
+  max-width: 5rem;
   border: none;
 }
 

@@ -11,13 +11,21 @@ class RegisController extends BaseController
     {
         $keran = new KeranjangModel();
         $data['jumlah_item'] = $keran->getTotalBarang();
-        return view('registrasi', $data);
+        if (session()->get('isLoggedIn')) {
+            session()->setFlashdata('error', 'Anda sudah login');
+            return redirect()->back();
+        } else if (session()->get('isLoggedInAdmin')) {
+            session()->setFlashdata('error', 'Anda sudah login');
+            return redirect('admin');
+        } else {
+            return view('registrasi', $data);
+        }
     }
     public function tambah_user()
     {
         $input = $this->request->getPost('captcha-input');
         $result = $this->request->getPost('captcha-result');
-        if ($input = $result) {
+        if ($input == $result) {
             $user = new UserModel();
             $dataBerkas = $this->request->getFile('ktp');
             $fileName = $dataBerkas->getRandomName();

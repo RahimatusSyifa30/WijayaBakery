@@ -46,7 +46,7 @@
             <button type="submit" class="btn bg-btnhover">Filter</button>
           </div>
           <div class="col-auto">
-            <a href="<?= base_url("admin/reset_tanggal_laporan") ?>" type="submit" class="btn bg-btnhover">Reset</a>
+            <a href="<?= base_url("admin/reset_tanggal_riwayat") ?>" type="submit" class="btn bg-btnhover">Reset</a>
           </div>
         </form>
       </div>
@@ -68,8 +68,8 @@
                   <button type="submit" class="btn bg-btnhover" id="button-addon2">Cari</button>
                 </div>
               </div>
+            </form>
           </div>
-          </form>
         </div>
         <div class="">
           <table class="table table-responsive table-borderless rounded-2 table-warning table-hover bakery" id="pesanan_belum" aria-disabled="">

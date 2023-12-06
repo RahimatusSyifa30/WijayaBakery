@@ -13,12 +13,23 @@ class ProdukController extends BaseController
     public function produk()
     {
         helper('form');
-        $produk = new ProdukModel();
-        $jenis_produk = new KelProdukModel();
-        $data['kel_produk'] = $jenis_produk->findAll();
-        $data['produk'] = $produk->viewAll();
+        $pro = new ProdukModel();
+        $kel_pro = new KelProdukModel();
         $keran = new KeranjangModel();
-        $data['jumlah_item'] = $keran->getTotalBarang();
+        $cari = $this->request->getPost('cari');
+        if ($cari) {
+            $model = $pro->search($cari);
+            session()->setFlashdata('notif','Mencari produk '.$cari);
+        } else {
+            $model = $pro;
+        }
+        $data = [
+            'kel_produk' => $kel_pro->viewAll(),
+            'produk' => $model->orderBy('stok_produk', 'DESC')->paginate(8, 'produk'),
+            'jumlah_item' => $keran->getTotalBarang(),
+            'pager' => $pro->pager,
+
+        ];
         echo view('produk', $data);
     }
     public function detail_produk($nama)

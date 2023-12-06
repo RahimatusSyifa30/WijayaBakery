@@ -20,11 +20,11 @@
   <!-- Header Start -->
   <?php include("layout/header.php") ?>
   <!-- Header End -->
-
-  <section id="about ">
+  <img class="bg-slide m-0" src="image/bg/body-head.png" alt="">
+  <section id="about" class="mtt ">
     <div class="container rounded-5   p-3">
       <div class="about-1">
-        <h1 id="bakery" class="text-center stroke">Tentang Wijaya<span class="text-warning">Bakery.</span></h1>
+        <h1 id="bakery" class="text-center stroke font-lg">Tentang Wijaya<span class="text-warning">Bakery.</span></h1>
         <hr class="hr-title">
         <img src="image/logo/logo.png" class="rounded mx-auto d-block logo p-4" alt="..." />
         <p>Toko Roti <span class="fw-bolder">Wijaya Bakery</span> adalah sebuah perusahaan toko roti yang didirikan pada tahun 2020 dengan tujuan menyediakan roti yang berkualitas kepada pelanggan.

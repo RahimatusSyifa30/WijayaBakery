@@ -79,7 +79,6 @@
           <table class="table table-responsive table-borderless rounded-2 table-warning table-hover bakery" id="pesanan_belum" aria-disabled="">
             <thead>
               <tr class="bg-light">
-                <th scope="col" width="20%">Nama Pelanggan</th>
                 <th scope="col" width="20%">Tanggal</th>
                 <th scope="col" width="20%">Modal</th>
                 <th scope="col" width="20%">Keuntungan Kotor</th>
@@ -91,7 +90,6 @@
               $counter = 0;
               foreach ($laporan as $pesan) : ?>
                 <tr>
-                  <td class="fw-bolder"><?= $pesan['nama_user'] ?></td>
                   <td><?= $pesan['tanggal_laporan'] ?></td>
                   <td><?= $pesan['modal'] ?></td>
                   <td><?= $pesan['keuntungan_kotor'] ?></td>
@@ -103,7 +101,6 @@
             </tbody>
             <tfoot>
               <tr>
-                <td></td>
                 <td></td>
                 <td class="fw-bolder"><?= $modal ?></td>
                 <td class="fw-bolder"><?= $untung_kotor ?></td>

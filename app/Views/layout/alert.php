@@ -26,6 +26,8 @@
           position: 'topRight',
           // titleSize: 16,
           // messageSize: 16,
+          // titleColor: 'white',
+          // messageColor: 'white',
           backgroundColor: 'rgba(228, 103, 112, 1)',
           timeout: 10000,
         });

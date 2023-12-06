@@ -15,6 +15,7 @@ class AdminLaporanController extends BaseController
         $cari = $this->request->getPost('cari');
         if ($cari) {
             $model = $lapor->search($cari);
+            session()->setFlashdata('notif', 'Mencari pelanggan dengan nama ' . $cari);
         } else {
             $model = $lapor;
         }
@@ -23,7 +24,7 @@ class AdminLaporanController extends BaseController
         $untung_ber = $lapor->sum_untung_bersih_laporan_all();
         $data = [
             'jumlah_item' => $keran->getTotalBarang(),
-            'laporan' => $model->join('pesanan', 'laporan.id_pesanan=pesanan.id_pesanan')->join('user', 'user.id_user=pesanan.id_user')
+            'laporan' => $model->join('pesanan', 'laporan.id_pesanan=pesanan.id_pesanan')
                 ->select('*')->orderBy('tanggal', 'DESC')
                 ->paginate(10, 'laporan'),
             'pager' => $lapor->pager,

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keranjang</title>
+  <title>Buat Pesanan</title>
   <link rel="shortcut icon" href="<?= base_url('image/logo/logo.png') ?>" />
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
@@ -23,14 +23,23 @@
   <?php
   $rootPath = ROOTPATH;
   $filePath = $rootPath . 'app\Views';
-  include($filePath . '\layout\header.php') ?>
+  if (session()->get('isLoggedInAdmin')) {
+    include($filePath . '\layout\admin_header.php');
+  } else {
+    include($filePath . '\layout\header.php');
+  } ?>
   <!-- Header End -->
+  <img class="bg-slide m-0" src="image/bg/body-head.png" alt="">
 
   <main>
     <?php include($filePath . '\layout\alert.php') ?>
     <section class="">
+      <div class="p-4 mt-3">
+        <h1 class="text-center bakery stroke">Buat Pesanan</h1>
+        <hr class="hr-title">
+      </div>
       <?php if (empty($jumlah_item)) { ?>
-        <div class="container-fluid con">
+        <div class="container-fluid">
           <div class="row">
             <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
               <img src="<?= base_url('image/logo/logo_cart_empty.png') ?>" alt="" class="img-fluid mb-4 rounded-2 cart-empty" id="logo_cart">
@@ -61,12 +70,12 @@
                           <div class="flex-grow-1 ms-3">
                             <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
                             <h5 class="bakery"><?= $keranjang['name'] ?></h5>
-                            <?= form_open('ubah_keranjang') ?>
+                            <?= form_open('ubah_keranjang1') ?>
                             <div class="d-flex align-items-center bakery">
                               <p class="fw-bold mb-0 me-5 pe-3">Rp <?= $keranjang['price'] ?></p>
                               <div class="def-number-input number-input safari_only">
                                 <button onclick="this.parentNode.querySelector('.quantity').stepDown()" class="minus  bakery"></button>
-                                <input class="quantity fw-bold text-black" min=1 max=<?= $keranjang['options']['stok'] ?> name="qty<?= $i++?>" value="<?= $keranjang['qty'] ?>" type="number" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Maksimal stok sampai <?= $keranjang['options']['stok'] ?>">
+                                <input class="quantity fw-bold text-black" min="1" max=1500 name="qty<?= $i++ ?>" value="<?= $keranjang['qty'] ?>" type="number" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Maksimal stok sampai 1500">
                                 <button onclick="this.parentNode.querySelector('.quantity').stepUp()" class="plus bakery"></button>
                               </div>
                             </div>
@@ -95,20 +104,22 @@
                         <?= form_close() ?>
                       </div>
                     </div>
-                    <div class="col-lg-6 px-5 py-4 bakery text-center">
-                        <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke">Jenis Pesanan</h3>
-                      <?= form_open('admin/tambah_pesanan') ?>
+                    <div class="col-lg-6 px-5 py-4 bakery">
+                      <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke"></h3>
+                      <?= form_open('tambahkan_pesanan') ?>
                       <div class="justify-content-center text-center">
-                        <div class="d-flex mb-3 justify-content-center" >
-                        <?php if(session()->get('verif')=="Diterima"){?>
-                          <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3">Checkout <i class="bi-cart-check-fill"></i></button>
-                            <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse">Buat Pesanan <i class="bi-printer-fill"></i></a>
-                            <?php }else {?>
+                        <div class="form-floating mb-3">
+                          <input type="date" class="form-control" name="deadline" id="floatingInput" placeholder="name@example.com">
+                          <label for="floatingInput">Tanggal Pengambilan</label>
+                        </div>
+                        <div class="d-flex mb-3 justify-content-center">
+                          <?php if (session()->get('verif') == "Diterima") { ?>
+                            <button type="submit" class="btn btn-lg bg-btnhover-reverse">Buat Pesanan <i class="bi-printer-fill"></i></a>
+                            <?php } else { ?>
                               <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="KTP anda belum terverifikasi">
-                            <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3" disabled>Checkout <i class="bi-cart-check-fill"></i></button>
-                            <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse" id="disa">Buat Pesanan <i class="bi-printer-fill"></i></a>
-                            </div>
-                          <?php }?>
+                                <button type="submit" class="btn btn-lg bg-btnhover-reverse" id="disa">Buat Pesanan <i class="bi-printer-fill"></i></a>
+                              </div>
+                            <?php } ?>
                         </div>
                       </div>
                       <?= form_close() ?>

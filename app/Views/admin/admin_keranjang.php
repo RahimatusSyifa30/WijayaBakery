@@ -98,29 +98,16 @@
                     <div class="col-lg-6 px-5 py-4 bakery">
                       <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase bakery stroke">Jenis Pesanan</h3>
                       <?= form_open('admin/tambah_pesanan') ?>
-                      <!-- <div class="form-floating mb-3 ">
-                        <input type="text" name="nama_pel" id="nama_pel" class="form-control bakery" placeholder="Masukkan nama anda" title="Masukkan nama pelanggan" required>
-                        <label for="nama_pel">Nama Pelanggan</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="datetime" name="tanggal" id="tanggal" class="form-control bakery" value="<?= date('d-m-y H:i:s') ?>" title="Tanggal pemesanan" disabled>
-                        <label for="tanggal">Tanggal</label>
-                      </div>
-                      <div class="input-group mb-3 bakery">
-                        <span class="input-group-text bakery" id="basic-addon1">+62</span>
-                        <div class="form-floating">
-                          <input type="text" name="no_hp" id="no_hp" class="form-control bakery" placeholder="sdah" title="Masukkan No HP atau No WA" required>
-                          <label for="no_hp">No HP/WA</label>
-                        </div>
-                      </div> -->
                       <div class="justify-content-center text-center">
-                        <div class="d-flex mb-3 justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="KTP anda belum terverifikasi">
-                        <?php if(session()->get('verif')=="Belum"){?>
+                        <div class="d-flex mb-3 justify-content-center" >
+                        <?php if(session()->get('verif')=="Diterima"){?>
+                          <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3">Checkout <i class="bi-cart-check-fill"></i></button>
+                            <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse">Buat Pesanan <i class="bi-printer-fill"></i></a>
+                            <?php }else {?>
+                              <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="KTP anda belum terverifikasi">
                             <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3" disabled>Checkout <i class="bi-cart-check-fill"></i></button>
                             <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse" id="disa">Buat Pesanan <i class="bi-printer-fill"></i></a>
-                            <?php }else if(session()->get('verif')=="Diterima"){?>
-                            <button type="submit" class="btn btn-lg bg-btnhover-reverse btn-block me-3">Checkout <i class="bi-cart-check-fill"></i></button>
-                            <a href="<?= base_url('buat_pesanan') ?>" class="btn btn-lg bg-btnhover-reverse">Buat Pesanan <i class="bi-printer-fill"></i></a>
+                            </div>
                           <?php }?>
                         </div>
                         <button type="button" class="btn btn-lg bg-btnhover-reverse mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -149,12 +136,14 @@
           <div class="modal-body">
             <form action="<?= base_url('admin/tambah_detail_pesanan') ?>" method="post">
               <select name="data" id="data" class="form-control">
-
+                <?php foreach($pesanan as $pesan){?>
+                <option value="<?= $pesan['nama_user']?>|<?= $pesan['tanggal']?>"><?= $pesan['nama_user']?> - <?= $pesan['tanggal']?></option>
+                <?php }?>
               </select>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+            <button type="submit" class="btn bg-btnhover">Simpan</button>
           </div>
           </form>
         </div>

@@ -4,13 +4,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
   z-index: 9999;
+  border: 2rem;
+  border-color: beige;
   box-shadow: 11px 15px 37px 0px rgba(241, 193, 144, 0.84);
   -webkit-box-shadow: 11px 15px 37px 0px rgba(241, 193, 144, 0.84);
   -moz-box-shadow: 11px 15px 37px 0px rgba(241, 193, 144, 0.84);
-  width: 60%;
+  width: 80%;
 }
 
 .form-control {

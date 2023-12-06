@@ -21,7 +21,7 @@ section {
 .con {
   position: relative;
   min-width: 1100px;
-  min-height: 550px;
+  min-height: 750px;
   display: flex;
 }
 .con .col-12 span img {
@@ -30,11 +30,11 @@ section {
 }
 .container .contactInfo {
   position: absolute;
-  top: 40px;
+  top: 120px;
   width: 350px;
-  height: calc(100% - 80px);
+  height: calc(100% - 350px);
 
-  background: rgb(250, 225, 194);
+  background: rgb(247, 230, 208);
   z-index: 1;
   padding: 40px;
   display: flex;
@@ -55,7 +55,7 @@ section {
   padding-left: 250px;
   margin-left: 150px;
   width: calc(100% - 150px);
-  height: 100%;
+  height: calc(100% - 100px);
   background: beige;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
 }
@@ -125,6 +125,9 @@ section {
 @media (max-width: 450px) {
   .con {
     min-width: 100px;
+  }
+  .container .contactInfo .title-kon {
+    width: 200px;
   }
   .container .contactForm .formBox {
     padding-top: 10px;

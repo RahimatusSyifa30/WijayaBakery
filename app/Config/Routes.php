@@ -35,7 +35,8 @@ $routes->get('detail_produk/(:segment)', 'ProdukController::detail_produk/$1');
 $routes->get('tentang_kami', 'TentangController::tentang');
 $routes->get('kontak_kami', 'KontakController::index');
 $routes->add('kirim_pesan', 'KontakController::kirim_pesan');
-$routes->add('buat_pesanan', 'KontakController::kirim_pesan');
+$routes->add('buat_pesanan', 'AdminPesananController::view_buat_pesanan');
+$routes->add('tambahkan_pesanan', 'AdminPesananController::tambahkan_pesanan');
 $routes->add('login', 'LoginController::index');
 $routes->get('logout', 'LoginController::logout');
 $routes->add('registrasi', 'RegisController::index');
@@ -51,6 +52,7 @@ $routes->add('riwayat_transaksi', 'UserController::riwayat');
 $routes->add('keranjang', 'KeranjangController::index');
 $routes->add('tambah_keranjang', 'KeranjangController::tambah_keranjang');
 $routes->add('ubah_keranjang', 'KeranjangController::update_keranjang');
+$routes->add('ubah_keranjang1', 'KeranjangController::update_keranjang1');
 $routes->add('hapus_keranjang/(:segment)', 'KeranjangController::hapus_keranjang/$1');
 $routes->add('hapus_total_keranjang', 'KeranjangController::hapus_isi_keranjang');
 
@@ -61,7 +63,11 @@ $routes->group('admin', function ($routes) {
     $routes->get('view_verif', 'AdminVerifController::index');
     $routes->add('view_belum', 'AdminVerifController::view_belum');
     $routes->add('view_sudah', 'AdminVerifController::view_sudah');
+    $routes->add('verif_diterima/(:segment)', 'AdminVerifController::verif_diterima/$1');
+    $routes->add('verif_ditolak/(:segment)', 'AdminVerifController::verif_ditolak/$1');
+    $routes->add('verif_dihapus/(:segment)', 'AdminVerifController::verif_dihapus/$1');
 
+    $routes->add('buat_pesanan', 'AdminPesananController::buat_pesanan');
     $routes->add('tambah_pesanan', 'AdminPesananController::insert_pesanan');
     $routes->add('ubah_pesanan/(:segment)', 'AdminPesananController::update_pesanan/$1');
     $routes->get('pesanan_diproses/(:segment)', 'AdminPesananController::pesanan_diproses/$1');

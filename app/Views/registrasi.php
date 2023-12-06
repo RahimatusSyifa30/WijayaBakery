@@ -33,8 +33,8 @@
         <form action="<?= base_url('tambah_user') ?>" method="post" enctype="multipart/form-data" class="mt-4 d-flex justify-content-center">
             <div class=" bg-warning bg-opacity-25 rounded-4 ">
                 <div class="row p-4">
-                    <div class="col-md-12 col-xs-12 ">
-                        <h1 class="bakery stroke  mb-4 text-center">Registrasi</h1>
+                    <h1 class="bakery stroke  mb-4 text-center">Registrasi</h1>
+                    <div class="col-md-6 col-xs-12 ">
                         <div class="form-floating mb-3 ">
                             <input type="text" name="nama_user" id="nama_user" class="bg-light form-control" required>
                             <label for="nama_user">Nama</label>
@@ -51,9 +51,11 @@
                             <textarea name="alamat" id="alamat" class="bg-light form-control" cols=50 rows=30 required></textarea>
                             <label for="alamat">Alamat</label>
                         </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
                         <label for="ktp">Foto KTP</label>
                         <br>
-                        <img id="gambarTampil1" src="#" alt="Gambar yang Dipilih" style="max-width: 100%; max-height: 200px;">
+                        <img id="gambarTampil1" src="#" style="max-width: 100%; max-height: 200px;">
                         <input type="file" name="ktp" id="ktp" class="bg-light form-control" accept=".jpeg,.jpg,.png,image" required>
                         <p>Note : KTP akan diverifikasi terlebih dahulu, kurang lebih 1-2 hari</p>
                         <div id="captcha-container">

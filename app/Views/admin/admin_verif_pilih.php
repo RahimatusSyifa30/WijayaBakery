@@ -26,12 +26,16 @@
     <!-- Header End -->
     <main>
         <?php include($filePath . '\layout\alert.php') ?>
-        <div class="container mt-md-4 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
+        <div class="container con mt-md-4 mt-sm-0 p-4 text-center bg-warning bg-opacity-25 rounded-4">
             <h1 class="bakery stroke">Daftar User</h1>
             <br>
-            <div class="d-flex justify-content-evenly mt-4 mb-4">
-                <a href="<?= base_url('admin/view_belum') ?>" class="btn bg-btnhover btn-gede">Belum Verifikasi KTP</a>
-                <a href="<?= base_url('admin/view_sudah') ?>" class="btn bg-btnhover btn-gede">Sudah Verifikasi KTP</a>
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <a href="<?= base_url('admin/view_belum') ?>" class="btn bg-btnhover btn-gede">Belum Verifikasi KTP</a>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <a href="<?= base_url('admin/view_sudah') ?>" class="btn bg-btnhover btn-gede">Sudah Verifikasi KTP</a>
+                </div>
             </div>
 
         </div>

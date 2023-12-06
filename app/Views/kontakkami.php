@@ -20,9 +20,12 @@
   <!-- Header Start -->
   <?php include("layout/header.php") ?>
   <!-- Header End -->
+  <?php include('layout/alert.php') ?>
+
+  <img class="bg-slide m-0" src="image/bg/body-head.png" alt="">
   <section>
-    <div class="p-4">
-      <h1 id="" class="text-center bakery stroke">Kontak Wijaya<span class="text-warning">Bakery.</span></h1>
+    <div class="p-4 mtt">
+      <h1 id="" class="text-center bakery stroke font-lg">Kontak Wijaya<span class="text-warning">Bakery.</span></h1>
       <hr>
     </div>
     <div class="container con ">
@@ -32,10 +35,10 @@
             <h2 id="" class="title-kon stroke ">Informasi Kontak</h2>
           </div>
           <div class="col-12 mt-4">
-            <a href="https://goo.gl/maps/gm4tphk6zCobfKBJ6" target="_blank" class="btn bakery ttt text-wrap stroke d-flex "> <span><img src="image/logo/lokasi.png"></span>Jl. Raya Pakuniran, RT.16/RW.04, Bucor Kulon.</a>
+            <a href="https://goo.gl/maps/gm4tphk6zCobfKBJ6" target="_blank" class="btn bakery  ttt text-wrap stroke d-flex "> <span class="p-1"><img src="image/logo/lokasi.png"></span>Jl. Raya Pakuniran, RT.16/RW.04, Bucor Kulon.</a>
           </div>
           <div class="col-12 mt-2">
-            <a href="https://wa.me/6282236047539" target="_blank" class="btn ttt bakery text stroke bg-btnhover-"><span> <img src="image/logo/wa.png"></span> 082236047539</a>
+            <a href="https://wa.me/62<?= $no_hp ?>" target="_blank" class="btn ttt bakery  text stroke "><span class="p-1"> <img src="image/logo/wa.png"></span> <?= $no_hp ?></a>
           </div>
         </div>
       </div>
@@ -51,6 +54,12 @@
               <div class="inputBox form-floating w100">
                 <textarea name="pesan" class="form-control" required placeholder="Tulis Pesan Anda..."></textarea>
                 <label>Pesan</label>
+              </div>
+              <div id="captcha-container" class="text-start w50">
+                <label for="captcha-input">Captcha</label>
+                <input type="hidden" id="captcha-result" name="captcha-result">
+                <input type="text" id="captcha-input" name="captcha-input" class="form-control" required>
+                <p>Note : Captcha wajib diisi untuk mencegah anti-spam</p>
               </div>
               <div class="inputBox w100 text-center">
                 <button class="btn bg-btnhover btn-lg" type="submit">Kirim</button>
@@ -72,6 +81,7 @@
   </script>
   <!-- Script Manual -->
   <script src="assets/js/script.js" type="text/javascript"></script>
+  <script src="assets/js/regis.js" type="text/javascript"></script>
 
 </body>
 

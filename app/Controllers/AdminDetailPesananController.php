@@ -21,6 +21,7 @@ class AdminDetailPesananController extends BaseController
         list($nama_pel, $tanggal) = explode('|', $array);
         $data_pesan = $pes->getPesananByName($nama_pel, $tanggal);
         $id_pesan = $data_pesan['id_pesanan'];
+        $id_user = $data_pesan['id_user'];
         foreach ($data as $tes) {
             $id = $produk->getIDProdukByName($tes['name']);
             $cekDetail = $detail_pes->getPesananDetailByProduk($id_pesan, $id[0]->id_produk);
@@ -37,10 +38,19 @@ class AdminDetailPesananController extends BaseController
                 ];
                 $detail_pes->update_detail_pesanan($cekDetail['id_detail'], $array);
                 $pes->update_pesanan($id_pesan, $array_pesan);
+
+                $prod=$produk->getProdukByName($tes['name']);
+                $stok_baru = $prod[0]['stok_produk'] - $tes['qty'];
+                $array_stok = [
+                    'stok_produk' => $stok_baru
+                ];
+                $produk->update_Produk($id[0]->id_produk, $array_stok);
+
             } else {
                 $array_detail = [
                     'id_pesanan' => $id_pesan,
                     'id_produk' => $id[0]->id_produk,
+                    'id_user'=>$id_user,
                     'kuantitas' => $tes['qty'],
                     'sub_modal' => $tes['options']['modal'] * $tes['qty'],
                     'sub_total' => $tes['subtotal'],
@@ -51,6 +61,14 @@ class AdminDetailPesananController extends BaseController
                 ];
                 $detail_pes->insert_detail_pesanan($array_detail);
                 $pes->update_pesanan($id_pesan, $array_pesan);
+
+                $prod=$produk->getProdukByName($tes['name']);
+                $stok_baru = $prod[0]['stok_produk'] - $tes['qty'];
+                $array_stok = [
+                    'stok_produk' => $stok_baru
+                ];
+                $produk->update_Produk($id[0]->id_produk, $array_stok);
+
             }
         }
         $keran->delete_semua_keranjang();

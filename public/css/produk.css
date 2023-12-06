@@ -11,9 +11,8 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.font-lg {
-  font-size: 60px;
-}
+
+
 #add1:disabled {
   opacity: 1;
 }
@@ -120,9 +119,7 @@
   .produk {
     width: calc(100% / 4);
   }
-  .font-lg {
-    font-size: 50px;
-  }
+  
   .card-jenis-pro .card-img-top {
     height: 200px;
     object-fit: cover;
@@ -139,9 +136,7 @@
   .produk {
     width: calc(100% / 4);
   }
-  .font-lg {
-    font-size: 40px;
-  }
+  
   .card-jenis-pro .card-img-top {
     height: 150px;
     object-fit: cover;
@@ -162,9 +157,7 @@
   .produk {
     width: calc(100% / 2);
   }
-  .font-lg {
-    font-size: 30px;
-  }
+  
   .card-jenis-pro .card-img-top {
     height: 150px;
     object-fit: cover;

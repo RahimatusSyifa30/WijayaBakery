@@ -19,7 +19,12 @@ class KeranjangController extends BaseController
             'isi_ker' => $keran->viewAll(),
             'total_harga' => $keran->totalHarga()
         ];
-        echo view('keranjang', $data);
+        if (session()->get('isLoggedIn') or session()->get('isLoggedInAdmin')) {
+            echo view('keranjang', $data);
+        } else {
+            session()->setFlashData('error', 'Login terlebih dahulu untuk melihat isi keranjang');
+            return redirect('login');
+        }
     }
     public function tambah_keranjang()
     {
@@ -68,6 +73,21 @@ class KeranjangController extends BaseController
         endforeach;
         session()->setFlashdata('notif', 'Berhasil mengubah produk dalam keranjang');
         return redirect('keranjang');
+    }
+    public function update_keranjang1()
+    {
+        $keran = new KeranjangModel();
+        $cart = $keran->viewAll();
+        $i = 0;
+        foreach ($cart as $value) :
+            $array = [
+                'rowid'      => $value['rowid'],
+                'qty'     => $this->request->getPost('qty' . $i++),
+            ];
+            $keran->update_keranjang($array);
+        endforeach;
+        session()->setFlashdata('notif', 'Berhasil mengubah produk dalam keranjang');
+        return redirect('buat_pesanan');
     }
     public function hapus_keranjang($id)
     {

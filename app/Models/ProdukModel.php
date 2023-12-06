@@ -19,6 +19,14 @@ class ProdukModel extends Model
         $result = $query->getResultArray();
         return $result;
     }
+    public function viewAllLimit7()
+    {
+        $db = db_connect();
+        $sql = "SELECT * FROM produk  ORDER BY stok_produk DESC LIMIT 7";
+        $query = $db->query($sql);
+        $result = $query->getResultArray();
+        return $result;
+    }
     public function getProdukById($id)
     {
         $db = db_connect();
@@ -63,5 +71,9 @@ class ProdukModel extends Model
         $db = db_connect();
         $sql = "UPDATE produk SET stok_produk=0 WHERE stok_produk<0";
         return $db->query($sql);
+    }
+    public function search($cari)
+    {
+        return $this->table('produk')->like('nama_produk', $cari);
     }
 }

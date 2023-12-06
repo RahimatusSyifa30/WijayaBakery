@@ -3,7 +3,7 @@
         <div class="justify-content-center d-flex p-2">
             <h4 class="card-title ">Akun</h4>
         </div>
-        <button type="button" id="btn-close" class="btn-close position-absolute p-2" aria-label="Close"></button>
+        <button type="button" id="btn-close" class="btn-close position-absolute m-2" aria-label="Close"></button>
         <?php if (session()->get('isLoggedIn')) { ?>
             <div class="container rounded-5 p-2 bg-warning bg-opacity-10">
                 <img src="<?= base_url('image/prof/') ?><?= session()->get('foto-prof') ?>" alt="" class="foto-prof m-auto">
@@ -13,7 +13,7 @@
 
                 <a href="<?= base_url('akun_detail') ?>" class="text-decoration-none btnhover mb-2 mt-1">Lihat Akun</a>
                 <a href="<?= base_url('pesanan_saya') ?>" class="text-decoration-none btnhover mb-2">Pesanan saya</a>
-                <a href="<?= base_url('riwayat_transaksi') ?>" class="text-decoration-none btnhover mb-4">Riwayat Transaksi</a>
+                <a href="<?= base_url('riwayat_transaksi') ?>" class="text-decoration-none btnhover mb-2">Riwayat Transaksi</a>
                 <a href="<?= base_url('logout') ?>" class="btn btn-danger mt-2">Log Out</a>
             </div>
 

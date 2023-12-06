@@ -33,8 +33,8 @@
         <form action="<?= base_url('update_akun') ?>" method="post" enctype="multipart/form-data" class="mt-4 d-flex justify-content-center">
             <div class=" bg-warning bg-opacity-25 rounded-4 ">
                 <div class="row p-4">
-                    <div class="col-md-12 col-xs-12 ">
-                        <h1 class="bakery stroke  mb-4 text-center">Akun</h1>
+                    <h1 class="bakery stroke  mb-4 text-center">Akun</h1>
+                    <div class="col-md-6 col-xs-12 ">
                         <div class="form-floating mb-3 ">
                             <input type="text" name="nama_user" id="nama_user" class="bg-light form-control" value="<?= $user['nama_user'] ?>" required>
                             <label for="nama_user">Nama</label>
@@ -51,6 +51,7 @@
                             <textarea name="alamat" id="alamat" class="bg-light form-control" cols=50 rows=30><?= $user['alamat'] ?></textarea>
                             <label for="alamat">Alamat</label>
                         </div>
+
                         <div>
                             <label for="ktp">Foto KTP</label>
                             <br>
@@ -64,13 +65,15 @@
                                 <p>Note : KTP anda sudah terverifikasi</p>
                             <?php } ?>
                         </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
                         <div class="">
                             <label for="foto-pro">Foto Profil</label>
                             <br>
                             <div class="text-center">
                                 <img src="<?= base_url('image/prof/') ?><?= $user['foto_profil'] ?>" alt="" id="gambarTampil2" class="foto-prof ">
                             </div>
-                            <input type="file" name="foto-pro" id="foto-pro" class="bg-light form-control" accept=".jpeg,.jpg,.png,image" >
+                            <input type="file" name="foto-pro" id="foto-pro" class="bg-light form-control" accept=".jpeg,.jpg,.png,image">
                         </div>
                         <br>
                         <?php if (session()->get('isLoggedInAdmin')) {

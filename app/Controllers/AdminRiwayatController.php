@@ -18,6 +18,7 @@ class AdminRiwayatController extends BaseController
         $cari = $this->request->getPost('cari');
         if ($cari) {
             $model = $pes->search($cari);
+            session()->setFlashdata('notif','Mencari pelanggan dengan nama '.$cari);
         } else {
             $model = $pes;
         }
